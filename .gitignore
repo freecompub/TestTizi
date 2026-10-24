@@ -1,0 +1,5 @@
+# Transcriptions brutes des sessions Tizi : l'échange complet, volumineux.
+# Le condensé (.condense.md), l'extrait (.extrait.md) et l'index (.index.yaml) sont versionnés :
+# ils suffisent à reprendre sur une autre machine. Retirer cette ligne pour versionner aussi
+# les transcriptions et permettre session-search.mjs depuis n'importe quelle machine.
+.tizi/sessions/*.jsonl
