@@ -41,7 +41,9 @@ opportunity:              # phase Assess (references/phase-assess.md)
     user_metrics: []       # aucun indicateur côté utilisateur n'est encore nommé
     adoption: ""           # non abordé en Assess
     business_problem: "Friction avec les parents (SRC-001) : agacement exprimé PLUSIEURS FOIS en réunion sur la lourdeur des formulaires et de la procédure. C'est le déclencheur de toute l'initiative mère."
-    business_metrics: []
+    business_metrics:
+      - "Inscriptions abouties sans problème (définition et valeur actuelle inconnues — ZO-024)"
+      - "Dossiers incomplets (définition et valeur actuelle inconnues — ZO-025)"
     budget: "quelques mois"   # budget annoncé pour l'ensemble, à répartir entre les deux filles (ZO-023)
   decision: aller_plus_loin   # rendue par SH-02, déclarée par l'utilisateur — en_attente | aller_plus_loin | jeter | decoupee | a_apprendre | reportee
   reason: "Une douleur exprimée plusieurs fois en réunion, des volumes connus (150 élèves, 150 formulaires ressaisis chaque année, 3 dossiers perdus) et une échéance réelle : la campagne d'inscription démarre en avril. Le problème mérite une découverte ; ce n'est pas un engagement à construire."
@@ -57,7 +59,12 @@ problem:
   symptoms: []
   impact: []             # temps, coût, risque, qualité
 
-success_signals: []      # - { text: "", measurable: false }
+success_signals:
+  - text: "Des inscriptions qui aboutissent sans problème"
+    measurable: false      # ni définition de « sans problème », ni valeur actuelle : ZO-024, ZO-026
+  - text: "Moins de dossiers incomplets"
+    measurable: false      # premier énoncé de ce mode de défaillance (SRC-001) ; ni définition, ni baseline : ZO-025
+
 
 scope:
   in: []
@@ -67,7 +74,20 @@ scope:
 current_process: []      # reconstitué en Discover (atelier, entretiens)
 #  - { event: "Dossier reçu", actor: "", source: SRC-xxx }
 
-constraints: []          # - { type: legale|contractuelle|organisationnelle|budgetaire|environnement|autre, text: "", source: SRC-xxx, implication: "" }
+constraints:
+  - type: legale
+    text: "Le dossier d'inscription contient des données de santé (médecin traitant, mutuelle, allergies, vaccinations) concernant des mineurs, deux consentements (transport en cas d'urgence, diffusion média) et les coordonnées de tiers (personnes à contacter en cas d'urgence)"
+    source: SRC-002
+    implication: "Catégories particulières au sens du RGPD, sur des mineurs : base légale, durée de conservation, accès restreint, consentements révocables et traçables, information des personnes. La contrainte existe DÉJÀ sur le papier — elle n'est pas créée par l'initiative — mais elle devra être traitée explicitement et elle pèsera sur le périmètre (ZO-028)"
+  - type: organisationnelle
+    text: "L'accès aux informations de santé des dossiers est aujourd'hui réservé aux membres du bureau"
+    source: SRC-002
+    implication: "Une restriction d'accès existe déjà dans la pratique : elle est à constater avant de décrire une cible, et c'est elle qui crée R-02"
+  - type: organisationnelle
+    text: "Un règlement interne de l'association existe et s'impose à la procédure d'inscription"
+    source: SRC-001
+    implication: "Document à récupérer avant de décrire le processus cible : il peut imposer des pièces, des délais ou des validations que personne ne cite spontanément (ZO-027)"
+# - { type: legale|contractuelle|organisationnelle|budgetaire|environnement|autre, text: "", source: SRC-xxx, implication: "" }
                           #   environnement : conditions réelles d'usage (bruit, lumière, mains occupées ou gantées, déplacement, connexion, interruptions, temps disponible)
 
 stakeholders:
@@ -95,6 +115,18 @@ stakeholders:
     end_user: false
     represents: ""
     status: à interroger  # présent au cadrage, n'a pas parlé
+  - id: SH-04
+    name: ""
+    role: "professeur"
+    impact: fort          # utilisateur du dossier en situation d'urgence, sans y avoir accès (R-02)
+    power: faible
+    influence: inconnue
+    quadrant: consulter
+    attitude: ""
+    decision_domains: []
+    end_user: true
+    represents: ""
+    status: à interroger
   - id: SH-03
     name: "Tom"
     role: "membre du bureau"
@@ -149,6 +181,13 @@ sources:
     present: [SH-01, SH-02, SH-03]
     path: ""
     feedback: à envoyer
+  - id: SRC-002
+    type: entretien
+    date: "2026-10-27"
+    stakeholders: [SH-01]
+    present: [SH-01]
+    path: "brd/ecolasso-inscriptions/sources/SRC-002-donnees-dossier-inscription.md"
+    feedback: à envoyer
 #  - id: SRC-001
 #    type: entretien       # cadrage | entretien | observation | mesure | test | document | atelier | ticket | revue | dt-handoff | autre
 #                          # cadrage : l'échange qui ouvre l'initiative, avec qui porte la demande. Déclaratif,
@@ -163,7 +202,19 @@ sources:
 #    path: ""              # fichier dans brd/<slug>/sources/ si fourni
 #    feedback: à envoyer   # retour à la source : à envoyer | envoyé | confirmé | corrigé | sans objet
 
-candidate_needs: []
+candidate_needs:
+  - id: BC-001
+    text: "Pouvoir réinscrire un enfant sans réécrire les informations que l'association détient déjà et qui n'ont pas changé"
+    sources: [{ ref: SRC-001, location: "« Les parents chaque année remplisse les mêmes informations »" }]
+    status: proposé
+    reason: ""
+    notes: "Formulé à partir de la douleur exprimée, pas dicté par SH-01 : à confirmer avec lui. ZO-029 levée : seule l'assurance scolaire change à coup sûr chaque année ; le reste change rarement. La ressaisie porte donc sur onze rubriques sur douze. ATTENTION : reporter une donnée sans la faire confirmer crée un risque nouveau sur les données de santé (R-01)."
+  - id: BC-002
+    text: "Pouvoir savoir qu'un dossier est bien arrivé et complet, sans avoir à le demander"
+    sources: [{ ref: SRC-001, location: "« si le dossier est perdu, personne ne vous le dis »" }]
+    status: proposé
+    reason: ""
+    notes: "Couvre deux défaillances distinctes : le dossier perdu (3 sur 150) et le dossier incomplet (ZO-025)."
 #  - id: BC-001
 #    text: "Pouvoir …"
 #    sources: [{ ref: SRC-001, location: "l.42" }]
@@ -318,9 +369,149 @@ shadow_zones:
     ask_to: SH-01
     action: document
     blocking: false
+    status: assumée
+    resolution: "Assumée : ni formulaire vierge ni comptes rendus disponibles (SH-01). Le contenu du formulaire sera recueilli en déclaratif auprès de SH-01 — donc rapporté, pas vérifié sur pièce. À rouvrir si le document devient accessible."
+    related: [SRC-001]
+  - id: ZO-031
+    type: profil_manquant
+    question: "Pendant un cours ou une sortie, qui a besoin de consulter les allergies, le médecin traitant, les contacts d'urgence et l'autorisation de transport ? Où va-t-il chercher l'information aujourd'hui, et en combien de temps l'obtient-il ?"
+    origin: council:utilisateur-final
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: levée
+    resolution: "Le professeur appelle ; il n'a pas accès aux informations de santé. Ce sont les membres du bureau qui y ont accès et qui donnent l'information sur les allergies (SRC-002, complément, rapporté par SH-01). D'où R-02 et ZO-037."
+    related: [SRC-002, R-01]
+  - id: ZO-032
+    type: probleme_flou
+    question: "Que se passe-t-il en dehors du flux nominal : une famille qui arrive hors campagne, un départ en cours d'année, une information qui change après le dépôt (déménagement, nouvelle allergie, nouvelle assurance) ? Combien de cas de ce type la saison dernière ?"
+    origin: council:operations-support
+    ask_to: SH-02
+    action: entretien
+    blocking: false
     status: ouverte
     resolution: ""
-    related: [SRC-001]
+    related: [SRC-002]
+  - id: ZO-033
+    type: hypothese_non_verifiee
+    question: "Chacune des douze rubriques est-elle exigée par quelqu'un — assureur de l'association, financeur, règlement interne, autorité — ou certaines sont-elles collectées par habitude ? Et l'assurance ou un financeur exige-t-il un justificatif sur pièce ?"
+    origin: council:sceptique
+    ask_to: SH-02
+    action: document
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SRC-002, BC-001]
+  - id: ZO-034
+    type: perimetre_flou
+    question: "La validation des inscriptions passe par WhatsApp : qui l'envoie, depuis quel compte, que contient le message, et comment fait un parent qui n'utilise pas WhatsApp ? Et si cette boucle de retour appartient à cette initiative, où passe exactement la frontière avec l'initiative sœur sur la communication ?"
+    origin: council:sceptique
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [BC-002]
+  - id: ZO-035
+    type: perimetre_flou
+    question: "Le paiement d'une cotisation ou de frais de cours fait-il partie de la procédure d'inscription, et entre-t-il dans ce qu'on appelle un dossier « complet » ?"
+    origin: council:sponsor-finance
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: levée
+    resolution: "Oui : paiement par virement, preuve de virement déposée AVEC le dossier (SRC-002, complément). Le paiement est dans la procédure d'inscription. Reste à savoir si son absence est le principal motif de dossier incomplet : ZO-036."
+    related: [ZO-025]
+  - id: ZO-036
+    type: probleme_flou
+    question: "Un dossier « incomplet », est-ce le plus souvent une preuve de virement manquante, une pièce de santé manquante, ou autre chose ? Le paiement arrive maintenant dans le dossier, et c'est le premier candidat."
+    origin: SRC-002
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [ZO-025]
+  - id: ZO-037
+    type: partie_prenante_non_entendue
+    question: "Les professeurs appellent le bureau en cas d'urgence sans avoir accès aux informations de santé : combien de fois est-ce arrivé, en combien de temps obtiennent-ils la réponse, et est-ce déjà arrivé qu'ils ne joignent personne ?"
+    origin: SRC-002
+    ask_to: SH-04
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [R-02, SH-04]
+  - id: ZO-030
+    type: attendu_implicite
+    question: "La ressaisie annuelle force aujourd'hui les parents à relire toutes les informations de santé de leur enfant. Est-ce que quelqu'un compte sur cet effet — un enseignant, un responsable d'activité — et que se passerait-il si plus personne ne relisait ces rubriques chaque année ?"
+    origin: SRC-002
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [BC-001, R-01]
+  - id: ZO-028
+    type: perimetre_flou
+    question: "Données de santé de mineurs et consentements : qui est responsable de traitement dans l'association, où sont conservés les dossiers papier aujourd'hui, pendant combien de temps, et qui y a accès ? Et le traitement de ces obligations est-il dans le périmètre de l'initiative ou hors de lui ?"
+    origin: SRC-002
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [BC-001]
+  - id: ZO-029
+    type: probleme_flou
+    question: "Parmi les douze rubriques du dossier, lesquelles changent réellement d'une année sur l'autre ? Question posée, restée sans réponse — c'est elle qui sépare « tout réécrire » de « confirmer ce qui n'a pas bougé », donc elle dimensionne BC-001."
+    origin: SRC-002
+    ask_to: SH-01
+    action: entretien
+    blocking: false
+    status: levée
+    resolution: "Seule l'assurance scolaire change à coup sûr tous les ans. Le reste peut changer, mais rarement (SRC-001, SH-01). La ressaisie est donc redondante sur onze rubriques sur douze pour la plupart des familles."
+    related: [BC-001]
+  - id: ZO-024
+    type: succes_non_mesurable
+    question: "Qu'est-ce qu'une inscription « réussie sans problème » ? Et combien y en a-t-il aujourd'hui sur 150 ? Sans définition ni valeur de départ, l'indicateur ne pourra pas dire si quoi que ce soit s'est amélioré."
+    origin: point-etape
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: []
+  - id: ZO-025
+    type: probleme_flou
+    question: "Les « dossiers incomplets » n'avaient jamais été mentionnés : combien par campagne, à quoi reconnaît-on un dossier incomplet, et qui court après les pièces manquantes ? C'est un troisième mode de défaillance, distinct de la perte et de la ressaisie."
+    origin: point-etape
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [ZO-007]
+  - id: ZO-026
+    type: attendu_implicite
+    question: "Les deux indicateurs proposés mesurent la réussite du côté de l'association (dossiers traités), aucun du côté des familles — alors que le déclencheur est leur agacement. Qu'est-ce qui dirait, côté parent, que ça s'est amélioré ?"
+    origin: point-etape
+    ask_to: SH-01
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: []
+  - id: ZO-027
+    type: hypothese_non_verifiee
+    question: "Que contient le règlement interne au sujet des inscriptions : pièces obligatoires, délais, validations, conditions de refus ? Document annoncé, à récupérer."
+    origin: point-etape
+    ask_to: SH-01
+    action: document
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: []
   - id: ZO-023
     type: perimetre_flou
     question: "Le budget « quelques mois » a été annoncé pour l'ensemble, avant le découpage. Combien pour CETTE initiative ?"
@@ -348,7 +539,130 @@ shadow_zones:
 #    resolution: ""        # levée : réponse + source (SRC-xxx, emplacement) ou décision (DD-xx) ; assumée : raison
 #    related: []           # H-xxx, BC-xxx, SRC-xxx liés
 
-council_runs: []
+council_runs:
+  - date: "2026-10-27"
+    mode: preparation
+    lenses: [utilisateur-final, operations-support, securite-conformite, sponsor-finance, sceptique]
+    initiatives: []        # ce passage ne porte que sur ecolasso-inscriptions
+    proposed: 39
+    questions:
+      - text: "Qui consulte les allergies, le médecin traitant, les contacts d'urgence et l'autorisation de transport pendant un cours ou une sortie, où et en combien de temps ?"
+        lenses: [utilisateur-final, operations-support]
+        outcome: retenue
+        reason: ""
+        zone: ZO-031
+      - text: "Hors flux nominal : arrivée hors campagne, départ en cours d'année, information qui change après le dépôt."
+        lenses: [operations-support, utilisateur-final]
+        outcome: retenue
+        reason: ""
+        zone: ZO-032
+      - text: "Chaque rubrique est-elle exigée par quelqu'un, ou collectée par habitude ? Justificatifs exigés par l'assurance ou un financeur ?"
+        lenses: [sceptique, securite-conformite]
+        outcome: retenue
+        reason: ""
+        zone: ZO-033
+      - text: "WhatsApp comme canal de validation : qui envoie, quel compte, quel contenu, parents sans WhatsApp — et où passe la frontière avec l'initiative sœur ?"
+        lenses: [sceptique, operations-support, utilisateur-final, securite-conformite]
+        outcome: retenue
+        reason: ""
+        zone: ZO-034
+      - text: "Le paiement d'une cotisation ou de frais fait-il partie de l'inscription et d'un dossier « complet » ?"
+        lenses: [sponsor-finance, operations-support]
+        outcome: retenue
+        reason: ""
+        zone: ZO-035
+      - text: "Coût de l'inaction : que perd l'association aujourd'hui, et que se passe-t-il si rien n'est prêt avant avril ?"
+        lenses: [sponsor-finance, sceptique]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; à reprendre au prochain passage, ou dans l'entretien avec SH-02."
+      - text: "D'où vient la date d'avril, et que fait l'association si rien n'est prêt ?"
+        lenses: [sponsor-finance]
+        outcome: réservée
+        reason: "Même motif ; recoupe la précédente."
+      - text: "Autorité parentale partagée, parents séparés : qui donne les deux autorisations, et comment fait-on aujourd'hui ?"
+        lenses: [securite-conformite, utilisateur-final]
+        outcome: réservée
+        reason: "Solide, mais le volet consentements se traitera en bloc une fois ZO-028 tranchée (périmètre RGPD dans ou hors initiative)."
+      - text: "Comment retirer un consentement ou rectifier une information en cours d'année ?"
+        lenses: [securite-conformite]
+        outcome: réservée
+        reason: "Même motif que la précédente."
+      - text: "Les tiers (contacts d'urgence, médecin traitant) savent-ils que leurs coordonnées sont déposées ?"
+        lenses: [securite-conformite]
+        outcome: réservée
+        reason: "Même motif."
+      - text: "Des informations sont-elles transmises hors de l'association (mairie, financeur, fédération, assureur) ?"
+        lenses: [securite-conformite]
+        outcome: réservée
+        reason: "Même motif."
+      - text: "Que devient le dossier d'un enfant qui quitte l'association ? Une famille a-t-elle déjà demandé accès ou suppression ?"
+        lenses: [securite-conformite]
+        outcome: réservée
+        reason: "Même motif."
+      - text: "En cas d'incident, comment établir quelle version d'une information de santé faisait foi à cette date ?"
+        lenses: [securite-conformite]
+        outcome: réservée
+        reason: "Recoupe R-01, déjà enregistré comme risque."
+      - text: "Comment s'inscrit une famille qui ne lit ou n'écrit pas couramment le français, dans une association qui enseigne les langues ?"
+        lenses: [utilisateur-final]
+        outcome: réservée
+        reason: "Cinq retenues au maximum. À poser avant toute description du processus cible."
+      - text: "Existe-t-il un support de suivi (cahier, tableur, outil) où sont recopiées les informations des dossiers papier ?"
+        lenses: [operations-support]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; à poser avec ZO-007 (qui traite les dossiers)."
+      - text: "Comment se répartissent les 150 dossiers sur trois mois, et que se passe-t-il les jours de forte affluence ?"
+        lenses: [operations-support]
+        outcome: réservée
+        reason: "Cinq retenues au maximum."
+      - text: "Comment l'affectation d'un élève à l'un des 10 groupes est-elle décidée, et quel lien avec le dossier d'inscription ?"
+        lenses: [operations-support]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; touche la frontière avec l'initiative sœur, déjà visée par ZO-034."
+      - text: "Comment fait un parent qui ne peut pas se déplacer au bureau pendant les horaires d'ouverture ?"
+        lenses: [utilisateur-final]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; recoupe ZO-032."
+      - text: "Combien de temps la campagne coûte-t-elle aujourd'hui à l'association, et qui le passe ?"
+        lenses: [sponsor-finance]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; servira de valeur de départ, à poser avec ZO-024."
+      - text: "Si une seule des deux attentes pouvait être couverte avant avril, laquelle, et sur quel critère ?"
+        lenses: [sponsor-finance]
+        outcome: réservée
+        reason: "Prématuré : l'arbitrage se posera quand le périmètre sera délimité."
+      - text: "Qui tranche la répartition d'effort entre les deux initiatives filles ?"
+        lenses: [sponsor-finance]
+        outcome: écartée
+        reason: "Déjà couvert par ZO-023 (répartition du budget entre les deux filles)."
+      - text: "Quels coûts récurrents l'association est-elle prête à porter chaque année après la première campagne ?"
+        lenses: [sponsor-finance]
+        outcome: réservée
+        reason: "Cinq retenues au maximum."
+      - text: "De quels incidents précis parle-t-on derrière « problèmes avec les parents », et lesquels sont rattachés au formulaire ?"
+        lenses: [sceptique]
+        outcome: écartée
+        reason: "Déjà répondu : agacement exprimé en réunion sur la lourdeur des formulaires et de la procédure (ZO-020 levée, SRC-001)."
+      - text: "Qu'a-t-on constaté sur les trois dossiers perdus : où et quand, et qu'est-ce qui l'attribue au papier plutôt qu'au circuit ?"
+        lenses: [sceptique]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; à poser avec ZO-007 (qui traite les dossiers)."
+      - text: "Sur quoi repose le constat que seule l'assurance scolaire change chaque année ?"
+        lenses: [sceptique]
+        outcome: écartée
+        reason: "Déjà tracé : déclaré par SH-01 dans SRC-001, enregistré comme rapporté et non vérifié sur pièce."
+      - text: "BC-001 énonce un mécanisme (ne saisir que les changements) plutôt qu'une difficulté vécue."
+        lenses: [sceptique]
+        outcome: écartée
+        reason: "Traitée en corrigeant : BC-001 reformulé pour énoncer le besoin sans prescrire le moyen."
+      - text: "A-t-on observé ce que coûte à un parent de plusieurs enfants de remplir le même formulaire plusieurs fois ?"
+        lenses: [utilisateur-final]
+        outcome: réservée
+        reason: "Cinq retenues au maximum ; recoupe ZO-018 (nombre de familles)."
+      - text: "Le caractère déclaratif du dossier a-t-il déjà posé problème à l'association ?"
+        lenses: [sceptique]
+        outcome: réservée
+        reason: "Recoupe ZO-033, retenue."
 #  - date: ""
 #    mode: preparation     # preparation | couverture | completude
 #    lenses: [utilisateur-final, operations-support, securite-conformite, sponsor-finance, sceptique]
@@ -426,7 +740,23 @@ target_process:
 #    - { event: "", actor: "", change: nouveau }   # nouveau | modifié | inchangé | supprimé
   org_impacts: []          # rôles, organisation, formation
 
-risks: []
+risks:
+  - id: R-02
+    text: "En situation d'urgence, la personne présente auprès de l'enfant — le professeur — n'a pas accès aux allergies ni aux contacts d'urgence. Il doit joindre un membre du bureau qui, lui, y a accès. Les quatre rubriques de santé du dossier ne sont donc consultables qu'à travers un intermédiaire, au moment précis où elles servent"
+    origin: ZO-031
+    related: [SRC-002, SH-04]
+    likelihood: ""
+    impact: ""
+    response: ""
+    status: proposé
+  - id: R-01
+    text: "Reporter automatiquement les informations d'une année sur l'autre peut laisser une donnée de santé périmée dans le dossier : une allergie apparue, un vaccin fait, un médecin traitant changé. Aujourd'hui, la ressaisie intégrale force une relecture annuelle de ces informations — personne ne l'a voulu ainsi, mais c'est un effet du papier"
+    origin: BC-001
+    related: [SRC-002, ZO-030]
+    likelihood: ""
+    impact: ""
+    response: ""
+    status: proposé
 #  - id: R-01
 #    text: ""
 #    origin: ZO-003        # zone d'ombre assumée, hypothèse, source, partie prenante
@@ -520,4 +850,4 @@ governance:
 #      target_version: ""
 
 session:                   # continuité entre sessions (references/sessions.md)
-  next_action: "Phase Discover : entendre les parents eux-mêmes (hors Samir), identifier et interroger qui traite les dossiers au bureau (ZO-007), récupérer les comptes rendus de réunion (ZO-021)."          # prochaine action notée avant une pause
+  next_action: "Mener les entretiens préparés : guide-SH-02.md (Dédé — deux décisions de périmètre attendues : volet données de santé, frontière avec l'initiative sœur) puis guide-SH-04.md (un professeur — R-02, l'accès aux allergies en urgence). Ancienne note : Phase Discover : entendre les parents eux-mêmes (hors Samir), identifier et interroger qui traite les dossiers au bureau (ZO-007), récupérer les comptes rendus de réunion (ZO-021)."          # prochaine action notée avant une pause
