@@ -29,7 +29,7 @@ opportunity:              # phase Assess (references/phase-assess.md)
     problems:
       - "P1 — Communication sur WhatsApp : groupes recréés de zéro chaque année, erreurs d'affectation des personnes aux groupes, groupes mixant parents et élèves, messages mélangés, devoirs envoyés sur le mauvais groupe"
       - "P1a — Détection de l'erreur d'envoi : rien ne la signale. Si l'enseignant ne s'en rend pas compte, l'erreur persiste jusqu'à ce qu'un membre du groupe la signale — acteur et délai inconnus (ZO-010)"
-      - "P1b — Conséquence (SRC-001, RAPPORTÉE par un parent) : les élèves du groupe qui n'a pas reçu le devoir arrivent sans l'avoir fait, et la séance se transforme en séance de rattrapage"
+      - "P1b — Conséquence (SRC-007, SH-03, membre du bureau) : les élèves du groupe qui n'a pas reçu le devoir arrivent sans l'avoir fait, et la séance se transforme en séance de rattrapage. Attribution corrigée le 2026-10-27 : ce récit avait d'abord été enregistré au nom d'un parent, il est de Tom. Il reste rapporté — Tom n'enseigne pas"
       - "P1c — Ampleur (SRC-001) : 10 groupes de cours, donc au moins 10 groupes WhatsApp recréés de zéro chaque année, à peupler avec 150 élèves et leurs parents. Fréquence des erreurs non mesurée (ZO-005)"
     users:
       - "Professeurs (SH-04) — non entendus"
@@ -83,7 +83,7 @@ stakeholders:
     decision_domains: []
     end_user: true
     represents: ""
-    status: interrogée    # entendue une fois (SRC-001)
+    status: à interroger  # tenait le clavier ; aucun contenu du dossier n'est attribué à sa propre voix (ZO-052)
   - id: SH-02
     name: "Dédé"
     role: "directeur de l'association"
@@ -95,7 +95,7 @@ stakeholders:
     decision_domains: [perimetre, objectifs, priorites]
     end_user: false
     represents: ""
-    status: à interroger  # présent au cadrage, n'a pas parlé
+    status: à interroger  # a parlé sur l'autre dossier, pas sur celui-ci : il n'a rien dit du problème de communication
   - id: SH-03
     name: "Tom"
     role: "membre du bureau"
@@ -107,7 +107,7 @@ stakeholders:
     decision_domains: []
     end_user: false
     represents: "le bureau de l'association (déduit, à corriger)"
-    status: à interroger  # présent au cadrage, n'a pas parlé
+    status: interrogée    # a dicté le récit du rattrapage (SRC-007)
   - id: SH-04
     name: ""
     role: "professeur"
@@ -167,10 +167,18 @@ decision_rights:
 #    source: SRC-xxx
 
 sources:
+  - id: SRC-007
+    type: cadrage
+    date: "2026-10-27"
+    stakeholders: [SH-03]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Le récit de la séance transformée en rattrapage. Dicté à SH-01 qui tenait le clavier"
   - id: SRC-001
     type: cadrage
     date: "2026-10-27"
-    stakeholders: [SH-01]   # Samir, parent d'élève : la seule voix entendue
+    stakeholders: []        # SANS VOIX PROPRE : Samir tenait le clavier ; l'attribution complète (ecolasso-inscriptions, ZO-052) a renvoyé le contenu vers SH-02 et SH-03
     present: [SH-01, SH-02, SH-03]
     path: ""
     feedback: à envoyer
@@ -219,6 +227,10 @@ hypotheses:
   - id: H-005
     text: "Dédé, directeur de l'association, peut rendre seul la décision d'opportunité et engager le projet"
     basis: "déclaré par Samir (SH-01), parent d'élève, pas par Dédé ni par les statuts"
+    status: à vérifier
+  - id: H-011
+    text: "Les groupes sont recréés et peuplés à la main alors qu'une liste nom / prénom / téléphone existe déjà dans le fichier Excel des inscriptions : les erreurs d'affectation viendraient d'une recopie manuelle d'une liste qui existe"
+    basis: "SRC-004 de l'initiative sœur ; non vérifié auprès de qui crée les groupes"
     status: à vérifier
   - id: H-007
     text: "Ce problème fait souffrir les enseignants et les élèves (non entendus, non mesuré), pas les familles : aucun parent ne s'en est plaint en réunion"
@@ -327,8 +339,8 @@ shadow_zones:
     ask_to: SH-01
     action: entretien
     blocking: false
-    status: ouverte
-    resolution: ""
+    status: levée
+    resolution: "La question tombe : Samir écrivait sous la dictée. Le récit du rattrapage est de SH-03 (SRC-007), membre du bureau, qui n'enseigne pas non plus — la zone sur les enseignants non entendus (ZO-006) reste donc entière."
     related: [SRC-001, SH-04]
   - id: ZO-019
     type: partie_prenante_non_entendue
@@ -467,7 +479,12 @@ risks: []
 #    response: ""          # piste de traitement côté métier
 #    status: proposé       # proposé | validé
 
-dependencies: []           # - { text: "", owner: "" }
+dependencies:
+  - text: "DÉPENDANCE STRUCTURANTE (DD-01, rendue le 2026-10-27 par SH-02) : la liste des familles reste dans l'initiative ecolasso-inscriptions. Cette initiative-ci s'en sert et ne peut donc pas livrer avant elle. L'échéance de la campagne d'avril devient de fait celle des deux"
+    owner: SH-02
+  - text: "Un fichier Excel tenu par le bureau pour les inscriptions contient nom, prénom et numéros de téléphone des parents (SRC-004 de ecolasso-inscriptions). C'est exactement la matière nécessaire pour constituer les 10 groupes chaque année, aujourd'hui peuplés à la main. Dépendance découverte côté initiative sœur, à vérifier ici"
+    owner: SH-03
+# - { text: "", owner: "" }
 
 glossary: []               # - { term: "", definition: "", source: SRC-xxx }
 
@@ -551,4 +568,4 @@ governance:
 #      target_version: ""
 
 session:                   # continuité entre sessions (references/sessions.md)
-  next_action: "Phase Discover : entendre d'abord les enseignants (SH-04) et les élèves (SH-05) — ZO-006 — et établir la fréquence réelle des erreurs d'envoi (ZO-005). Ces deux réponses conditionnent la suite du dossier."          # prochaine action notée avant une pause
+  next_action: "Tenir compte de DD-01 : la liste des familles appartient à ecolasso-inscriptions, cette initiative en dépend. Puis, inchangé : Phase Discover : entendre d'abord les enseignants (SH-04) et les élèves (SH-05) — ZO-006 — et établir la fréquence réelle des erreurs d'envoi (ZO-005). Ces deux réponses conditionnent la suite du dossier."          # prochaine action notée avant une pause

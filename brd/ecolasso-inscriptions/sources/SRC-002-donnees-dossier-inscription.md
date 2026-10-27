@@ -2,7 +2,7 @@
 
 - **Type** : entretien (déclaratif)
 - **Date** : 2026-10-27
-- **Voix entendue** : SH-01 (Samir, parent d'élève)
+- **Voix entendue** : SH-03 (Tom, membre du bureau) pour la liste des rubriques ; SH-03 et SH-02 pour le complément sur l'urgence. Attribution corrigée le 2026-10-27 : cette source avait d'abord été enregistrée au nom de SH-01, qui tenait le clavier
 - **Nature de la preuve** : **rapportée, de mémoire**. Le formulaire vierge n'était pas disponible
   (ZO-021 assumée). Cette liste n'a pas été vérifiée sur pièce et n'est pas donnée pour exhaustive :
   elle a été demandée « telle qu'elle revient ».
