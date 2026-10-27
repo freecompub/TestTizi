@@ -1,0 +1,21 @@
+# Index d'une session — écrit par session-capture.mjs. Un fichier par session : rien à fusionner.
+session: 8a5e1c4b
+started: '2026-10-27T20:47:19.138Z'
+ended: '2026-10-27T21:53:05.562Z'
+initiatives:
+  - brd/ecolasso
+  - brd/ecolasso-communication
+  - brd/ecolasso-inscriptions
+user_messages: 11
+transcript: .tizi/sessions/2026-10-27-8a5e1c4b.jsonl
+extract: .tizi/sessions/2026-10-27-8a5e1c4b.extrait.md
+condensed: ''
+last_event: Stop
+tool: claude
+tasks: []
+tokens:
+  input: 194
+  output: 140435
+  cache_read: 9416924
+  cache_write: 280474
+  total: 9838027

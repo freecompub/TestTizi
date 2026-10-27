@@ -1,0 +1,554 @@
+# État de session d'une initiative BRD — mis à jour par l'agent après chaque échange validé.
+document: brd
+initiative:
+  name: "EcolAsso — Communication et devoirs"
+  slug: "ecolasso-communication"
+  trigger: "Aucun déclencheur propre : le déclencheur d'EcolAsso (« on veut plus avoir des problème avec les parents ») portait sur les inscriptions, pas sur la communication. Pourquoi maintenant reste à établir (ZO-022)."
+  derived_from:
+    initiative: ecolasso
+    reason: decoupage
+    decision: "décision d'opportunité d'EcolAsso du 2026-10-27 (decoupee), rendue par SH-02"
+  # d'où elle vient, quand elle ne naît pas d'une demande mais d'une autre
+                         # initiative. Renseigne `derived_from` à la création : `split_into` ne dit la
+                         # filiation que vers le bas, et seulement depuis une mère close
+  #  initiative: ""      # slug de l'initiative d'origine
+  #  reason: decoupage   # decoupage | sortie_perimetre | autre:<libellé>
+  #  decision: ""        # la décision qui l'a produite, chez la mère : DD-xx, ou sa décision d'opportunité
+phase: discover          # assess | discover | define | govern | close (opportunité jetée)
+created: "2026-10-27"              # AAAA-MM-JJ
+updated: "2026-10-27"
+
+opportunity:              # phase Assess (references/phase-assess.md)
+  request:
+    verbatim: |
+      Héritée d'EcolAsso (SRC-001, verbatim de SH-01) : l'association utiliser WhatsApp pour la communication parents profs, Prof élevé, c'est problématique puisque chaque année, les groupes sont créés de zéro, il y a déjà les erreur d'affection des bonnes personnes aux bon groupe. Les groupes sont un mix entre parents et élèves, les messages sont mixé. Les devoirs sont envoyés sur ces groupes avec les erreurs d'envoi sur le mauvais groupe.
+    
+    classification: figee  # héritée d'EcolAsso : le nom portait déjà une solution — figee (une solution précise, qui masque souvent le problème) | fluide (une aspiration vague)
+    presumed_solution: ""  # pour une demande figée : la solution présumée, à remonter au problème
+  canvas:
+    problems:
+      - "P1 — Communication sur WhatsApp : groupes recréés de zéro chaque année, erreurs d'affectation des personnes aux groupes, groupes mixant parents et élèves, messages mélangés, devoirs envoyés sur le mauvais groupe"
+      - "P1a — Détection de l'erreur d'envoi : rien ne la signale. Si l'enseignant ne s'en rend pas compte, l'erreur persiste jusqu'à ce qu'un membre du groupe la signale — acteur et délai inconnus (ZO-010)"
+      - "P1b — Conséquence (SRC-001, RAPPORTÉE par un parent) : les élèves du groupe qui n'a pas reçu le devoir arrivent sans l'avoir fait, et la séance se transforme en séance de rattrapage"
+      - "P1c — Ampleur (SRC-001) : 10 groupes de cours, donc au moins 10 groupes WhatsApp recréés de zéro chaque année, à peupler avec 150 élèves et leurs parents. Fréquence des erreurs non mesurée (ZO-005)"
+    users:
+      - "Professeurs (SH-04) — non entendus"
+      - "Élèves (SH-05) — non entendus"
+      - "Parents d'élèves (SH-01)"
+      - "Qui crée et peuple les groupes chaque année : non identifié (ZO-007)"
+    solutions_today:
+      - "WhatsApp, groupes recréés chaque année, mélangeant parents et élèves (communication et envoi des devoirs)"
+    user_value: ""         # non établi : les porteurs de la douleur n'ont pas été entendus
+    user_metrics: []
+    adoption: ""
+    business_problem: "Non établi. Aucun parent ne s'est plaint de P1 ; le coût supposé est du temps d'enseignement perdu, rapporté par un parent et non mesuré (H-003, ZO-022)"
+    business_metrics: []
+    budget: "quelques mois"   # budget annoncé pour l'ensemble, à répartir entre les deux filles (ZO-023)
+  decision: aller_plus_loin   # rendue par SH-02, déclarée par l'utilisateur — en_attente | aller_plus_loin | jeter | decoupee | a_apprendre | reportee
+  reason: "Décision rendue malgré l'absence de preuve : la fréquence des erreurs n'est pas mesurée (ZO-005) et les seuls porteurs de la douleur — enseignants et élèves — n'ont jamais été entendus (ZO-006). Discover n'engage pas à construire ; ces deux zones sont ce qu'il doit lever en premier, et leur réponse peut encore clore l'initiative."
+  to_learn: []             # si a_apprendre : - { question: "", who: "" }
+  split_into: []           # si decoupee : slugs des initiatives filles. Sans eux, « close » se relit
+                           # comme un abandon — ce qui est arrivé, avec la vérité en commentaire YAML
+  decided_by: SH-02        # Dédé, directeur de l'association — déclaré par l'utilisateur
+  date: "2026-10-27"
+
+problem:
+  statement: ""          # 2-3 phrases, confirmées par l'utilisateur
+  confirmed: false
+  symptoms: []
+  impact: []             # temps, coût, risque, qualité
+
+success_signals: []      # - { text: "", measurable: false }
+
+scope:
+  in: []
+  out: []
+  deadline: ""
+
+current_process: []      # reconstitué en Discover (atelier, entretiens)
+#  - { event: "Dossier reçu", actor: "", source: SRC-xxx }
+
+constraints: []          # - { type: legale|contractuelle|organisationnelle|budgetaire|environnement|autre, text: "", source: SRC-xxx, implication: "" }
+                          #   environnement : conditions réelles d'usage (bruit, lumière, mains occupées ou gantées, déplacement, connexion, interruptions, temps disponible)
+
+stakeholders:
+  - id: SH-01
+    name: "Samir"
+    role: "parent d'élève"
+    impact: fort
+    power: faible
+    influence: inconnue
+    quadrant: consulter
+    attitude: "porte la demande ; parle parfois « au nom de l'association » (ZO-019)"
+    decision_domains: []
+    end_user: true
+    represents: ""
+    status: interrogée    # entendue une fois (SRC-001)
+  - id: SH-02
+    name: "Dédé"
+    role: "directeur de l'association"
+    impact: inconnu
+    power: fort           # rend seul la décision d'opportunité (rapporté par SH-01, H-005)
+    influence: inconnue
+    quadrant: impliquer
+    attitude: ""
+    decision_domains: [perimetre, objectifs, priorites]
+    end_user: false
+    represents: ""
+    status: à interroger  # présent au cadrage, n'a pas parlé
+  - id: SH-03
+    name: "Tom"
+    role: "membre du bureau"
+    impact: inconnu
+    power: fort
+    influence: inconnue
+    quadrant: impliquer
+    attitude: ""
+    decision_domains: []
+    end_user: false
+    represents: "le bureau de l'association (déduit, à corriger)"
+    status: à interroger  # présent au cadrage, n'a pas parlé
+  - id: SH-04
+    name: ""
+    role: "professeur"
+    impact: fort
+    power: faible
+    influence: inconnue
+    quadrant: consulter
+    attitude: ""
+    decision_domains: []
+    end_user: true
+    represents: ""
+    status: à interroger
+  - id: SH-05
+    name: ""
+    role: "élève"
+    impact: fort
+    power: faible
+    influence: inconnue
+    quadrant: consulter
+    attitude: ""
+    decision_domains: []
+    end_user: true
+    represents: ""
+    status: à interroger
+#  - id: SH-01
+#    name: ""
+#    role: ""
+#    impact: fort          # fort | faible — à quel point le changement touche son travail ou son pouvoir
+#    power: fort           # fort | faible — capacité à peser sur la décision ou sur l'adoption
+#    influence: positive   # positive | négative | neutre | inconnue — sens dans lequel elle pèsera
+#    quadrant: impliquer   # déduit de power × impact : impliquer | satisfaire | consulter | informer
+#    attitude: ""          # ce qu'elle pense du changement, du sponsor, de la démarche (verbatim si possible)
+#    decision_domains: []  # domaines de decision_rights sur lesquels elle a autorité
+#    end_user: false       # utilisatrice directe du futur processus ou système
+#    represents: ""        # si elle parle au nom d'un groupe : lequel (les représentants ne remplacent pas les vrais utilisateurs)
+#    status: à interroger  # à interroger | interrogée | non disponible. « interrogée » veut dire
+#                          # ENTENDUE AU MOINS UNE FOIS, pas « plus rien à lui demander » : la zone
+#                          # `partie_prenante_non_entendue` se ferme quand aucune zone ouverte ne la
+#                          # nomme en `ask_to`, jamais sur le seul changement de statut
+
+decision_rights:
+  - domain: perimetre
+    decider: SH-02
+    escalation: SH-03
+    confirmed_by: SH-01     # RAPPORTÉ par Samir, pas confirmé par Dédé (H-005)
+    source: SRC-001
+  - domain: objectifs
+    decider: SH-02
+    escalation: SH-03
+    confirmed_by: SH-01
+    source: SRC-001
+# qui tranche quoi, établi au cadrage et validé par le sponsor
+#  - domain: perimetre     # perimetre | objectifs | priorites | processus:<nom> | regles:<domaine> | donnees_securite | autre:<libellé>
+#    decider: SH-01
+#    escalation: SH-00     # recours si le décideur ne tranche pas ; le sponsor en dernier ressort
+#    confirmed_by: SH-00   # qui a confirmé cette attribution
+#    source: SRC-xxx
+
+sources:
+  - id: SRC-001
+    type: cadrage
+    date: "2026-10-27"
+    stakeholders: [SH-01]   # Samir, parent d'élève : la seule voix entendue
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+#  - id: SRC-001
+#    type: entretien       # cadrage | entretien | observation | mesure | test | document | atelier | ticket | revue | dt-handoff | autre
+#                          # cadrage : l'échange qui ouvre l'initiative, avec qui porte la demande. Déclaratif,
+#                          # et souvent rapporté au nom d'un tiers : la partie prenante nommée doit être
+#                          # celle qui a parlé, pas celle dont on rapporte les besoins (S81)
+#                          # observation, mesure et test donnent une preuve « observée » ; les autres une preuve « rapportée »
+#    date: ""
+#    stakeholders: [SH-01] # les voix ENTENDUES dans cet échange
+#    present: []           # ceux qui étaient là, y compris les silencieux. Renseigne `present` quand le
+#                          # tour de table en a nommé plus d'un : présent et locuteur d'aucune source,
+#                          # c'est quelqu'un qui n'a pas été entendu — et son silence n'est pas un accord
+#    path: ""              # fichier dans brd/<slug>/sources/ si fourni
+#    feedback: à envoyer   # retour à la source : à envoyer | envoyé | confirmé | corrigé | sans objet
+
+candidate_needs: []
+#  - id: BC-001
+#    text: "Pouvoir …"
+#    sources: [{ ref: SRC-001, location: "l.42" }]
+#    status: proposé       # proposé | confirmé | intégré | abandonné | hors_périmètre
+#    reason: "Décision rendue malgré l'absence de preuve : la fréquence des erreurs n'est pas mesurée (ZO-005) et les seuls porteurs de la douleur — enseignants et élèves — n'ont jamais été entendus (ZO-006). Discover n'engage pas à construire ; ces deux zones sont ce qu'il doit lever en premier, et leur réponse peut encore clore l'initiative."            # obligatoire si abandonné ou hors_périmètre
+#    moved_to: ""          # si hors_périmètre parce qu'une AUTRE initiative le reprend : son slug. Le
+#                          # besoin y garde son identifiant. Sans ce champ, « rien ne disparaît en
+#                          # silence » tient dans une phrase de `reason` que personne ne relit
+#    notes: ""             # solutions évoquées, nuances
+
+hypotheses:
+  - id: H-001
+    text: "« courses de soutien et de langues » désigne des COURS : soutien scolaire et cours de langues"
+    basis: "lecture de la demande ; coquille probable"
+    status: à vérifier
+  - id: H-002
+    text: "Les deux initiatives filles concernent la même population (les mêmes familles) et partagent le même référentiel de personnes"
+    basis: "déduction : les parents apparaissent dans les deux problèmes"
+    status: à vérifier
+  - id: H-003
+    text: "Une séance transformée en rattrapage a un coût pour l'association au-delà du temps : cours payés par les familles, programme décalé, confiance entamée"
+    basis: "déduction à partir de « association de cours de soutien » ; non confirmé"
+    status: à vérifier
+  - id: H-004
+    text: "Les deux initiatives filles partagent le même canal (WhatsApp) et le même référentiel de familles : les traiter séparément recréerait deux fois la même liste de personnes"
+    basis: "SRC-001 : la validation d'inscription est annoncée via WhatsApp"
+    status: à vérifier
+  - id: H-005
+    text: "Dédé, directeur de l'association, peut rendre seul la décision d'opportunité et engager le projet"
+    basis: "déclaré par Samir (SH-01), parent d'élève, pas par Dédé ni par les statuts"
+    status: à vérifier
+  - id: H-007
+    text: "Ce problème fait souffrir les enseignants et les élèves (non entendus, non mesuré), pas les familles : aucun parent ne s'en est plaint en réunion"
+    basis: "SRC-001 : le mécontentement exprimé ne portait que sur les inscriptions"
+    status: à vérifier
+#  - id: H-001
+#    text: ""
+#    basis: ""             # sur quoi repose l'hypothèse
+#    status: à vérifier    # à vérifier | confirmée | infirmée
+
+shadow_zones:
+  - id: ZO-002
+    type: partie_prenante_non_entendue
+    question: "Qui, parmi Samir, Dédé et Tom, répond dans l'échange de cadrage ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: levée
+    resolution: "Samir (SH-01), parent d'élève. SRC-001 lui est attribuée."
+    related: [SRC-001]
+  - id: ZO-003
+    type: perimetre_flou
+    question: "Dédé est directeur de quoi exactement ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: levée
+    resolution: "Directeur de l'association (SRC-001, rapporté par SH-01)."
+    related: [SH-02]
+  - id: ZO-005
+    type: probleme_flou
+    question: "Combien de fois par an un devoir part-il sur le mauvais groupe, et combien d'erreurs d'affectation à la création des groupes ? Sans fréquence, le coût de P1 n'est pas comparable à celui de P2."
+    origin: cadrage
+    ask_to: SH-02
+    action: entretien
+    blocking: false      # relève de Discover, qui est précisément l'étape qui l'éclaircit
+    status: ouverte
+    resolution: ""
+    related: [SRC-001]
+  - id: ZO-006
+    type: partie_prenante_non_entendue
+    question: "Les professeurs (SH-04) et les élèves (SH-05) sont au cœur du problème et n'ont pas été entendus. Que vivent-ils, eux ?"
+    origin: cadrage
+    ask_to: SH-04
+    action: entretien
+    blocking: false      # relève de Discover, qui est précisément l'étape qui l'éclaircit
+    status: ouverte
+    resolution: ""
+    related: [SH-04, SH-05]
+  - id: ZO-007
+    type: profil_manquant
+    question: "Qui crée et peuple les groupes WhatsApp chaque année ? Personne dans la salle ne fait ce travail."
+    origin: cadrage
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SRC-001]
+  - id: ZO-008
+    type: attendu_implicite
+    question: "Qu'est-ce que WhatsApp rend possible sans que personne y pense (notification lue partout, pièce jointe, conversation informelle entre parents, lecture par un parent qui n'a pas l'application du bon côté) et qui disparaîtrait au changement ?"
+    origin: cadrage
+    ask_to: SH-01
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: []
+  - id: ZO-010
+    type: probleme_flou
+    question: "Qui signale concrètement une erreur d'envoi — un parent, un élève, un autre enseignant ? Et au bout de combien de temps ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SRC-001]
+  - id: ZO-012
+    type: partie_prenante_non_entendue
+    question: "Dédé (directeur) et Tom (membre du bureau) étaient présents au cadrage mais n'ont rien dit. Que disent-ils du problème, et sont-ils d'accord avec le récit de Samir ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SH-02, SH-03, SRC-001]
+  - id: ZO-013
+    type: arbitre_inconnu
+    question: "Qui décide pour l'association : le directeur, le bureau, une AG ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: levée
+    resolution: "Le directeur (SH-02) seul, inscrit en decision_rights. Attribution RAPPORTÉE par SH-01 : H-005 reste à vérifier."
+    related: [SH-02, SH-03]
+  - id: ZO-014
+    type: hypothese_non_verifiee
+    question: "Comment Samir sait-il ce qui se passe en séance et comment les dossiers sont traités ? Parent d'élève, il rapporte sans avoir vécu."
+    origin: cadrage
+    ask_to: SH-01
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SRC-001, SH-04]
+  - id: ZO-019
+    type: partie_prenante_non_entendue
+    question: "Qui est « on » dans « on veut plus avoir des problèmes avec les parents » ? Samir est parent d'élève et parle du côté de l'association : bénévole, membre du bureau, ou relais de Dédé ?"
+    origin: cadrage
+    ask_to: SH-01
+    action: question-utilisateur
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SH-01, SRC-001, ZO-014]
+  - id: ZO-022
+    type: contradiction
+    subtype: factuelle
+    parties: [SH-01, SH-04]
+    question: "La demande initiale mettait ce problème en premier, mais aucun parent ne s'en est plaint en réunion. Est-ce un problème de l'association ou un problème des enseignants, non encore entendus ?"
+    origin: cadrage
+    ask_to: SH-04
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [ZO-006]
+  - id: ZO-023
+    type: perimetre_flou
+    question: "Le budget « quelques mois » a été annoncé pour l'ensemble, avant le découpage. Combien pour CETTE initiative ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: []
+#  - id: ZO-001
+#    type: probleme_flou   # probleme_flou | partie_prenante_non_entendue | profil_manquant | succes_non_mesurable
+#                          # | contradiction | hypothese_non_verifiee | solution_deguisee | perimetre_flou
+#                          # | attendu_implicite | arbitre_inconnu
+#    subtype: ""           # contradiction uniquement : factuelle | vocabulaire | reglementaire | interets
+#    parties: []           # contradiction : parties prenantes en désaccord
+#    arbiter: SH-00        # contradiction « interets » : décideur issu de decision_rights, jamais partie au conflit
+#    question: "…?"
+#    origin: cadrage       # cadrage | SRC-xxx | atelier | point-etape | council:<lentille>
+#    ask_to: SH-01         # SH-xx ou rôle à identifier
+#    action: entretien     # entretien | document | atelier | decision | question-utilisateur
+#    blocking: false      # true seulement si l'étape suivante ne peut pas COMMENCER : nomme-la,
+#                         # et dis ce qui s'y ferait de faux (references/phase-discover.md)
+#    status: ouverte       # ouverte | levée | assumée
+#    resolution: ""        # levée : réponse + source (SRC-xxx, emplacement) ou décision (DD-xx) ; assumée : raison
+#    related: []           # H-xxx, BC-xxx, SRC-xxx liés
+
+council_runs: []
+#  - date: ""
+#    mode: preparation     # preparation | couverture | completude
+#    lenses: [utilisateur-final, operations-support, securite-conformite, sponsor-finance, sceptique]
+#    initiatives: []       # les initiatives couvertes par CE passage, si elles sont plusieurs ; vide = celle-ci
+#                          # seule. Un passage partagé s'écrit à l'identique dans chacune : sans ce champ,
+#                          # « 40 proposées » se lit comme 40 pour ce dossier-là, et une somme sur le
+#                          # portefeuille les compte autant de fois qu'il y a d'initiatives. C'est arrivé.
+#    proposed: 0           # questions renvoyées par les lentilles pour TOUT le passage, avant fusion des doublons
+#    questions:            # celles qui ont survécu à l'arbitrage, écartées comprises : un compteur ne se relit pas.
+#                          # Dans CE fichier, seulement celles dont le `target` porte sur cette initiative.
+#      - text: ""
+#        lenses: []        # lentilles qui l'ont trouvée ; plusieurs = signal de priorité
+#        outcome: retenue  # retenue | écartée | réservée (disponible pour un prochain council)
+#        reason: "Décision rendue malgré l'absence de preuve : la fréquence des erreurs n'est pas mesurée (ZO-005) et les seuls porteurs de la douleur — enseignants et élèves — n'ont jamais été entendus (ZO-006). Discover n'engage pas à construire ; ces deux zones sont ce qu'il doit lever en premier, et leur réponse peut encore clore l'initiative."        # obligatoire si écartée ou réservée
+#        zone: ZO-xxx      # si retenue : la zone d'ombre créée
+
+# ─────────────── Phase Define ───────────────
+
+objectives: []
+#  - id: OBJ-01
+#    statement: ""         # résultat métier attendu
+#    indicator: ""
+#    baseline: ""          # valeur actuelle ; si inconnue → zone d'ombre succes_non_mesurable
+#    target: ""
+#    deadline: ""
+#    owner: SH-01
+#    status: proposé       # proposé | validé | abandonné
+#    lint_waivers: []
+
+impact_map: []            # Pourquoi (objectif) → Qui (acteur) → Comment (changement de comportement) → Quoi (exigences)
+#  - objective: OBJ-01
+#    actor: SH-02          # ou rôle
+#    impact: ""            # changement de comportement attendu
+#    requirements: [BR-001]
+
+business_requirements: []
+#  - id: BR-001
+#    statement: "Le service doit pouvoir …"
+#    objectives: [OBJ-01]
+#    from_needs: [BC-001, BC-004]
+#    business_rules: []    # RG-xxx que l'exigence fait respecter ou dont elle dépend
+#    acceptance:           # résultats observables côté métier
+#      - ""
+#    priority: ""          # must | should | could | wont
+#    rationale: ""         # pourquoi cette priorité
+#    status: proposé       # proposé | validé | abandonné
+#    lint_waivers: []      # avertissements acceptés : - { rule: L03, reason: "" }
+
+business_rules: []         # règles métier : ce ne sont pas des exigences, mais des directives que le métier contrôle
+#  - id: RG-001
+#    statement: "Un dossier ne doit pas être transmis sans justificatif de domicile."
+#    kind: comportement    # definition (fait, calcul, inférence : ne peut pas être violée) | comportement (obligation ou interdiction : peut l'être)
+#    enforcement: stricte  # comportement uniquement : stricte | derogation_autorisee | derogation_justifiee | indicative
+#    sources: [{ ref: SRC-001, location: "l.12" }]   # texte de loi, procédure, ou savoir tacite d'une personne
+#    owner: SH-01          # responsable métier qui peut la faire évoluer
+#    rationale: ""         # pourquoi elle existe ; à challenger si personne ne le sait
+#    exceptions: []        # chaque exception est elle-même une règle : RG-xxx
+#    status: proposé       # proposé | validé | abandonné
+#    lint_waivers: []
+
+decisions: []              # arbitrages rendus pendant la construction du BRD
+#  - id: DD-01
+#    question: ""
+#    zone: ZO-012          # zone d'ombre à l'origine
+#    options:
+#      - { text: "", impacts: "" }   # qui serait insatisfait, autre moyen possible, risque pris en écartant
+#    decision: ""
+#    rationale: ""
+#    decided_by: SH-01     # déclaré par l'utilisateur, jamais déduit
+#    date: ""
+#    status: proposé       # proposé | validé
+
+target_process:
+  events: []
+#    - { event: "", actor: "", change: nouveau }   # nouveau | modifié | inchangé | supprimé
+  org_impacts: []          # rôles, organisation, formation
+
+risks: []
+#  - id: R-01
+#    text: ""
+#    origin: ZO-003        # zone d'ombre assumée, hypothèse, source, partie prenante
+#    related: []           # parties prenantes ou éléments concernés
+#    likelihood: ""        # faible | moyenne | forte
+#    impact: ""            # faible | moyen | fort
+#    response: ""          # piste de traitement côté métier
+#    status: proposé       # proposé | validé
+
+dependencies: []           # - { text: "", owner: "" }
+
+glossary: []               # - { term: "", definition: "", source: SRC-xxx }
+
+define_returns: []         # retours ponctuels en Discover
+#  - { date: "", zone: ZO-012, reason: "" }
+
+brd_sections:              # à rédiger | proposé | validé
+  context: à rédiger
+  objectives: à rédiger
+  stakeholders: à rédiger
+  processes: à rédiger
+  requirements: à rédiger
+  business_rules: à rédiger
+  constraints: à rédiger
+  assumptions_risks: à rédiger
+  decisions: à rédiger
+  scope: à rédiger
+  glossary: à rédiger
+
+principles_applicable: []   # principes de la constitution du produit (.tizi/constitution.yaml) qui s'appliquent à l'initiative ; [] si aucun
+
+synthesis_check:           # porte de synthèse avant Define (fin de Discover), déclarée avec l'utilisateur
+  date: ""
+  fidelite: { status: "", note: "" }        # la synthèse reflète les sources, pas des suppositions — ok | faible
+  couverture: { status: "", note: "" }      # toutes les parties prenantes concernées sont représentées
+  robustesse: { status: "", note: "" }      # chaque besoin retenu repose sur plusieurs sources
+  actionnabilite: { status: "", note: "" }  # le problème est assez clair pour guider la suite
+  alignement: { status: "", note: "" }      # l'équipe et les parties prenantes s'y reconnaissent
+  # une dimension « faible » se corrige, ou s'assume : { status: faible, assumed: true, note: "raison" }
+
+transition_requirements: []  # exigences de transition : ce qu'il faut pour passer de l'existant à la cible (BABOK)
+#  - id: TR-01
+#    kind: formation       # formation | conduite_du_changement | reprise_de_donnees | coexistence | communication | support | autre
+#    text: ""
+#    stakeholders: [SH-02] # qui est concerné
+#    done_when: ""         # critère d'achèvement observable
+#    related: [BR-001]
+#    sources: []
+#    status: proposé
+
+coverage_thresholds: {}     # seuils de couverture en %, par métrique ; vide = valeurs par défaut (lib/rules.mjs, COVERAGE_DEFAULTS)
+coverage_waivers: []        # - { metric: fr_ac, reason: "", approved_by: "" }   # seuil non atteint, assumé et approuvé
+
+# ─────────────── Phase Govern ───────────────
+
+governance:
+  version: "0.1"           # version courante : 0.x brouillons et candidates, 1.0 première baseline
+  status: brouillon        # brouillon | en_revue | approuvé | baseline
+  reviewers: []
+#    - { stakeholder: SH-01, role: approbateur }   # approbateur | relecteur | informé
+  review_rounds: []
+#    - { id: RV-1, version: "0.3", sent: "", channel: export, deadline: "" }   # channel : export | pr
+  comments: []
+#    - id: CM-001
+#      round: RV-1
+#      author: SH-02
+#      source: SRC-010     # le retour est enregistré comme source
+#      target: BR-004      # identifiant ou nom de section
+#      text: ""
+#      category: correction   # correction | modification | nouvelle_exigence | contestation | question
+#      decision: en_attente   # en_attente | accepté | rejeté | reporté
+#      reason: "Décision rendue malgré l'absence de preuve : la fréquence des erreurs n'est pas mesurée (ZO-005) et les seuls porteurs de la douleur — enseignants et élèves — n'ont jamais été entendus (ZO-006). Discover n'engage pas à construire ; ces deux zones sont ce qu'il doit lever en premier, et leur réponse peut encore clore l'initiative."             # obligatoire si rejeté ou reporté
+#      changes: []            # identifiants modifiés suite au commentaire
+  approvals: []
+#    - stakeholder: SH-01
+#      version: "1.0"
+#      date: ""
+#      decision: approuvé     # approuvé | approuvé_avec_réserves | refusé
+#      reserves: []           # R-xx ou ZO-xxx créés pour suivre les réserves
+#      evidence: ""           # référence facultative : mail, signature, compte rendu
+#      declared_by: utilisateur
+  baselines: []
+#    - { version: "1.0", date: "" }
+  change_requests: []
+#    - id: CR-001
+#      date: ""
+#      requested_by: SH-01
+#      description: ""
+#      impact: []             # identifiants touchés
+#      decision: en_attente   # en_attente | acceptée | refusée
+#      target_version: ""
+
+session:                   # continuité entre sessions (references/sessions.md)
+  next_action: "Phase Discover : entendre d'abord les enseignants (SH-04) et les élèves (SH-05) — ZO-006 — et établir la fréquence réelle des erreurs d'envoi (ZO-005). Ces deux réponses conditionnent la suite du dossier."          # prochaine action notée avant une pause
