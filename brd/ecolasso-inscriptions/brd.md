@@ -1,6 +1,6 @@
 # BRD — EcolAsso — Inscriptions et réinscriptions
 
-**Version** : 0.1 — **Statut** : brouillon
+**Version** : 0.2 — **Statut** : en_revue
 
 > Document généré à partir de `state.yaml` le 2026-10-28. Ne pas le modifier directement : toute correction passe par l'état de session.
 
@@ -8,17 +8,17 @@
 
 | Section | Statut |
 |---|---|
-| Contexte et problème | proposé |
+| Contexte et problème | validé |
 | Objectifs et indicateurs | validé |
-| Parties prenantes | proposé |
+| Parties prenantes | validé |
 | Processus | validé |
 | Exigences métier | validé |
 | Règles métier | validé |
-| Contraintes | proposé |
+| Contraintes | validé |
 | Hypothèses et risques | validé |
 | Décisions | validé |
 | Périmètre | validé |
-| Glossaire | proposé |
+| Glossaire | validé |
 
 ## Opportunité
 
@@ -71,50 +71,61 @@ peut perdre sa place.
 
 | ID | Objectif | Indicateur | Actuel | Cible | Échéance | Responsable |
 |---|---|---|---|---|---|---|
+| OBJ-04 | L'association sait, pour chaque information qu'elle détient sur un enfant ou sa famille, pourquoi elle la détient, combien de temps, et qui peut la lire | part des rubriques du dossier pour lesquelles la finalité, la durée de conservation et les personnes autorisées sont établies | aucune : rien n'est établi aujourd'hui (ZO-028, ZO-071) | toutes les rubriques du dossier | campagne d'inscription d'avril 2027 | Dédé (SH-02) |
 | OBJ-01 | Une famille déjà connue de l'association ne redonne, pour se réinscrire, que ce qui a changé | part des informations qu'une famille déjà inscrite doit redonner à la réinscription | les douze rubriques du dossier sont redonnées intégralement, et autant de fois que la famille a d'enfants (SRC-002, SRC-008) — alors qu'une seule, l'assurance scolaire, change à coup sûr chaque année (ZO-029) | seulement ce qui a changé ou doit être reconfirmé | campagne d'inscription d'avril 2027 | Dédé (SH-02) |
-| OBJ-02 | Aucun enfant ne perd sa place parce que son dossier a disparu sans que personne ne le dise | nombre de familles dont l'inscription échoue faute d'avoir pu être jointes | au moins un cas connu, remboursé en septembre (SRC-011) ; le volume des campagnes précédentes n'est pas établi (ZO-084) | zéro | campagne d'inscription d'avril 2027 | Dédé (SH-02) |
+| OBJ-02 | Aucun enfant ne perd sa place parce que son dossier a disparu sans que personne ne le dise | part des écarts entre familles attendues et dossiers reçus qui sont résolus avant la clôture de juin | aucun écart n'est résolu avant la clôture : le rapprochement se fait début juillet (SRC-014), et le seul cas connu s'est soldé par un remboursement en septembre (SRC-011) | tous les écarts résolus avant la clôture de juin | campagne d'inscription d'avril 2027 | Dédé (SH-02) |
 | OBJ-03 | Ce que le dossier papier protège aujourd'hui continue de protéger demain | — | — | — | campagne d'inscription d'avril 2027 | Dédé (SH-02) |
 
 ### Impact map
 
 ```mermaid
 flowchart LR
-  OBJ_01(["OBJ-01 : Une famille déjà connue de l'association ne redonne, pour se réinscrire, que ce qui a changé"])
+  OBJ_04(["OBJ-04 : L'association sait, pour chaque information qu'elle détient sur un enfant ou sa famille, pourquoi elle la détient, combien de temps, et qui peut la lire"])
   A0[""]
   I0{{""}}
-  OBJ_01 --> A0 --> I0
-  BR_001["BR-001"]
-  I0 --> BR_001
-  BR_002["BR-002"]
-  I0 --> BR_002
-  BR_003["BR-003"]
-  I0 --> BR_003
-  BR_004["BR-004"]
-  I0 --> BR_004
-  BR_005["BR-005"]
-  I0 --> BR_005
-  OBJ_02(["OBJ-02 : Aucun enfant ne perd sa place parce que son dossier a disparu sans que personne ne le dise"])
+  OBJ_04 --> A0 --> I0
+  BR_014["BR-014"]
+  I0 --> BR_014
+  BR_015["BR-015"]
+  I0 --> BR_015
+  BR_016["BR-016"]
+  I0 --> BR_016
+  OBJ_01(["OBJ-01 : Une famille déjà connue de l'association ne redonne, pour se réinscrire, que ce qui a changé"])
   A1[""]
   I1{{""}}
-  OBJ_02 --> A1 --> I1
-  BR_006["BR-006"]
-  I1 --> BR_006
-  BR_007["BR-007"]
-  I1 --> BR_007
-  BR_008["BR-008"]
-  I1 --> BR_008
-  BR_009["BR-009"]
-  I1 --> BR_009
-  OBJ_03(["OBJ-03 : Ce que le dossier papier protège aujourd'hui continue de protéger demain"])
+  OBJ_01 --> A1 --> I1
+  BR_001["BR-001"]
+  I1 --> BR_001
+  BR_002["BR-002"]
+  I1 --> BR_002
+  BR_003["BR-003"]
+  I1 --> BR_003
+  BR_004["BR-004"]
+  I1 --> BR_004
+  BR_005["BR-005"]
+  I1 --> BR_005
+  OBJ_02(["OBJ-02 : Aucun enfant ne perd sa place parce que son dossier a disparu sans que personne ne le dise"])
   A2[""]
   I2{{""}}
-  OBJ_03 --> A2 --> I2
+  OBJ_02 --> A2 --> I2
+  BR_006["BR-006"]
+  I2 --> BR_006
+  BR_007["BR-007"]
+  I2 --> BR_007
+  BR_008["BR-008"]
+  I2 --> BR_008
+  BR_009["BR-009"]
+  I2 --> BR_009
+  OBJ_03(["OBJ-03 : Ce que le dossier papier protège aujourd'hui continue de protéger demain"])
+  A3[""]
+  I3{{""}}
+  OBJ_03 --> A3 --> I3
   BR_010["BR-010"]
-  I2 --> BR_010
+  I3 --> BR_010
   BR_011["BR-011"]
-  I2 --> BR_011
+  I3 --> BR_011
   BR_012["BR-012"]
-  I2 --> BR_012
+  I3 --> BR_012
 ```
 
 ## 3. Parties prenantes
@@ -132,9 +143,10 @@ flowchart LR
 
 | Domaine | Décideur | Recours | Confirmé par |
 |---|---|---|---|
-| perimetre | Dédé (SH-02) | Tom (SH-03) | Samir (SH-01) |
+| perimetre | Dédé (SH-02) | Tom (SH-03) | Dédé (SH-02) |
 | regles:remboursement | Dédé (SH-02) | Dédé (SH-02) | Dédé (SH-02) |
 | objectifs | Dédé (SH-02) | Tom (SH-03) | Dédé (SH-02) |
+| priorites | Dédé (SH-02) | Tom (SH-03) | Dédé (SH-02) |
 
 ## 4. Processus actuel et processus cible
 
@@ -205,8 +217,72 @@ flowchart LR
 
 | Priorité | Nombre |
 |---|---|
-| Must | 7 |
-| Should | 6 |
+| Must | 9 |
+| Should | 8 |
+
+### BR-017 — Must
+
+L'association doit pouvoir recevoir une pièce ou une information manquante sans que la famille se déplace.
+
+**Objectifs** : OBJ-01, OBJ-02
+
+**Preuve** : rapporté (2 sources) — question ouverte
+
+**Critères d’acceptation**
+
+- Pour chacune des pièces du dossier, il est établi si sa remise exige une présence physique, et pourquoi
+- Une pièce dont la remise n'exige pas de présence physique peut parvenir au bureau sans déplacement
+- Une famille à qui il manque une pièce apprend du même coup comment la remettre
+
+**Justification de la priorité** : L'aller-retour est le premier irritant nommé par la seule famille entendue, et le déclencheur visait « la lourdeur des formulaires ET de la procédure ». Sans cette exigence, BR-007 peut être tenue à la lettre en laissant la procédure intacte. Le précédent existe déjà : la preuve de virement voyage par message (SRC-052).
+
+### BR-014 — Should
+
+L'association doit pouvoir établir, pour chaque information qu'elle détient sur un enfant ou sa famille, la raison pour laquelle elle la détient et la durée pendant laquelle elle la garde.
+
+**Objectifs** : OBJ-04
+
+**Preuve** : rapporté (2 sources)
+
+**Critères d’acceptation**
+
+- Chacune des rubriques du dossier porte la raison pour laquelle elle est demandée et la durée pendant laquelle elle est gardée
+- Une rubrique dont personne ne réclame la raison est soumise à décision : la garder ou cesser de la demander
+- La durée de conservation d'une information reprise d'une campagne à l'autre est établie avant la première reprise
+
+**Justification de la priorité** : Condition de BR-001 et BR-002, qui imposent de conserver ce que le papier faisait redonner : on ne garde pas une information sans savoir pourquoi ni combien de temps.
+
+### BR-015 — Must
+
+L'association doit pouvoir limiter la lecture des informations de santé d'un enfant aux personnes qui en ont besoin.
+
+**Objectifs** : OBJ-04, OBJ-03
+
+**Preuve** : rapporté (2 sources)
+
+**Critères d’acceptation**
+
+- Pour chaque rubrique de santé, les personnes autorisées à la lire sont établies
+- L'accès ouvert par BR-011 à la personne présente auprès de l'enfant ne donne pas accès aux dossiers des enfants dont elle n'a pas la charge
+- Le dispositif actuel est connu : qui peut aujourd'hui ouvrir un dossier au bureau
+
+**Justification de la priorité** : C'est la borne de BR-011, déjà validée sans borne. L'accès est aujourd'hui réservé aux membres du bureau et un enseignant y entre déjà : le besoin existe sur le papier, avant tout changement.
+
+### BR-016 — Should
+
+L'association doit informer les familles de l'usage fait des informations qu'elles donnent et de la personne à qui s'adresser.
+
+**Objectifs** : OBJ-04
+
+**Preuve** : rapporté (2 sources)
+
+**Critères d’acceptation**
+
+- Le dossier remis aux familles porte cette information
+- Les destinataires extérieurs à l'association y sont nommés, y compris le comptable et une équipe médicale en cas d'urgence
+- Une famille sait à qui demander l'accès à son dossier, sa correction ou sa suppression
+
+**Justification de la priorité** : Porté par la révision du règlement (TR-01), qui est la fenêtre où ce texte peut entrer sans coût supplémentaire.
 
 ### BR-013 — Should
 
@@ -214,7 +290,7 @@ L'association doit pouvoir empêcher qu'un dossier soit déposé incomplet.
 
 **Objectifs** : OBJ-01, OBJ-02
 
-**Preuve** : rapporté (2 sources)
+**Preuve** : rapporté (2 sources) — question ouverte
 
 **Critères d’acceptation**
 
@@ -297,6 +373,7 @@ L'association doit faire savoir à la famille que son dossier lui est bien parve
 
 - Toute famille ayant déposé un dossier reçoit un accusé de réception
 - Le délai au-delà duquel l'absence d'accusé doit alerter la famille est connu d'elle et borné
+- La famille sait par quel canal l'accusé doit lui parvenir, sans quoi elle ne peut pas constater son absence
 
 **Justification de la priorité** : Sans accusé de réception, la famille ne sait rien et le silence reste le mode de défaillance : c'est le problème tel qu'il a été formulé et confirmé.
 
@@ -327,6 +404,7 @@ L'association doit pouvoir joindre une famille dont le dossier est introuvable.
 
 - Chaque famille dispose d'au moins un moyen de contact qui ne dépend pas du dossier déposé
 - Une famille dont le dossier a disparu peut être prévenue avant la rentrée
+- Ce moyen de contact existe pour une famille qui s'inscrit pour la première fois, dès avant la remise du dossier
 
 **Justification de la priorité** : Sans moyen de contact indépendant du dossier, la famille de septembre reste injoignable et R-03 est entier. BR-009 ne vaut rien sans elle.
 
@@ -372,6 +450,8 @@ L'association doit permettre à la famille de corriger une information qu'elle d
 
 - Une correction apportée par la famille remplace l'information conservée
 - Une correction reste possible après la validation de l'inscription, en cours d'année
+- Une correction atteint tous les exemplaires de l'information, y compris celui qui doit être atteignable en urgence
+- La date du dernier changement d'une information de santé et son auteur sont connus
 
 **Justification de la priorité** : La correction en cours d'année est un droit réel, mais la relecture annuelle de BR-002 couvre déjà le cas le plus fréquent.
 
@@ -410,6 +490,7 @@ _Directives que le métier contrôle et que les exigences doivent respecter. Ell
 
 | ID | Règle | Type | Application | Responsable | Sources | Exigences |
 |---|---|---|---|---|---|---|
+| RG-007 | L'association doit répondre à une famille en priorité par WhatsApp. | comportement | dérogation par acteur habilité | Dédé (SH-02) | SRC-051 (« la priorité c'est WhatsApp ») | — |
 | RG-006 | Le bureau doit rester ouvert tant que des élèves sont présents dans les locaux. | comportement | stricte | Dédé (SH-02) | SRC-032 (« Tant que il y des élèves, le bureau reste ouvert ») | — |
 | RG-004 | En cas d'urgence médicale pendant un cours, l'enseignant doit alerter trois destinataires : les parents, les services d'urgence, le directeur. | comportement | stricte | Dédé (SH-02) | SRC-030 (« Les enseignants doivent appeler les parents, les urgences, le directeur ») | BR-011 |
 | RG-005 | Le dossier de l'enfant doit être remis aux médecins des urgences. | comportement | stricte | Dédé (SH-02) | SRC-030 (« on doit prendre le dossier de l'enfant pour les médecins des urgences ») | BR-012 |
@@ -428,6 +509,14 @@ _Directives que le métier contrôle et que les exigences doivent respecter. Ell
 | organisationnelle | L'accès aux informations de santé des dossiers est aujourd'hui réservé aux membres du bureau | Une restriction d'accès existe déjà dans la pratique : elle est à constater avant de décrire une cible, et c'est elle qui crée R-02 | SRC-002 |
 | organisationnelle | Un règlement interne de l'association existe et s'impose à la procédure d'inscription | Document à récupérer avant de décrire le processus cible : il peut imposer des pièces, des délais ou des validations que personne ne cite spontanément (ZO-027) | SRC-001 |
 
+### Exigences de transition
+
+_Exigences temporaires pour passer de l'existant à la cible ; elles disparaissent une fois la transition faite._
+
+| ID | Type | Exigence | Concernés | Achevée quand |
+|---|---|---|---|---|
+| TR-01 | communication | Le règlement intérieur doit être révisé avant l'ouverture de la campagne d'avril, et la révision doit porter tout ce que le dossier a établi comme écart entre le texte signé et la réalité | Dédé (SH-02), Samir (SH-01), famille primo-inscrite (nouvelle inscription) (SH-06) | Le règlement remis aux familles à la campagne suivante décrit le mode de paiement réellement pratiqué, et chaque écart recensé y est traité ou écarté explicitement |
+
 ### Dépendances
 
 | Dépendance | Responsable |
@@ -440,6 +529,8 @@ _Directives que le métier contrôle et que les exigences doivent respecter. Ell
 
 | ID | Hypothèse | Fondement | Statut |
 |---|---|---|---|
+| H-024 | Ce qui impose le déplacement n'est pas le dossier dans son ensemble mais ce qui doit être SIGNÉ. La preuve de virement voyage déjà par message parce qu'elle ne porte aucune signature ; les autorisations, elles, tirent leur valeur de la main du parent (BC-006, BR-010) | déduction à partir de SRC-052 — une seule pièce fait exception, et c'est la seule sans signature ; personne ne l'a énoncé ainsi | à vérifier |
+| H-023 | Valider un dossier coûte dix minutes aujourd'hui parce qu'il faut relire douze rubriques entièrement réécrites. Si la famille ne redonne que ce qui a changé (BR-001), ce temps devrait baisser — et le bureau deviendrait gagnant à OBJ-01, pas seulement les familles. Ce serait la contrepartie de la charge de relance que BR-009 lui ajoute | déduction à partir de SRC-049 (10 minutes par dossier) et de SRC-002 (onze rubriques sur douze inchangées) ; personne ne l'a énoncé et rien ne mesure le temps par rubrique | à vérifier |
 | H-022 | SH-03 attend d'un dispositif contrôlé la disparition des dossiers incomplets. L'attente porte sur des omissions de deux natures différentes : une information non remplie, qu'un contrôle au dépôt peut refuser, et un document non signé, dont rien ne dit qu'il se laisse contrôler de la même façon | attente d'effet énoncée en SRC-047, non vérifiée ; elle devient testable par l'indicateur « nombre de dossiers incomplets », à condition d'en avoir la valeur de départ (ZO-025) | à vérifier |
 | H-021 | Pour les quelque 135 familles qui se réinscrivent, le gain de ne plus ressaisir n'arrive pas à la première campagne mais à la suivante : la première fois, il faut bien que leurs informations entrent quelque part. SH-01 le dit lui-même sans le formuler ainsi — « je me dirais que L'ANNÉE PROCHAINE je n'ai pas tout ça à ressaisir » | déduction à partir de SRC-035 ; personne ne l'a énoncé | à vérifier |
 | H-020 | « Jamais arrivé » peut vouloir dire « jamais remonté » : une urgence survenant pendant un cours est vécue par l'enseignant, et rien n'établit qu'elle parvienne au bureau. La seule personne qui saurait — un enseignant (SH-04) — n'a jamais été entendue | déduction à partir de SRC-029 et de R-02 ; aucune trace d'incident n'a été évoquée | à vérifier |
@@ -473,6 +564,20 @@ _Directives que le métier contrôle et que les exigences doivent respecter. Ell
 | R-01 | Reporter automatiquement les informations d'une année sur l'autre peut laisser une donnée de santé périmée dans le dossier : une allergie apparue, un vaccin fait, un médecin traitant changé. Aujourd'hui, la ressaisie intégrale force une relecture annuelle de ces informations — personne ne l'a voulu ainsi, mais c'est un effet du papier | moyenne | fort | Traité par BR-002, qui rend la relecture annuelle obligatoire : une réinscription ne peut s'achever sans que la famille ait eu les rubriques de santé sous les yeux. Le parent lui-même a posé cette limite (BC-009). | BC-001 |
 
 ## 9. Décisions
+
+### DD-07 — Par quel canal l'association répond-elle à une famille pendant la campagne, puisque le choix appartient aujourd'hui à celui qui traite le dossier (ZO-116) ?
+
+| Option | Impacts |
+|---|---|
+| Un canal unique annoncé aux familles | La famille sait où regarder et l'absence de message devient un signal ; le bureau perd la souplesse de répondre par le canal qu'il a sous la main |
+| La famille choisit son canal à l'inscription | Chaque famille est joignable là où elle regarde ; le bureau tient deux canaux en parallèle pendant toute la campagne |
+| Le choix reste à celui qui traite | Rien ne change pour le bureau ; le deuxième critère de BR-006 devient intenable |
+
+**Décision** : WhatsApp est le canal prioritaire de réponse à une famille.
+
+**Justification** : Rendue par SH-02 le 2026-10-28, hors des options proposées : « la priorité c'est WhatsApp ». Elle fait de WhatsApp le canal par défaut sans le rendre exclusif. Deux conséquences non traitées : le cas d'une famille sans WhatsApp, et le fait que le règlement signé impose l'écrit avec la Direction sans jamais mentionner WhatsApp (ZO-039) — ce qui n'est plus une dérive de pratique mais un choix délibéré, à écrire dans le règlement révisé (TR-01).
+
+**Décidé par** : Dédé (SH-02) le 2026-10-28 — origine : ZO-116
 
 ### DD-06 — Qu'est-ce qui fait qu'une famille est « attendue » au sens de BR-009, et doit donc être relancée si son dossier n'arrive pas ?
 
@@ -599,6 +704,10 @@ _Directives que le métier contrôle et que les exigences doivent respecter. Ell
 
 | Objectif | Exigence | Règles | Besoin candidat | Sources |
 |---|---|---|---|---|
+| OBJ-01, OBJ-02 | BR-017 | — | BC-014 | SRC-009 (« les irritants que j'ai les aller retour pour les inscriptions » — le premier irritant nommé par la seule famille entendue), SRC-052 (« il revient au bureau. Pour la preuve de virement il peut l'envoyer par WhatsApp ») |
+| OBJ-04 | BR-014 | — | BC-011 | SRC-048 (DD-02 : les obligations sur les données entrent dans le périmètre), SRC-002 (les douze rubriques, dont quatre de santé sur des mineurs, deux consentements et les coordonnées de tiers) |
+| OBJ-04, OBJ-03 | BR-015 | — | BC-012 | SRC-048 (DD-02 : les obligations sur les données entrent dans le périmètre), SRC-031 (un enseignant entre au bureau et prend le dossier d'un enfant) |
+| OBJ-04 | BR-016 | — | BC-013 | SRC-048 (DD-02 : les obligations sur les données entrent dans le périmètre), SRC-025 (le comptable, extérieur à l'association, voit des informations nominatives de familles) |
 | OBJ-01, OBJ-02 | BR-013 | — | BC-010 | SRC-010 (« les irritants que j'ai les aller retour pour les inscriptions » — le parent qui revient corriger), SRC-047 (« généralement c'est des oublis, doc pas signé, oublié du numéro de sécu » — le bureau qui court après les pièces) |
 | OBJ-03 | BR-010 | — | BC-006 | SRC-028 (« les autorisations signées par les parents qui couvrent l'association ») |
 | OBJ-03 | BR-011 | RG-004 | BC-007 | SRC-027 (« les infos médical en cas d'urgence ») |
@@ -626,15 +735,15 @@ _Directives que le métier contrôle et que les exigences doivent respecter. Ell
 | Actionnabilité | ok | Le problème est formulé et confirmé par le sponsor (2026-10-28). Il distingue deux populations, deux fréquences et deux enjeux, ce qui suffit à guider le découpage de l'étape suivante. Réserve : scope.in, scope.out et scope.deadline sont vides, et l'échéance d'avril n'est rattachée à aucun fait daté (ZO-099). |
 | Alignement | ok | Les trois présents se reconnaîtraient dans la synthèse : chacun y retrouve ses propres mots, et le problème a été confirmé par le sponsor. Pour les trois absents, l'alignement est inconnu — c'est la même limite que la couverture. |
 
-_Preuve des exigences présentées : 0 observée(s), 13 rapportée(s), 0 supposée(s) ; 11 à source unique._
+_Preuve des exigences présentées : 0 observée(s), 17 rapportée(s), 0 supposée(s) ; 11 à source unique._
 
 ## Couverture
 
 | Métrique | Couverts | Taux | Seuil | Statut |
 |---|---|---|---|---|
-| Exigences métier rattachées à un objectif | 13/13 | 100 % | 100 % | atteint |
-| Exigences métier avec critère d'acceptation | 13/13 | 100 % | 100 % | atteint |
-| Objectifs servis par au moins une exigence | 3/3 | 100 % | 100 % | atteint |
+| Exigences métier rattachées à un objectif | 17/17 | 100 % | 100 % | atteint |
+| Exigences métier avec critère d'acceptation | 17/17 | 100 % | 100 % | atteint |
+| Objectifs servis par au moins une exigence | 4/4 | 100 % | 100 % | atteint |
 
 ## 13. Annexe — Points de vérification
 
@@ -643,6 +752,7 @@ _Vérification de forme non bloquante (catalogue `lib/rules.mjs`). Elle ne rempl
 | Élément | Règle | Avertissement |
 |---|---|---|
 | OBJ-03 | S01 | objectif sans indicateur ou sans cible |
+| BR-017 | S84 | exigence validée sur des sources dont aucune n'a été relue par la personne interrogée (`feedback`) : ce qui a été compris n'a jamais été vérifié auprès d'elle |
 | BR-013 | S84 | exigence validée sur des sources dont aucune n'a été relue par la personne interrogée (`feedback`) : ce qui a été compris n'a jamais été vérifié auprès d'elle |
 | BR-010 | S63 | exigence fondée sur une seule source : un motif isolé n'est pas encore un besoin établi |
 | BR-010 | S84 | exigence validée sur des sources dont aucune n'a été relue par la personne interrogée (`feedback`) : ce qui a été compris n'a jamais été vérifié auprès d'elle |
@@ -673,18 +783,35 @@ _Vérification de forme non bloquante (catalogue `lib/rules.mjs`). Elle ne rempl
 | Élément | Règle | Raison |
 |---|---|---|
 | OBJ-03 | S01 | Indicateur et cible volontairement vides : les trois protections visées n'ont jamais été exercées, donc aucune valeur actuelle n'existe. Inventer un indicateur ici reviendrait à fabriquer la mesure avec l'objectif. ZO-105 porte la question et sera tranchée avant la rédaction des exigences. |
+| BR-017 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
+| BR-017 | L03 | Le « ou » de « une pièce ou une information » désigne les deux formes que prend un manque dans un dossier — un document absent, une case vide — et non deux exigences. Tom les a citées ensemble : « doc pas signé, oublié du numéro de sécu » (SRC-047). |
+| BR-014 | L03 | Le « ou » de « un enfant ou sa famille » désigne les personnes concernées, pas deux exigences : le dossier porte des informations sur l'enfant et sur ses parents, et la même obligation vaut pour les deux. |
+| BR-016 | L03 | Le « et » relie les deux éléments d'une seule mention remise à la famille. Les scinder produirait deux exigences qui se livrent ensemble ou pas du tout. |
+| BR-013 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-013 | S84 | Les deux sources de BC-010 n'ont pas encore été relues par leurs auteurs : le retour à la source est prévu avant la génération du BRD, pour les 47 sources du dossier. |
+| BR-010 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-010 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-011 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-011 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-012 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-012 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-009 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-009 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-006 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-006 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-007 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-007 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-008 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-008 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-001 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-001 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-002 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-002 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-005 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-005 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-003 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-003 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
+| BR-004 | S84 | Assumé par SH-02 le 2026-10-28. Les trois documents de retour à la source sont écrits (interviews/retour-SH-01.md, retour-SH-02.md, retour-SH-03.md) et les sources concernées sont marquées envoyé ; leur relecture est reportée, pas abandonnée. La faiblesse suit le document : les relecteurs de la revue la verront. |
 | BR-004 | S63 | Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84. |
 | RG-004 | L03 | Les trois appels sont une seule obligation à trois destinataires, telle qu'elle a été énoncée (SRC-030). Les scinder inventerait trois règles que personne n'a formulées. |
 | RG-001 | L03 | L'énoncé est la citation exacte de l'article 7 du règlement intérieur signé par les parents (SRC-003). On ne le reformule pas : c'est le texte qui engage. |
