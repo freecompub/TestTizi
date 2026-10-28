@@ -3266,9 +3266,9 @@ governance:
   review_rounds:
     - id: RV-1
       version: "0.2"
-      sent: ""             # non envoyé : la pull request n'est pas créée, en attente de confirmation
+      sent: "2026-10-28"   # pull request ouverte sur confirmation de SH-02 : https://github.com/freecompub/TestTizi/pull/1
       channel: pr          # choisi par SH-02 le 2026-10-28
-      deadline: ""         # À FIXER : sans échéance, un cycle de revue ne se clôt jamais
+      deadline: ""         # À FIXER, toujours : demandée au moment d'ouvrir la PR, non donnée. Sans échéance, un cycle de revue ne se clôt jamais — il se clôt quand quelqu'un s'impatiente
       checklists: [securite, accessibilite, ergonomie, donnees-sante]
       note: "Canal pull request choisi par SH-02. Conséquence factuelle : trois des cinq relecteurs sont des métier — un parent (SH-01), un enseignant (SH-04) et une famille primo-inscrite (SH-06) — et il leur faudra un compte GitHub pour commenter. SH-04 et SH-06 n'ont jamais été entendus : cette revue est la première occasion de les faire parler, et le canal conditionne leur réponse."
 #    - { id: RV-1, version: "0.3", sent: "", channel: export, deadline: "" }   # channel : export | pr
@@ -3303,4 +3303,4 @@ governance:
 #      target_version: ""
 
 session:                   # continuité entre sessions (references/sessions.md)
-  next_action: "Revue RV-1 préparée le 2026-10-28 : version 0.2 figée (versions/v0.2), dossier de revue généré (review/v0.2 : synthèse + 5 fiches), quatre listes de contrôle générées (securite 6 points, accessibilite 5, ergonomie 5, donnees-sante 5 — 21 points, aucun coché, et les points non traités ferment la porte d'approbation). Canal choisi : pull request. RIEN N'EST ENVOYÉ : la PR n'est pas créée, et deux choses manquent — l'échéance de la revue, et la confirmation d'ouvrir la PR (action vers l'extérieur). ATTENTE : ces deux points. Ensuite : collecte des retours en CM-xxx, traitement, matrice de résolution, approbation, baseline 1.0, build-handoff.mjs vers le PRD."
+  next_action: "RV-1 ENVOYÉE le 2026-10-28 : pull request https://github.com/freecompub/TestTizi/pull/1 ouverte sur confirmation de SH-02, version 0.2 figée, 5 fiches de relecture et 4 listes de contrôle (21 points, aucun coché). MANQUE TOUJOURS : l'échéance de la revue, demandée et non donnée. Ensuite : collecte des retours comme sources de type revue puis découpage en CM-xxx, décision accepté/rejeté/reporté sur chacun, matrice de résolution par relecteur, approbation, baseline 1.0 par freeze-version --baseline, et build-handoff.mjs vers le PRD. Rappel : ecolasso-communication n'a pas avancé depuis le découpage du 2026-10-27, dépend de celle-ci par DD-01, même échéance d'avril."
