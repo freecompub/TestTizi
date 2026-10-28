@@ -119,6 +119,7 @@ stakeholders:
     decision_domains: []
     end_user: true
     represents: ""
+    note: "SH-03 (membre du bureau) est proposé comme représentant des enseignants ; il n'enseigne pas. Tout ce dossier repose sur le vécu des enseignants : la voix reste manquante (ZO-006)."
     status: à interroger
   - id: SH-05
     name: ""

@@ -14,7 +14,7 @@ initiative:
   #  initiative: ""      # slug de l'initiative d'origine
   #  reason: decoupage   # decoupage | sortie_perimetre | autre:<libellé>
   #  decision: ""        # la décision qui l'a produite, chez la mère : DD-xx, ou sa décision d'opportunité
-phase: discover          # assess | discover | define | govern | close (opportunité jetée)
+phase: define            # passé en define le 2026-10-28, sur accord de SH-02, porte de synthèse déclarée le même jour          # assess | discover | define | govern | close (opportunité jetée)
 created: "2026-10-27"              # AAAA-MM-JJ
 updated: "2026-10-28"
 
@@ -54,25 +54,69 @@ opportunity:              # phase Assess (references/phase-assess.md)
   date: "2026-10-27"
 
 problem:
-  statement: ""          # 2-3 phrases, confirmées par l'utilisateur
-  confirmed: false
-  symptoms: []
-  impact: []             # temps, coût, risque, qualité
+  statement: |
+    Chaque année, 10 à 15 familles s'inscrivent pour la première fois et environ 135 se réinscrivent,
+    toutes sur un dossier papier de treize pièces déposé au bureau entre avril et juin.
+    Les familles qui reviennent réécrivent des informations que l'association détient déjà, autant de
+    fois qu'elles ont d'enfants, et vont rechercher chez elles des pièces qui n'ont pas changé.
+    Pour les familles qui arrivent, le dossier déposé est le seul enregistrement de leur existence :
+    quand il se perd — ce qui arrive de temps à autre — rien ne le signale à la famille, et l'enfant
+    peut perdre sa place.
+  confirmed: true
+  confirmed_by: SH-02    # le sponsor, président et directeur : « Oui Dédé confirme », 2026-10-28
+  confirmed_on: "2026-10-28"
+  symptoms:
+    - { text: "Les parents expriment leur agacement en réunion sur la lourdeur du formulaire et de la procédure — c'est le déclencheur de l'initiative", source: SRC-006 }
+    - { text: "Onze rubriques sur douze ne changent pas d'une année sur l'autre, et sont pourtant réécrites intégralement", source: SRC-002 }
+    - { text: "Un parent de deux enfants remplit deux fois les mêmes informations dans la même campagne : « le plus pénible »", source: SRC-008 }
+    - { text: "Les familles ressortent des pièces inchangées — le carnet de vaccination d'un adolescent", source: SRC-008 }
+    - { text: "Aucun suivi n'est offert aux familles : pour connaître l'état de son dossier, il faut aller chercher le bureau", source: SRC-010 }
+    - { text: "Une place d'enfant a été perdue et l'inscription remboursée : le dossier avait disparu et la famille, nouvelle, n'était joignable que par ce dossier", source: SRC-011 }
+    - { text: "L'écart n'est vu qu'au bilan de début juillet, par le comptable, à partir des virements reçus — la seule trace qui survive à la perte du dossier", source: SRC-015 }
+  impact:
+    - { type: risque, text: "Pour une famille primo-inscrite dont le dossier se perd, l'association n'a aucun moyen de la joindre : « sinon on peut rien faire ». 10 à 15 familles exposées par campagne", source: SRC-015 }
+    - { type: qualite, text: "La relation avec les familles est le motif premier : « on ne veut plus avoir de problèmes avec les parents »", source: SRC-006 }
+    - { type: cout, text: "Un remboursement d'inscription constaté, en septembre, hors de toute règle écrite (RG-001 ne prévoit aucun remboursement). Volume des campagnes précédentes non établi : ZO-084", source: SRC-011 }
 
 success_signals:
   - text: "Des inscriptions qui aboutissent sans problème"
     measurable: false      # ni définition de « sans problème », ni valeur actuelle : ZO-024, ZO-026
   - text: "Moins de dossiers incomplets"
-    measurable: false      # premier énoncé de ce mode de défaillance (SRC-001) ; ni définition, ni baseline : ZO-025
+    measurable: false      # ni définition de « incomplet », ni valeur actuelle : ZO-025 — alors que le fichier Excel du bureau porte un statut d'inscription (SRC-004), qui pourrait en tenir le compte
+    source: SRC-001
+    note: "Énoncé deux fois, à deux moments distincts (SRC-001, puis SRC-038) : c'est le seul élément du dossier qui ait été redit spontanément. Ce qui lui manque n'est pas l'adhésion mais la définition et la valeur de départ."
+  - text: "La part des familles qui se réinscrivent d'une année sur l'autre ne baisse pas"
+    measurable: true       # PROPOSÉ le 2026-10-28 à partir de SRC-037, non confirmé. Numérateur connu (environ 135) ; dénominateur à établir : ZO-104
+    source: SRC-037
+    note: "Le premier signal potentiellement chiffrable du dossier, et le garde-fou du suivant : il distingue « plus d'agacement parce que ça va mieux » de « plus d'agacement parce qu'elles sont parties » (ZO-101). Il ne couvre PAS les familles primo-inscrites qui renoncent : celles-là ne sont ni en réunion ni dans le compte des réinscriptions (R-03)."
+  - text: "En réunion, les familles n'expriment plus d'agacement sur la lourdeur de l'inscription"
+    measurable: false      # observable mais non chiffré : ni définition de « agacement », ni valeur actuelle (ZO-024)
+    confirmed_by: SH-01    # « Oui c'est un bon signal », 2026-10-28 (SRC-036)
+    source: SRC-035
+    note: "Premier signal pris du côté des familles, et le seul confirmé par une famille. Il est le symétrique exact du déclencheur de l'initiative (SRC-006 : l'agacement exprimé en réunion), donc observable là où le problème a été constaté, et les comptes rendus de réunion (ZO-021) en porteraient la trace. SH-01 n'a pas donné de signal observable : il a donné une solution et une promesse (ZO-026 reste ouverte)."
 
 
-scope:
-  in: []
-  out: []
-  deadline: ""
+scope:                     # CONFIRMÉ par SH-02 le 2026-10-28
+  in:
+    - "Les inscriptions et les réinscriptions des enfants, de l'ouverture de la campagne à sa clôture"
+    - "Le contenu du dossier d'inscription : les informations et les pièces demandées aux familles, et ce qui est réellement obligatoire parmi elles"
+    - "L'information de la famille sur l'état de son dossier : réception, incomplétude, validation"
+    - "La capacité de joindre une famille indépendamment du dossier qu'elle a déposé"
+    - "La liste des familles et des enfants inscrits, qui reste rattachée à cette initiative (DD-01)"
+    - "Les obligations liées aux données de santé de mineurs, aux consentements et aux coordonnées de tiers portées par le dossier (DD-02)"
+    - "L'accès aux informations de santé d'un enfant en situation d'urgence, et leur remise à une équipe médicale extérieure"
+    - "La révision du règlement intérieur, comme préalable à la campagne et non comme accompagnement (TR-01)"
+  out:
+    - "La communication courante entre parents, enseignants et élèves, et les groupes WhatsApp : initiative sœur ecolasso-communication"
+    - "L'affectation des élèves aux cours et aux groupes, le nombre de places et les listes d'attente : jamais instruit sur ce dossier, et sans lien avec le problème confirmé"
+    - "La comptabilité de l'association et sa relation avec le comptable extérieur, hors de ce que celle-ci apporte à la détection d'un dossier manquant"
+    - "Les modalités pédagogiques des cours en distanciel ; seuls les consentements que le distanciel met en jeu restent dans le périmètre (DD-02)"
+    - "Le choix d'un outil, d'une technologie ou d'une forme de dossier : cela relève des étapes suivantes, pas du besoin métier"
+  deadline: "campagne d'inscription d'avril 2027"   # invoquée dans DD-01, DD-02, DD-03 et les trois objectifs, mais rattachée à aucun fait daté : ZO-099
 
 current_process:
   events:
+    - { event: "Le paiement de l'inscription est échelonné entre avril et juin, sur la durée de la campagne", actor: "parent", source: SRC-044 }
     - { event: "Le parent dépose le dossier papier au bureau", actor: "parent", source: SRC-001 }
     - { event: "Un membre du bureau prend le dossier", actor: "membre du bureau", source: SRC-004 }
     - { event: "Il vérifie les données saisies et le paiement", actor: "membre du bureau", source: SRC-004 }
@@ -81,6 +125,7 @@ current_process:
     - { event: "Le parent se déplace à nouveau au bureau pour corriger", actor: "parent", source: SRC-004 }
     - { event: "DÉBUT JUILLET, à la fin des inscriptions, le bilan rapproche les virements reçus des dossiers déposés", actor: "membre du bureau", source: SRC-014 }
     - { event: "Le COMPTABLE remonte l'écart au bureau", actor: "comptable (SH-07)", source: SRC-015 }
+    - { event: "Pendant la campagne, les membres du bureau relancent les familles attendues dont ils ont les coordonnées — c'est-à-dire les réinscriptions ; une famille primo-inscrite n'est relançable par personne", actor: "membres du bureau", source: SRC-042 }
     - { event: "Le bureau recherche le dossier", actor: "membre du bureau", source: SRC-015 }
     - { event: "S'il le trouve : il valide l'inscription", actor: "membre du bureau", source: SRC-015 }
     - { event: "S'il ne le trouve pas : il contacte les parents — mais pour une nouvelle famille, les coordonnées n'existaient que dans le dossier perdu. « Sinon on peut rien faire »", actor: "membre du bureau", source: SRC-015 }
@@ -90,6 +135,10 @@ current_process:
 #  - { event: "Dossier reçu", actor: "", source: SRC-xxx }
 
 constraints:
+  - type: legale
+    text: "L'association se déclare responsable de l'enfant pendant ses seules heures de présence"
+    source: SRC-031
+    implication: "DÉCLARATIF, non vérifié : personne n'a montré où cette limite est écrite, ni sur quoi elle se fonde. La condition dont elle dépendait est levée (ZO-094) : le bureau reste ouvert tant que des élèves sont présents (RG-006), il n'existe donc pas de créneau où un enfant est là et le dossier inaccessible"
   - type: legale
     text: "La structure est une association loi 1901 exerçant sous le nom « Institut ESC » : c'est elle, personne morale, qui est responsable des données collectées, représentée selon ses statuts"
     source: SRC-016
@@ -149,7 +198,8 @@ stakeholders:
     decision_domains: []
     end_user: true        # acteur du processus actuel, jamais cité avant SRC-015
     represents: ""
-    status: à interroger
+    note: "EXTÉRIEUR À L'ASSOCIATION (SRC-025) : ce n'est ni un bénévole ni un salarié. Il voit donc des données nominatives de familles sans être membre — c'est une transmission hors association (ZO-086). SH-02 répond à sa place : recevable pour les FAITS qu'il peut aller chercher (historique des remboursements, volumes) ; ne vaut pas pour ce que le comptable voit et fait lui-même."
+    status: à interroger  # par représentation (SH-02), jamais en direct
   - id: SH-06
     name: ""
     role: "famille primo-inscrite (nouvelle inscription)"
@@ -161,6 +211,7 @@ stakeholders:
     decision_domains: []
     end_user: true
     represents: ""
+    note: "SH-01 représente les familles, maintenu en séance le 2026-10-28 (SRC-025). Mais il se RÉINSCRIT : il n'a jamais vécu une primo-inscription, et BC-003 (fratrie) ne concerne pas une famille à enfant unique. Or c'est sur la primo-inscription que porte R-03, le risque grave. La voix reste manquante (ZO-062, ZO-083)."
     status: à interroger  # jamais entendue, jamais présente, et non représentée : SH-01 se réinscrit
   - id: SH-04
     name: ""
@@ -173,6 +224,7 @@ stakeholders:
     decision_domains: []
     end_user: true
     represents: ""
+    note: "SH-03 représente les enseignants, maintenu en séance le 2026-10-28 (SRC-025). Mais il n'enseigne pas : son récit du rattrapage a été enregistré comme rapporté. La représentation couvre les faits, pas le vécu ; la voix reste manquante (ZO-006, ZO-083)."
     status: à interroger
   - id: SH-03
     name: "Tom"
@@ -227,6 +279,190 @@ decision_rights:
 #    source: SRC-xxx
 
 sources:
+  - id: SRC-047
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-03]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "ZO-103 et ZO-025, la nature des dossiers incomplets : « généralement c'est des oublis, doc pas signé, oublié du numéro de sécu, ce type d'erreur ». Donc des omissions, pas des incapacités. Suivi d'une attente d'effet : « je pense qu'avec une solution informatique on n'aura plus ce type d'erreur » — SOLUTION ÉVOQUÉE pour la deuxième fois dans la séance (déjà en SRC-035), notée et non retenue comme exigence"
+  - id: SRC-046
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Contestation d'un impact organisationnel proposé par l'agent : « la 4 me paraît bizarre, toutes les familles peuvent corriger seules ». L'association affirme donc qu'aucune famille n'a de difficulté à remplir ou corriger son dossier elle-même"
+  - id: SRC-045
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Décision sur l'article 7 du règlement intérieur : le réécrire avec l'exception — aucun remboursement, sauf lorsque l'erreur n'incombe pas à la famille. La dérogation pratiquée depuis septembre entre donc dans le texte signé et devient un droit opposable par la famille"
+  - id: SRC-044
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "ZO-108, ce que fait aujourd'hui une famille qui ne peut pas payer en une fois : « aujourd'hui c'est échelonné entre avril et juin ». L'échelonnement existe donc réellement et il est la norme, pas une faveur ; il couvre exactement la fenêtre de la campagne"
+  - id: SRC-043
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Réponse à la question sur la raison d'être de RG-001 : « Le règlement va être réadapté, plus de paiement en chèque ». La question posée — pourquoi la règle de non-remboursement existe — reste SANS RÉPONSE. Mais deux faits neufs : le règlement intérieur va être révisé, et le paiement par chèque disparaît du texte"
+  - id: SRC-042
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "ZO-060, qui fait les relances : « c'est les membres du bureau ». La relance est donc portée par les mêmes personnes que le traitement des dossiers (SRC-004), pendant la même période"
+  - id: SRC-041
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "ZO-107, qui doit s'apercevoir qu'un dossier manque : « si on a le pouvoir de contacter les parents on fait des relances ». La détection côté association existe donc déjà, et elle a un nom — la relance — mais elle est conditionnée à la possession d'un moyen de contact. D'où le fait, déjà établi en SRC-010, que seules les réinscriptions en bénéficient"
+  - id: SRC-040
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE : « je les retiens », sans prénom (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Rétention du troisième lot de besoins candidats (BC-002, BC-005, BC-006, BC-007, BC-008) : « Oui je les retiens ». Rétention, non confirmation : il était dit au moment de la demande que personne de présent ne peut savoir si ces cinq besoins sont justes"
+  - id: SRC-039
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "Confirmation du premier lot de besoins candidats (BC-001, BC-003, BC-004, BC-009) : « Oui ça me convient ». Adhésion GLOBALE au lot, en réponse à des formulations écrites par l'agent ; la question posée séparément sur BC-001 — besoin propre ou besoin prêté par le bureau — n'a pas reçu de réponse distincte"
+  - id: SRC-038
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Proposition de signal de succès : « on peut aussi considérer le nombre de dossiers avec des données manquantes ». C'est le signal déjà enregistré « moins de dossiers incomplets » (SRC-001), énoncé une deuxième fois et par une autre occasion — mais toujours sans définition ni valeur actuelle (ZO-025)"
+  - id: SRC-037
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "ZO-101, ce qui distinguerait des familles satisfaites de familles parties : « parce que la plupart des parents représente une réinscription ». Le contrôle est la réinscription elle-même : une famille présente en réunion est une famille revenue. Le signal du silence en réunion ne vaut donc que lu AVEC le fait qu'elles se soient réinscrites"
+  - id: SRC-036
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "Validation du signal de succès côté famille proposé par l'agent : « Oui c'est un bon signal ». SH-01 confirme que l'absence d'agacement exprimé en réunion dirait, de son point de vue de parent, que l'inscription s'est améliorée"
+  - id: SRC-035
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "ZO-026, le signal de succès côté famille : « si cette année on a un outil informatique pour l'inscription on va le remarquer directement et je me dirais que l'année prochaine je n'ai pas tout ça à ressaisir ». SOLUTION ÉVOQUÉE (« un outil informatique »), notée et non retenue comme exigence. Le signal réel qu'il décrit n'est pas un soulagement vécu mais une PROMESSE : ce qu'il remarquerait, c'est la perspective de ne pas ressaisir L'ANNÉE SUIVANTE"
+  - id: SRC-033
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "ZO-030, réponse de Samir : « je suis d'accord pour la relecture mais pas la ressaisie des informations ». Le parent distingue deux choses que le dossier papier confond : REVOIR ses informations chaque année, qu'il accepte, et les RÉÉCRIRE, qu'il refuse"
+  - id: SRC-034
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-03, SH-02]   # les deux ont répondu ensemble, réponse fusionnée par la salle
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "ZO-030, réponse de Tom et Dédé : « ces informations engagent la responsabilité du parent, pas de l'association ». Personne dans l'association ne compte donc sur la relecture annuelle pour la fraîcheur des données de santé : l'exactitude est posée comme relevant du parent"
+  - id: SRC-032
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "ZO-094, les heures de cours hors ouverture du bureau : « Tant que il y des élèves, le bureau reste ouvert ». Les horaires du bureau suivent donc la présence des élèves : il n'existe pas d'heure où un enfant est là et le dossier inaccessible"
+  - id: SRC-031
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "ZO-093, qui va chercher le dossier et ce qui se passe hors ouverture du bureau : « Le dossier est récupéré par un des enseignants dans le bureau. L'association n'est responsable que aux heures de présence de l'enfant ». Deux faits neufs : un ENSEIGNANT entre au bureau et prend le dossier d'un enfant ; la responsabilité de l'association est déclarée bornée aux heures de présence de l'enfant"
+  - id: SRC-030
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-03, SH-02]   # les deux ont répondu ensemble ; la réponse est arrivée fusionnée, non séparée par répondant
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "ZO-090, la conduite à tenir en cas d'urgence médicale pendant un cours : « Les enseignants doivent appeler les parents, les urgences, le directeur, on doit prendre le dossier de l'enfant pour les médecins des urgences ». La consigne existe donc, en quatre temps. Elle fait sortir le dossier papier de l'association : il est remis à une équipe médicale extérieure"
+  - id: SRC-029
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE : question posée à SH-03, « et SH-02 si un autre cas » ; la réponse est arrivée sans prénom (ZO-089)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "ZO-087, le récit de la dernière urgence médicale réelle : « c'est jamais arrivé ». Aucune urgence médicale n'a donc jamais nécessité les informations du dossier — ou aucune n'est remontée à la personne qui répond (H-020)"
+  - id: SRC-026
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "Attendu implicite (ZO-008), réponse de Samir : « je ne sais pas ». Aucun attendu implicite du côté famille — ce que Kano prédit : l'obligatoire ne se cite pas. Le silence est ici une RÉPONSE, pas une absence de réponse"
+  - id: SRC-027
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-03]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "Attendu implicite (ZO-008), réponse de Tom : « les infos médicales en cas d'urgence ». Le dossier papier rend disponibles les informations médicales de l'enfant quand il en faut en urgence"
+  - id: SRC-028
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "Attendu implicite (ZO-008), réponse de Dédé : « les autorisations signées par les parents qui couvrent l'association ». Le dossier papier porte des autorisations signées de la main du parent, et c'est cette signature qui couvre l'association"
+  - id: SRC-025
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: []        # VOIX NON ATTRIBUÉE : la réponse est arrivée sans prénom (ZO-085)
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: à envoyer
+    content: "Réponse au point d'étape. 1) « Le comptable ne fait pas partie de l'association », SH-02 répond à sa place. 2) Les représentations sont maintenues : SH-03 pour les enseignants, SH-01 pour les familles — la salle ne propose pas d'aller chercher un enseignant ni une famille primo-inscrite. 3) Les attendus implicites : la question est demandée. 4) Examen de couverture et porte de synthèse : accord"
   - id: SRC-001
     type: cadrage
     date: "2026-10-27"
@@ -235,13 +471,29 @@ sources:
     present: [SH-01, SH-02, SH-03]
     path: ""
     feedback: à envoyer
+  - id: SRC-024
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "Précision : « il n'y a que ce cas ». Le « oui ça arrive de temps à autre » de SRC-023 portait donc sur la FRÉQUENCE de la perte de dossier, et non sur l'existence d'autres motifs de remboursement"
+  - id: SRC-023
+    type: entretien
+    date: "2026-10-28"
+    stakeholders: [SH-02]   # répondant pour le comptable, sur des faits qu'il rapporte
+    present: [SH-01, SH-02, SH-03]
+    path: ""
+    feedback: envoyé
+    content: "« Oui ça arrive de temps à autre » (relu avec SRC-024 : porte sur la fréquence de la perte de dossier, pas sur d'autres motifs) et entre 10 et 15 NOUVELLES inscriptions par année, sur 150 élèves"
   - id: SRC-022
     type: entretien
     date: "2026-10-28"
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "« Non, toutes les inscriptions se font par virement » — aucun règlement par chèques en pratique, alors que le règlement intérieur signé en prévoit un"
   - id: SRC-021
     type: entretien
@@ -249,7 +501,7 @@ sources:
     stakeholders: [SH-02]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Ce sur quoi la contestation se tranche : vérifier si le virement a bien été effectué ou non"
   - id: SRC-020
     type: entretien
@@ -257,7 +509,7 @@ sources:
     stakeholders: [SH-02]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Voie de recours d'un parent : il conteste auprès d'un membre du bureau, qui remonte l'information à Dédé, qui tranche"
   - id: SRC-019
     type: entretien
@@ -265,7 +517,7 @@ sources:
     stakeholders: [SH-02]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "« Je pense que c'est le seul cas de remboursement » — le remboursement ne serait pratiqué que lorsque l'association a perdu le dossier. Énoncé avec un modalisateur d'incertitude, non vérifié sur l'historique des remboursements"
   - id: SRC-018
     type: entretien
@@ -273,7 +525,7 @@ sources:
     stakeholders: [SH-02]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "La dérogation au non-remboursement : « dans les cas où l'erreur n'incombe pas au parent »"
   - id: SRC-017
     type: entretien
@@ -281,7 +533,7 @@ sources:
     stakeholders: [SH-02]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Dédé est le PRÉSIDENT de l'association, en plus d'en être le directeur"
   - id: SRC-016
     type: entretien
@@ -289,7 +541,7 @@ sources:
     stakeholders: [SH-02]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "La structure est une association loi 1901. « Institut ESC » est son nom d'usage"
   - id: SRC-015
     type: entretien
@@ -297,7 +549,7 @@ sources:
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "La suite du bilan : c'est le COMPTABLE qui remonte l'information. Le bureau recherche alors le dossier. S'il le trouve, il valide l'inscription. Sinon, il contacte les parents. « Sinon on peut rien faire »"
   - id: SRC-014
     type: entretien
@@ -305,7 +557,7 @@ sources:
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Le bilan est fait DÉBUT JUILLET, à la fin des inscriptions. L'écart du cas de septembre était donc visible dès début juillet, et la famille n'a pourtant été traitée qu'à la rentrée"
   - id: SRC-013
     type: entretien
@@ -313,7 +565,7 @@ sources:
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Le rapprochement entre virements reçus et dossiers est fait APRÈS le mois de juin, c'est-à-dire après la clôture de la campagne. Le délai exact entre la clôture et le rapprochement n'est pas précisé (ZO-068)"
   - id: SRC-012
     type: entretien
@@ -321,7 +573,7 @@ sources:
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Le seul cas non détectable est celui du dossier qu'on ne retrouve pas : dans les autres cas, le numéro de téléphone est disponible et le bureau appelle. L'écart est détecté en rapprochant les VIREMENTS REÇUS des dossiers"
   - id: SRC-011
     type: entretien
@@ -329,7 +581,7 @@ sources:
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Le cas de septembre : dossier déposé en juin, disparu, parent injoignable, remboursement en septembre. SH-03 a d'abord écrit « dossier de réinscription » puis corrigé : c'était une NOUVELLE inscription. Les informations de contact ne se trouvaient que dans le dossier perdu"
   - id: SRC-010
     type: entretien
@@ -337,7 +589,7 @@ sources:
     stakeholders: [SH-03]
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Oui, un enfant a déjà perdu sa place. Cela ne touche généralement que les NOUVEAUX inscrits : pour les réinscriptions, les parents sont relancés. Un cas précis : un parent s'est présenté en septembre, c'était trop tard"
   - id: SRC-009
     type: entretien
@@ -345,7 +597,7 @@ sources:
     stakeholders: [SH-01]   # SH-01 s'exprimant comme représentant des parents
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Les irritants des familles : les allers-retours au bureau ; l'absence de suivi de l'inscription ; l'absence de notification quand un dossier est perdu, le parent devant penser de lui-même à contacter le bureau ; et la conséquence : s'il ne le fait pas, l'enfant peut PERDRE SA PLACE. La part de vécu propre et la part relayée ne sont pas distinguées (ZO-058)"
   - id: SRC-008
     type: entretien
@@ -353,14 +605,14 @@ sources:
     stakeholders: [SH-01]   # Samir, en son nom propre : la seule parole de famille du dossier
     present: [SH-01, SH-02, SH-03]
     path: "brd/ecolasso-inscriptions/sources/SRC-008-reinscription-vecue-parent.md"
-    feedback: à envoyer
+    feedback: envoyé
   - id: SRC-006
     type: cadrage
     date: "2026-10-27"
     stakeholders: [SH-02] # Dédé, dicté à SH-01 qui tenait le clavier
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Le déclencheur « on veut plus avoir des problème avec les parents » ; l'agacement des parents exprimé en réunion ; les volumes (150 élèves, 10 groupes, 3 dossiers perdus) ; le budget « quelques mois » ; les deux indicateurs de succès ; et, avec SH-03, le récit de l'urgence (le prof appelle, le bureau a accès)"
   - id: SRC-007
     type: cadrage
@@ -368,7 +620,7 @@ sources:
     stakeholders: [SH-03] # Tom, dicté à SH-01 qui tenait le clavier
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
     content: "Le récit du rattrapage (initiative sœur) ; le déroulé de l'inscription d'avril à juin, dépôt au bureau et attente de la validation ; la liste des douze rubriques du dossier ; et, avec SH-02, le récit de l'urgence"
   - id: SRC-005
     type: entretien
@@ -376,14 +628,14 @@ sources:
     stakeholders: [SH-02] # Dédé, directeur : première prise de parole directe
     present: [SH-01, SH-02, SH-03]
     path: ""
-    feedback: à envoyer
+    feedback: envoyé
   - id: SRC-004
     type: entretien
     date: "2026-10-27"
     stakeholders: [SH-03] # Tom, membre du bureau : récit de première main du traitement au bureau
     present: [SH-01, SH-02, SH-03]
     path: "brd/ecolasso-inscriptions/sources/SRC-004-traitement-dossier-bureau.md"
-    feedback: à envoyer
+    feedback: envoyé
   - id: SRC-003
     type: document
     date: "2026-10-27"
@@ -397,7 +649,7 @@ sources:
     stakeholders: [SH-03, SH-02]   # la liste des douze rubriques est de SH-03 (ZO-052) ; le complément sur l'urgence est des deux. La ligne sur le paiement par virement, dite à la première personne, reste sans voix établie
     present: [SH-01]
     path: "brd/ecolasso-inscriptions/sources/SRC-002-donnees-dossier-inscription.md"
-    feedback: à envoyer
+    feedback: envoyé
 #  - id: SRC-001
 #    type: entretien       # cadrage | entretien | observation | mesure | test | document | atelier | ticket | revue | dt-handoff | autre
 #                          # cadrage : l'échange qui ouvre l'initiative, avec qui porte la demande. Déclaratif,
@@ -413,34 +665,89 @@ sources:
 #    feedback: à envoyer   # retour à la source : à envoyer | envoyé | confirmé | corrigé | sans objet
 
 candidate_needs:
+  - id: BC-010
+    text: "Pouvoir éviter qu'un dossier soit déposé incomplet"
+    sources:
+      - { ref: SRC-010, location: "« les irritants que j'ai les aller retour pour les inscriptions » — le parent qui revient corriger" }
+      - { ref: SRC-047, location: "« généralement c'est des oublis, doc pas signé, oublié du numéro de sécu » — le bureau qui court après les pièces" }
+    status: intégré
+    reason: ""
+    notes: "PREMIER BESOIN DU DOSSIER À DEUX SOURCES, et les deux bouts de la même chaîne : le parent subit l'aller-retour, le bureau le provoque. Distinct de BC-002 (savoir que le dossier est complet, après) : celui-ci porte sur l'instant du dépôt, avant. Suppose établi ce qui est obligatoire dans les treize pièces — ce qui ne l'est pas (ZO-033)."
+  - id: BC-009
+    text: "Pouvoir revoir et corriger chaque année les informations déjà détenues sans avoir à les réécrire"
+    sources: [{ ref: SRC-033, location: "« je suis d'accord pour la relecture mais pas la ressaisi des informations »" }]
+    status: intégré
+    confirmed_by: SH-01   # « Oui ça me convient », 2026-10-28 (SRC-039)
+    confirmed_on: "2026-10-28"
+    reason: ""
+    notes: "Qualifie BC-001 et désamorce R-01. Le papier confond deux actes que le parent sépare : REVOIR, qu'il accepte, et RÉÉCRIRE, qu'il refuse. C'est la première fois qu'une parole de famille pose elle-même la limite du besoin, au lieu qu'on la déduise. Formulé en besoin, pas en solution : ce qu'il faut, c'est que la relecture annuelle survive à la disparition de la ressaisie."
+  - id: BC-008
+    text: "Pouvoir remettre à une équipe médicale extérieure les informations de santé d'un enfant au moment où il lui est confié"
+    sources: [{ ref: SRC-030, location: "« on doit prendre le dossier de l'enfant pour les médecins des urgences »" }]
+    status: intégré
+    confirmed_by: SH-02   # « Oui je les retiens », 2026-10-28 (SRC-040)
+    confirmed_on: "2026-10-28"
+    confirmation_note: "RETENU par le sponsor, non confirmé par celui qui le vit : SH-06 et SH-04 n'ont jamais parlé, et la chaîne d'urgence n'a jamais été exercée (SRC-029). C'est R-06 qui porte cette faiblesse."
+    reason: ""
+    notes: "Distinct de BC-007 : autre destinataire (une équipe médicale, hors association), autre moment (le transport), autre finalité (soigner, pas alerter). C'est la fonction du dossier papier la moins visible et la plus contraignante pour la suite : le dossier doit pouvoir QUITTER le bureau et être lu par quelqu'un qui n'appartient pas à l'association. Jamais exercé à ce jour (SRC-029)."
+  - id: BC-006
+    text: "Disposer d'autorisations parentales opposables, qui continuent de couvrir l'association"
+    sources: [{ ref: SRC-028, location: "« les autorisations signées par les parents qui couvrent l'association »" }]
+    status: intégré
+    confirmed_by: SH-02   # « Oui je les retiens », 2026-10-28 (SRC-040)
+    confirmed_on: "2026-10-28"
+    confirmation_note: "RETENU par le sponsor, non confirmé par celui qui le vit : SH-06 et SH-04 n'ont jamais parlé, et la chaîne d'urgence n'a jamais été exercée (SRC-029). C'est R-06 qui porte cette faiblesse."
+    reason: ""
+    notes: "Attendu implicite au sens de Kano : jamais cité en six échanges sur les inscriptions, et cité en premier dès qu'on a demandé l'évident (ZO-008). Ce n'est pas la signature qui est le besoin — c'est la couverture ; la signature est le moyen actuel. Le dossier (SRC-003) porte au moins l'autorisation de transport en urgence et l'autorisation de diffusion média. Quelles autorisations exactement, et l'association a-t-elle déjà eu à s'en prévaloir : ZO-088."
+  - id: BC-007
+    text: "Disposer des informations médicales d'un enfant au moment et à l'endroit où une urgence survient"
+    sources: [{ ref: SRC-027, location: "« les infos médical en cas d'urgence »" }]
+    status: intégré
+    confirmed_by: SH-02   # « Oui je les retiens », 2026-10-28 (SRC-040)
+    confirmed_on: "2026-10-28"
+    confirmation_note: "RETENU par le sponsor, non confirmé par celui qui le vit : SH-06 et SH-04 n'ont jamais parlé, et la chaîne d'urgence n'a jamais été exercée (SRC-029). C'est R-06 qui porte cette faiblesse."
+    reason: ""
+    notes: "Attendu implicite au sens de Kano, JAMAIS ÉPROUVÉ : « c'est jamais arrivé » (SRC-029). Le dossier protège contre un événement qui ne s'est pas encore produit — ce qui ne retire rien au besoin, mais veut dire que le dispositif actuel n'a jamais été mis à l'épreuve et que personne ne sait s'il tient. ANCIENNE NOTE : il entre en tension avec R-02 : SH-03 dit que le papier rend ces informations disponibles, alors que R-02 dit que la personne présente auprès de l'enfant — l'enseignant — n'y a pas accès. Les deux peuvent être vrais pour des gens différents : disponibles AU BUREAU, pas EN CLASSE. ZO-087 tranche."
   - id: BC-001
     text: "Pouvoir réinscrire un enfant sans réécrire les informations que l'association détient déjà et qui n'ont pas changé"
     sources: [{ ref: SRC-007, location: "« Les parents chaque année remplisse les mêmes informations » — dicté par SH-03, membre du bureau, jamais confirmé par un parent (ZO-051)" }]
-    status: proposé
+    status: intégré
+    confirmed_by: SH-01   # « Oui ça me convient », 2026-10-28 (SRC-039)
+    confirmed_on: "2026-10-28"
     reason: ""
-    notes: "Formulé à partir de la douleur exprimée, pas dicté par SH-01 : à confirmer avec lui. ZO-029 levée : seule l'assurance scolaire change à coup sûr chaque année ; le reste change rarement. La ressaisie porte donc sur onze rubriques sur douze. ATTENTION : reporter une donnée sans la faire confirmer crée un risque nouveau sur les données de santé (R-01)."
+    notes: "Formulé à partir de la douleur exprimée, pas dicté par SH-01 : à confirmer avec lui. ZO-029 levée : seule l'assurance scolaire change à coup sûr chaque année ; le reste change rarement. La ressaisie porte donc sur onze rubriques sur douze. ATTENTION : reporter une donnée sans la faire confirmer crée un risque nouveau sur les données de santé (R-01) — BC-009 pose la limite, dite par le parent lui-même : revoir oui, réécrire non. CONFIRMÉ par SH-01 le 2026-10-28 — mais par un « oui ça me convient » global sur un lot de quatre, en réponse à une proposition écrite par l'agent, et non par un énoncé spontané. La question qui lui était posée — est-ce ton besoin, ou celui que le bureau te prête ? — n'a pas reçu de réponse séparée. La source reste SRC-007, dictée par SH-03 ; l'adhésion de SH-01 s'y ajoute sans la remplacer."
   - id: BC-003
     text: "Pouvoir inscrire plusieurs enfants d'une même famille sans redonner pour chacun les informations qui leur sont communes"
     sources: [{ ref: SRC-008, location: "« le plus pénible c'est rempli deux fois les mêmes informations »" }]
-    status: proposé
+    status: intégré
+    confirmed_by: SH-01   # « Oui ça me convient », 2026-10-28 (SRC-039)
+    confirmed_on: "2026-10-28"
     reason: ""
     notes: "Axe de redondance jamais énoncé avant SRC-008 : entre enfants d'une même famille, dans la MÊME campagne. BC-001 ne couvrait que la redondance d'une année sur l'autre."
   - id: BC-004
     text: "Pouvoir réinscrire sans aller rechercher à la maison des pièces dont l'information n'a pas changé"
     sources: [{ ref: SRC-008, location: "« c'est vraiment pénible de sortir leur carnet de vaccinations, surtout que ça ne change pas »" }]
-    status: proposé
+    status: intégré
+    confirmed_by: SH-01   # « Oui ça me convient », 2026-10-28 (SRC-039)
+    confirmed_on: "2026-10-28"
     reason: ""
     notes: "Distinct de BC-001 : la peine désignée n'est pas d'écrire, c'est d'aller chercher le document source. Un formulaire pré-rempli n'y répondrait pas si la pièce reste exigée."
   - id: BC-005
     text: "Pouvoir joindre une famille dont le dossier est introuvable"
     sources: [{ ref: SRC-015, location: "« sinon on contacte les parents… sinon on peut rien faire »" }]
-    status: proposé
+    status: intégré
+    confirmed_by: SH-02   # « Oui je les retiens », 2026-10-28 (SRC-040)
+    confirmed_on: "2026-10-28"
+    confirmation_note: "RETENU par le sponsor, non confirmé par celui qui le vit : SH-06 et SH-04 n'ont jamais parlé, et la chaîne d'urgence n'a jamais été exercée (SRC-029). C'est R-06 qui porte cette faiblesse."
     reason: ""
     notes: "Besoin, pas moyen : il n'impose ni plateforme, ni double saisie, ni récépissé. C'est le SEUL point où la chaîne de rattrapage casse ; tout le reste du dispositif fonctionne (SRC-015). Concerne SH-06, les familles primo-inscrites, pour qui le dossier déposé est l'unique enregistrement (H-013, confirmée)."
   - id: BC-002
     text: "Pouvoir savoir qu'un dossier est bien arrivé et complet, sans avoir à le demander"
     sources: [{ ref: SRC-007, location: "« si le dossier est perdu, personne ne vous le dis » — dicté par SH-03, membre du bureau, jamais confirmé par un parent (ZO-051)" }]
-    status: proposé
+    status: intégré
+    confirmed_by: SH-02   # « Oui je les retiens », 2026-10-28 (SRC-040)
+    confirmed_on: "2026-10-28"
+    confirmation_note: "RETENU par le sponsor, non confirmé par celui qui le vit : SH-06 et SH-04 n'ont jamais parlé, et la chaîne d'urgence n'a jamais été exercée (SRC-029). C'est R-06 qui porte cette faiblesse."
     reason: ""
     notes: "Couvre deux défaillances distinctes : le dossier perdu (3 sur 150) et le dossier incomplet (ZO-025). SRC-009 en donne l'enjeu réel, jamais énoncé avant : un parent non prévenu peut PERDRE LA PLACE de son enfant (R-03). Solution évoquée et gardée en note, pas en besoin : « une plateforme où ils peuvent faire le suivi »."
 #  - id: BC-001
@@ -454,10 +761,27 @@ candidate_needs:
 #    notes: ""             # solutions évoquées, nuances
 
 hypotheses:
+  - id: H-022
+    text: "SH-03 attend d'un dispositif contrôlé la disparition des dossiers incomplets. L'attente porte sur des omissions de deux natures différentes : une information non remplie, qu'un contrôle au dépôt peut refuser, et un document non signé, dont rien ne dit qu'il se laisse contrôler de la même façon"
+    basis: "attente d'effet énoncée en SRC-047, non vérifiée ; elle devient testable par l'indicateur « nombre de dossiers incomplets », à condition d'en avoir la valeur de départ (ZO-025)"
+    status: à vérifier
+  - id: H-021
+    text: "Pour les quelque 135 familles qui se réinscrivent, le gain de ne plus ressaisir n'arrive pas à la première campagne mais à la suivante : la première fois, il faut bien que leurs informations entrent quelque part. SH-01 le dit lui-même sans le formuler ainsi — « je me dirais que L'ANNÉE PROCHAINE je n'ai pas tout ça à ressaisir »"
+    basis: "déduction à partir de SRC-035 ; personne ne l'a énoncé"
+    status: à vérifier
+  - id: H-020
+    text: "« Jamais arrivé » peut vouloir dire « jamais remonté » : une urgence survenant pendant un cours est vécue par l'enseignant, et rien n'établit qu'elle parvienne au bureau. La seule personne qui saurait — un enseignant (SH-04) — n'a jamais été entendue"
+    basis: "déduction à partir de SRC-029 et de R-02 ; aucune trace d'incident n'a été évoquée"
+    status: à vérifier
+  - id: H-019
+    text: "Le comptable, extérieur à l'association, accède à des données nominatives de familles : pour rapprocher les virements reçus des dossiers déposés, il faut lire le libellé des virements, donc des noms"
+    basis: "déduction à partir de SRC-015 (il remonte l'écart) et SRC-025 (il est extérieur) ; personne ne l'a dit"
+    status: à vérifier
   - id: H-001
     text: "« courses de soutien et de langues » désigne des COURS : soutien scolaire et cours de langues"
     basis: "lecture de la demande ; coquille probable"
-    status: à vérifier
+    status: confirmée      # validé par SH-02 le 2026-10-28
+    verdict: "Tous les échanges de la séance portent sur des cours de soutien scolaire et de langues ; aucune course n'a jamais été mentionnée."
   - id: H-002
     text: "Les deux initiatives filles concernent la même population (les mêmes familles) et partagent le même référentiel de personnes"
     basis: "déduction : les parents apparaissent dans les deux problèmes"
@@ -470,18 +794,25 @@ hypotheses:
     text: "Dédé peut rendre seul la décision d'opportunité et engager le projet"
     basis: "d'abord déclaré par Samir (SH-01), puis confirmé par l'intéressé : SH-02 est le PRÉSIDENT de l'association loi 1901, en plus d'en être le directeur (SRC-017). Les décisions rendues en son nom n'ont donc pas à être ratifiées. Réserve : les statuts n'ont pas été lus, et ce sont eux qui font foi"
     status: confirmée
+  - id: H-018
+    text: "Le risque grave ne se mesure pas sur 150 mais sur 10 à 15, et il est récurrent (« de temps à autre »), pas exceptionnel : il ne concerne que les familles primo-inscrites. Le ratio « 3 dossiers perdus sur 150 » comparait un numérateur à un dénominateur qui n'est pas le sien"
+    basis: "SRC-023 : 10 à 15 nouvelles inscriptions par an. SRC-011 : le cas de perte de place concernait une primo-inscription. H-013 : seules les primo-inscrites sont effacées par la perte du dossier"
+    status: confirmée      # validé par SH-02 le 2026-10-28
+    verdict: "Établie par SRC-023 : 10 à 15 primo-inscriptions par campagne, et la perte « arrive de temps à autre ». Le dénominateur du risque grave n'est pas 150."
   - id: H-017
     text: "Le virement est la seule trace d'une inscription qui survive à la perte du dossier. Il remplit deux rôles sans avoir été conçu pour : détecter l'écart au bilan de juillet, et établir la bonne foi du parent en cas de contestation"
     basis: "SRC-012 (détection), SRC-021 (preuve), SRC-022 (toutes les inscriptions passent par virement, donc le filet couvre 100 % des cas). Les deux usages ont été décrits séparément, à vingt minutes d'intervalle, sans que le lien soit fait"
     status: confirmée
   - id: H-016
-    text: "La perte du dossier par l'association est le seul cas où un paiement est remboursé : hors de là, l'article 7 s'applique sans exception — y compris pour un désistement ou un départ en cours d'année"
-    basis: "SRC-019, énoncé par SH-02 avec un modalisateur d'incertitude (« je pense »). L'historique des remboursements, que le comptable (SH-07) détient, permettrait de le vérifier sans interroger personne"
-    status: à vérifier
+    text: "La perte du dossier par l'association est le seul cas où un paiement est remboursé"
+    basis: "SRC-019 (« je pense »), puis SRC-023 lu comme une infirmation, puis SRC-024 : « il n'y a que ce cas ». Trois énoncés en trois tours, de la même personne, qui rapporte des faits tenus par le comptable"
+    status: confirmée      # validé par SH-02 le 2026-10-28
+    verdict: "« Il n'a que ce cas » (SRC-024), dit après que l'affirmation a varié trois fois. Tenue pour confirmée sur la parole de SH-02 ; ZO-084 reste le moyen de la prouver sur pièce."
   - id: H-015
     text: "Le chiffre de « 3 dossiers perdus » ne compte que les familles qui sont revenues se manifester. Une famille nouvelle dont le dossier disparaît et qui ne revient pas est invisible : rien dans les registres ne garde trace de sa tentative. Le nombre réel de dossiers perdus est donc inconnu et, en l'état, inconnaissable"
     basis: "H-013 confirmée : pour une nouvelle famille, le dossier déposé est le seul enregistrement de son existence"
-    status: à vérifier
+    status: confirmée      # validé par SH-02 le 2026-10-28
+    verdict: "« Sinon on peut rien faire » (SRC-015) : une famille nouvelle dont le dossier disparaît et qui ne revient pas n'est comptée nulle part. Le chiffre de trois ne pouvait donc compter que celles qui se sont manifestées."
   - id: H-013
     text: "Pour une famille qui s'inscrit POUR LA PREMIÈRE FOIS, le dossier papier déposé est le seul enregistrement de son existence : ni ligne antérieure dans le fichier, ni groupe, ni historique. Perdre le papier, ce n'est pas égarer un document, c'est effacer la demande et la famille avec"
     basis: "SRC-011 : les informations de contact n'étaient que dans le dossier perdu, et c'était une nouvelle inscription"
@@ -493,7 +824,8 @@ hypotheses:
   - id: H-012
     text: "Les besoins candidats servent DEUX populations distinctes : BC-001, BC-003 et BC-004 soulagent les familles qui se réinscrivent (fréquent et pénible) ; BC-002 protège les familles qui s'inscrivent pour la première fois (rare et grave). Les traiter comme un seul problème masque que ce sont deux populations, deux fréquences et deux enjeux"
     basis: "SRC-010 : le risque de perdre sa place ne touche généralement que les nouveaux inscrits, les réinscriptions étant relancées"
-    status: à vérifier
+    status: confirmée      # validé par SH-02 le 2026-10-28
+    verdict: "Tenue pour acquise tout au long du cadrage, et consacrée par DD-03, qui a arbitré entre les deux populations en les traitant comme distinctes."
   - id: H-011
     text: "Le fichier Excel (nom, prénom, téléphones des parents) est exactement la matière dont l'initiative sœur a besoin pour constituer ses groupes WhatsApp chaque année : les deux initiatives dépendent déjà du même fichier"
     basis: "SRC-004 : contenu du fichier ; et SRC-001 : les groupes sont recréés de zéro chaque année et peuplés à la main"
@@ -513,13 +845,272 @@ hypotheses:
   - id: H-006
     text: "La ressaisie annuelle touche les 150 élèves chaque année, alors que la perte de dossier en touche 3 sur 150 (2 %) : le coût dominant est la ressaisie, pas la perte"
     basis: "calcul à partir des chiffres de SRC-001, rapportés par un parent et non relevés dans les registres"
-    status: à vérifier
+    status: infirmée      # validé par SH-02 le 2026-10-28
+    verdict: "Le raisonnement était faux et a été rétracté en séance : il mesurait le risque grave sur 150 familles au lieu de 10 à 15, et traitait comme marginal un préjudice récurrent. Remplacée par H-018. Le constat sur l'étendue de la ressaisie reste vrai, mais il ne sert plus à hiérarchiser."
 #  - id: H-001
 #    text: ""
 #    basis: ""             # sur quoi repose l'hypothèse
 #    status: à vérifier    # à vérifier | confirmée | infirmée
 
 shadow_zones:
+  - id: ZO-109
+    type: probleme_flou
+    question: "Une famille qui dépose son dossier AVANT de payer n'est attendue par rien jusqu'à son premier virement (DD-06). Dans quel ordre les familles font-elles les deux aujourd'hui — dépôt puis paiement, ou l'inverse ? S'il arrive qu'on dépose d'abord, il reste un angle mort exactement là où R-03 se produit."
+    origin: DD-06
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [DD-06, BR-009, RG-003, R-03, SH-06]
+  - id: ZO-108
+    type: perimetre_flou
+    question: "En supprimant les chèques du règlement, on supprime aussi le paiement en trois fois qui leur était attaché (SRC-003, page 2) : deux chèques différés en mai et juin. Était-ce voulu ? Une famille qui ne peut pas payer l'année en une fois par virement fait-elle quelque chose aujourd'hui, et que fera-t-elle demain ?"
+    origin: SRC-043
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: "PARTIELLE : l'échelonnement existe aujourd'hui et il est la norme, entre avril et juin (SRC-044) — porté par les chèques différés dans le texte, par des virements successifs en pratique. Ce qui reste à décider, et qui se joue dans la révision : le nouveau règlement garde-t-il l'échelonnement une fois les chèques retirés ?"
+    related: [DD-04, RG-003, TR-01, SRC-003, SRC-044, BR-009]
+  - id: ZO-107
+    type: perimetre_flou
+    question: "Qui doit s'apercevoir qu'un dossier manque : l'association, ou la famille ? Les trois exigences d'OBJ-02 font toutes porter l'alerte par la famille — elle reçoit un accusé, ou elle n'en reçoit pas. Aucune n'oblige l'association à constater elle-même l'absence d'un dossier attendu avant le bilan de juillet, et aucun besoin candidat ne l'exprime. Manque-t-il un besoin, ou l'absence d'accusé suffit-elle ?"
+    origin: "OBJ-02"
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: levée
+    resolution: "L'association, et elle le fait déjà : « si on a le pouvoir de contacter les parents on fait des relances » (SRC-041). La détection n'était pas absente du processus, elle était absente des exigences. Écrite en BR-009. Elle reste conditionnée à la possession d'un moyen de contact, ce qui est précisément ce que BR-008 doit garantir — les deux exigences ne valent qu'ensemble."
+    related: [OBJ-02, BR-006, BR-008, BR-009, BC-002, BC-005, SH-07, R-03, ZO-060]
+  - id: ZO-106
+    type: contradiction
+    subtype: reglementaire
+    parties: [SH-02]
+    question: "Ne plus faire réécrire suppose de CONSERVER d'une campagne à l'autre des informations que l'association fait aujourd'hui redonner — dont quatre rubriques de santé sur des mineurs. Le papier d'aujourd'hui est recollecté chaque année ; BR-001 et BR-002 supposent l'inverse. Pendant combien de temps l'association conserve-t-elle ces informations, et qui l'a décidé ?"
+    origin: "BR-001"
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [BR-001, BR-002, BC-001, BC-009, DD-02, ZO-028, ZO-071, R-01]
+  - id: ZO-105
+    type: succes_non_mesurable
+    question: "Comment saurait-on qu'OBJ-03 est tenu ? Les trois protections qu'il vise — autorisations opposables, informations médicales disponibles sur place, dossier remis aux urgences — n'ont jamais été exercées : la chaîne d'urgence n'a jamais servi (SRC-029) et aucune autorisation n'a jamais été invoquée (ZO-088). Un objectif dont rien ne mesure l'atteinte se déclare tenu par défaut, jusqu'au jour où il ne l'est pas."
+    origin: "OBJ-03"
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [OBJ-03, BC-006, BC-007, BC-008, RG-004, RG-005, ZO-088, ZO-091]
+  - id: ZO-104
+    type: succes_non_mesurable
+    question: "Combien de familles ne se réinscrivent pas d'une année sur l'autre, et l'association le sait-elle ? On connaît les quelque 135 qui reviennent ; personne n'a dit combien auraient pu revenir."
+    origin: SRC-037
+    ask_to: SH-02
+    action: document
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: ["success_signals", ZO-101, ZO-024, R-03]
+  - id: ZO-099
+    type: perimetre_flou
+    question: "D'où vient l'échéance d'avril, et que se passerait-il concrètement si la campagne 2027 se déroulait exactement comme les précédentes ? Elle est invoquée dans DD-01 et DD-02 comme une contrainte, mais scope.deadline est vide et aucune source ne la rattache à un fait daté."
+    origin: council:sponsor-finance
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [DD-01, DD-02, "scope.deadline"]
+  - id: ZO-100
+    type: perimetre_flou
+    question: "Si tout ne tient pas avant avril, laquelle des deux populations l'association choisit-elle de servir d'abord : les quelque 135 familles qui se réinscrivent et réécrivent tout chaque année, ou les 10 à 15 familles primo-inscrites dont l'enfant peut perdre sa place ?"
+    origin: council:sponsor-finance
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: levée
+    resolution: "DD-03 : les deux, sans priorité. SH-02 a choisi en connaissance de la conséquence, qui lui était énoncée — si le temps manque avant avril, l'arbitrage se fera par les circonstances. Enregistrée en R-05."
+    related: [H-012, H-006, H-018, BC-001, BC-002, BC-005, R-03, DD-03, R-05]
+  - id: ZO-101
+    type: succes_non_mesurable
+    question: "Le signal « les familles n'expriment plus d'agacement en réunion » mesure une parole dans un lieu où les familles les plus touchées ne viennent peut-être pas (H-015). Qu'est-ce qui distinguerait, l'an prochain, des familles satisfaites de familles qui ne viennent plus en réunion — ou qui ne se sont pas réinscrites ?"
+    origin: council:sceptique
+    ask_to: SH-01
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: ["success_signals", H-015, SRC-036, ZO-024]
+    note: "MET EN CAUSE UNE VALIDATION : SH-01 a confirmé ce signal le 2026-10-28 (SRC-036). La validation n'est pas retirée ; la faiblesse lui a été montrée, et il y a répondu (SRC-037) : le contrôle est la réinscription elle-même. D'où un quatrième signal, chiffrable, et ZO-104 pour son dénominateur. RÉSIDU NON COUVERT : une famille primo-inscrite qui renonce après un dossier perdu n'apparaît ni en réunion ni dans le compte des réinscriptions."
+  - id: ZO-102
+    type: probleme_flou
+    question: "RG-006 fait dépendre l'ouverture du bureau de la présence d'élèves. Une famille qui s'inscrit pour la première fois n'a pas encore d'enfant qui vient : à quelles heures peut-elle déposer son dossier, et que fait celle dont les parents travaillent sur ces créneaux ?"
+    origin: council:utilisateur-final
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [RG-006, R-03, SH-06, BC-002]
+  - id: ZO-103
+    type: hypothese_non_verifiee
+    question: "Parmi les quelque 150 familles, lesquelles ont aujourd'hui du mal à remplir le dossier elles-mêmes — langue, lecture et écriture, vue, pas d'ordinateur ni d'imprimante — et comment font-elles ? Tout le dossier suppose une famille capable de relire et de corriger seule."
+    origin: council:utilisateur-final
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    status: levée
+    related: [BC-001, BC-009, SH-06, ZO-049, SRC-046]
+    resolution: "LEVÉE. L'association affirme que toutes les familles peuvent remplir et corriger seules (SRC-046), et SH-03, qui reçoit les dossiers, le confirme par la nature des incomplétudes : « généralement c'est des oublis, doc pas signé, oublié du numéro de sécu » (SRC-047) — des omissions, pas des incapacités. La réserve subsiste en une ligne, non bloquante : une famille aidée chez elle ne laisse pas de trace au bureau, et une seule famille a été entendue (R-06). ANCIENNE NOTE : l'association répond que toutes les familles peuvent remplir et corriger seules (SRC-046). C'est un quantificateur absolu, énoncé par ceux qui reçoivent les dossiers et non par les familles — et une famille qui se fait aider chez elle ne laisse aucune trace au bureau. La zone reste ouverte sur les exceptions, et un indice existe déjà dans le dossier : les dossiers incomplets (ZO-025)."
+  - id: ZO-098
+    type: probleme_flou
+    question: "À la première campagne du nouveau dispositif, d'où viendraient les informations des 135 familles déjà inscrites — reprises depuis les dossiers papier, depuis le fichier Excel du bureau, ou redonnées une fois de plus par les familles ? Si elles sont redonnées, aucune famille ne constate de gain la première année, celle où tout le monde regarde."
+    origin: SRC-035
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [H-021, BC-001, BC-009, ZO-026, SRC-004]
+  - id: ZO-097
+    type: hypothese_non_verifiee
+    question: "L'association pose que l'exactitude des informations de santé engage le parent et non elle (SRC-034). Or c'est elle qui remet le dossier aux médecins des urgences (RG-005). Cette position est-elle écrite quelque part — règlement, mention signée sur le dossier — et a-t-elle été établie avec quelqu'un dont c'est le métier ?"
+    origin: SRC-034
+    ask_to: SH-02
+    action: document
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [R-01, RG-005, BC-008, DD-02, ZO-030]
+  - id: ZO-096
+    type: probleme_flou
+    question: "« Le bureau reste ouvert » : la porte est déverrouillée, ou quelqu'un s'y tient ? Et combien de temps faut-il pour retrouver le dossier d'un enfant parmi les quelque cent cinquante, par quelqu'un qui n'y range jamais rien — un enseignant ?"
+    origin: SRC-032
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [RG-005, RG-006, BC-008, ZO-095]
+  - id: ZO-094
+    type: probleme_flou
+    question: "Y a-t-il des heures de cours pendant lesquelles le bureau est fermé — le soir, le samedi, pendant les vacances scolaires ? Pour du soutien scolaire, les cours tombent souvent hors horaires de bureau. À ces heures-là, qui peut ouvrir le bureau et prendre un dossier ?"
+    origin: SRC-031
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: levée
+    resolution: "Non : « tant qu'il y a des élèves, le bureau reste ouvert » (SRC-032) → RG-006. Les horaires du bureau suivent la présence des élèves, il n'existe donc pas de créneau où un enfant est là et le dossier enfermé. La limite de responsabilité déclarée en SRC-031 tient. Résidu en ZO-096 : ce que « ouvert » veut dire, et le temps de retrouver un dossier parmi cent cinquante."
+    related: [RG-005, RG-006, BC-008, R-02, ZO-093, ZO-096]
+  - id: ZO-095
+    type: perimetre_flou
+    question: "Un enseignant entre au bureau et prend le dossier d'un enfant (SRC-031). Les dossiers sont donc accessibles aux enseignants : tous, ou certains ? Sont-ils sous clé ? Qui peut lire les rubriques de santé d'un enfant dont il n'a pas la charge ?"
+    origin: SRC-031
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [DD-02, R-02, SH-04, ZO-028]
+  - id: ZO-091
+    type: hypothese_non_verifiee
+    question: "La conduite à tenir en cas d'urgence (RG-004) est-elle écrite quelque part — règlement, fiche remise aux enseignants, affichage — ou se transmet-elle oralement ? Et un incident, quel qu'il soit, laisse-t-il une trace écrite ?"
+    origin: SRC-030
+    ask_to: SH-02
+    action: document
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [RG-004, RG-005, H-020, ZO-090]
+  - id: ZO-092
+    type: contradiction
+    subtype: factuelle
+    parties: [SH-02, SH-03]
+    question: "La consigne demande à l'enseignant d'appeler les parents (RG-004), alors que R-02 établit qu'il n'a accès ni aux contacts d'urgence ni aux allergies, qui sont dans le dossier au bureau. Avec quel numéro appelle-t-il ?"
+    origin: SRC-030
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [RG-004, R-02, SH-04, BC-007]
+  - id: ZO-093
+    type: probleme_flou
+    question: "« On doit prendre le dossier de l'enfant pour les médecins des urgences » : qui est ce « on » ? Le dossier est au bureau, l'enfant part en ambulance. Qui va le chercher, en combien de temps, et que se passe-t-il si le bureau est fermé — un soir, un samedi, pendant les vacances ?"
+    origin: SRC-030
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: levée
+    resolution: "Le « on » de RG-005 est un enseignant : il va lui-même prendre le dossier au bureau (SRC-031). Le délai n'est pas établi. La question du bureau fermé est écartée par une limite de responsabilité déclarée — l'association ne répond que des heures de présence de l'enfant — qui ne tient que si aucun cours n'a lieu hors ouverture du bureau : ZO-094."
+    related: [RG-004, RG-005, BC-008, R-02, ZO-094, ZO-095]
+  - id: ZO-089
+    type: partie_prenante_non_entendue
+    question: "Trois sources sont enregistrées sans voix, faute de prénom dans la réponse : SRC-025 (le comptable est extérieur à l'association), SRC-029 (« c'est jamais arrivé »), SRC-031 (l'enseignant prend le dossier ; la responsabilité est bornée aux heures de présence), SRC-032 (le bureau reste ouvert tant qu'il y a des élèves), SRC-038 (le nombre de dossiers incomplets comme signal), SRC-040 (rétention du troisième lot de besoins). Qui a dit quoi ? Ces trois-là n'ont pas la même portée selon qu'elles viennent du bureau, de la direction ou d'un parent."
+    origin: SRC-029
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SRC-025, SRC-029, SRC-031, SRC-032, SRC-038, SRC-040, H-020, R-02, SRC-030]
+    note: "« C'est tom et le directeur qui ont répondu » est arrivé juste après SRC-030 et a été rattaché à SRC-030. Rien n'établit qu'il couvre aussi SRC-029, posé au tour précédent : la zone reste ouverte."
+  - id: ZO-090
+    type: attendu_implicite
+    question: "Si un enfant faisait un malaise ou une réaction allergique pendant un cours, qui dans l'association l'apprendrait, et comment ? Les enseignants ont-ils reçu une consigne sur ce qu'ils doivent faire, et existe-t-il une trace écrite d'un incident quelque part ?"
+    origin: SRC-029
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: levée
+    resolution: "La consigne existe et comporte quatre temps : appeler les parents, les urgences, le directeur, et remettre le dossier de l'enfant aux médecins des urgences (SRC-030) → RG-004 et BC-008. Elle n'a jamais été appliquée (SRC-029). Deux volets de la question restent sans réponse et partent en ZO-091 : la consigne est-elle écrite, et un incident laisse-t-il une trace ?"
+    related: [R-02, BC-007, SH-04, H-020, RG-004, RG-005, ZO-091]
+  - id: ZO-087
+    type: contradiction
+    subtype: factuelle
+    parties: [SH-03, SH-04]
+    question: "SH-03 dit que le dossier papier rend disponibles les informations médicales en cas d'urgence (SRC-027) ; R-02 dit que l'enseignant, seul présent auprès de l'enfant, n'y a pas accès. Lors de la dernière urgence réelle : qui a cherché ces informations, où était le dossier, et combien de temps cela a-t-il pris ?"
+    origin: SRC-027
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    status: levée
+    resolution: "« C'est jamais arrivé » (SRC-029). La contradiction se dissout : elle n'était pas factuelle. SH-03 décrivait ce que le dossier PERMETTRAIT, R-02 décrit ce qui se passerait — aucun des deux n'a jamais été éprouvé. R-02 reste un risque entier, il n'est simplement pas encore survenu. Reste H-020 : « jamais arrivé » ou « jamais remonté » ? → ZO-090."
+    related: [R-02, BC-007, SH-04, ZO-030, ZO-090]
+  - id: ZO-088
+    type: perimetre_flou
+    question: "Quelles autorisations la signature du parent couvre-t-elle exactement (transport en urgence, diffusion média, autre), et l'association a-t-elle déjà eu à s'en prévaloir face à un parent ou à un tiers ?"
+    origin: SRC-028
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [BC-006, SRC-003, DD-02]
+  - id: ZO-085
+    type: partie_prenante_non_entendue
+    question: "Les quatre réponses du point d'étape (SRC-025) sont arrivées sans prénom. Qui a dit que le comptable ne fait pas partie de l'association ?"
+    origin: SRC-025
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SRC-025, SH-07]
+  - id: ZO-086
+    type: perimetre_flou
+    question: "Le comptable est extérieur à l'association et c'est lui qui rapproche les virements des dossiers : il accède donc à des informations nominatives sur les familles. Sur quelle base le fait-il — contrat, convention, lettre de mission — et que reçoit-il exactement (relevés bancaires, liste des inscrits, autre) ?"
+    origin: SRC-025
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [SH-07, DD-02, ZO-074, H-019]
   - id: ZO-002
     type: partie_prenante_non_entendue
     question: "Qui, parmi Samir, Dédé et Tom, répond dans l'échange de cadrage ?"
@@ -557,9 +1148,9 @@ shadow_zones:
     ask_to: SH-01
     action: entretien
     blocking: false
-    status: ouverte
-    resolution: ""
-    related: []
+    status: levée
+    resolution: "Posée aux trois présents le 2026-10-28, une réponse par répondant. SH-01 (parent) : « je ne sais pas » — aucun attendu côté famille (SRC-026). SH-03 : les informations médicales en cas d'urgence (SRC-027) → BC-007 et la contradiction ZO-087. SH-02 : les autorisations signées qui couvrent l'association (SRC-028) → BC-006. Les DEUX attendus viennent du côté association et portent sur ce que le papier protège, non sur ce qu'il facilite. Aucun n'avait été cité en six échanges."
+    related: [BC-006, BC-007, ZO-087, ZO-088, ZO-030]
   - id: ZO-012
     type: partie_prenante_non_entendue
     question: "Dédé (directeur) et Tom (membre du bureau) étaient présents au cadrage mais n'ont rien dit. Que disent-ils du problème, et sont-ils d'accord avec le récit de Samir ?"
@@ -741,6 +1332,26 @@ shadow_zones:
     status: levée
     resolution: "Le parent conteste auprès d'un membre du bureau, qui remonte à SH-02, qui tranche (SRC-020). La voie de recours existe et elle est courte ; elle se termine chez la personne dont la faute est en cause. Enregistré en decision_rights et en R-04. Sur QUOI il tranche — quelle preuve, quel fondement — reste non établi : ZO-080."
     related: [RG-002, SH-06]
+  - id: ZO-084
+    type: probleme_flou
+    question: "Combien de remboursements l'association a-t-elle effectués sur les dernières campagnes, et pour quels motifs ? La réponse a varié trois fois en trois tours ; elle ne se fixera pas en la redemandant, mais sur l'historique comptable."
+    origin: SRC-023
+    ask_to: SH-02   # le comptable est extérieur à l'association : SH-02 va chercher la pièce (SRC-025)
+    action: document
+    blocking: false
+    status: ouverte
+    resolution: ""
+    related: [RG-001, RG-002, ZO-079]
+  - id: ZO-083
+    type: partie_prenante_non_entendue
+    question: "Une représentation a été proposée pour les trois voix manquantes : SH-03 pour les enseignants, SH-01 pour les parents, SH-02 pour le comptable. Elle couvre les FAITS (chiffres, historiques, documents) mais pas le VÉCU : SH-03 n'enseigne pas, SH-01 se réinscrit et n'a jamais été primo-inscrit. Comment joindre un enseignant et une famille primo-inscrite pour ce qu'eux seuls peuvent dire ?"
+    origin: point-etape
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    status: ouverte
+    resolution: "PARTIELLE : la salle maintient les représentants et ne propose pas d'aller chercher les absents (SRC-025). Les FAITS seront donc recueillis par représentation ; le VÉCU de l'enseignement et de la primo-inscription reste non couvert, et aucune des deux voix n'est programmée."
+    related: [SH-04, SH-06, SH-07, ZO-062, ZO-070]
   - id: ZO-082
     type: contradiction
     subtype: reglementaire
@@ -750,9 +1361,9 @@ shadow_zones:
     ask_to: SH-02
     action: decision
     blocking: false
-    status: ouverte
-    resolution: ""
-    related: [RG-003, SRC-003, ZO-079]
+    status: levée
+    resolution: "DD-04 : le texte est corrigé, pas la pratique. Le règlement intérieur va être révisé et le paiement par chèque en disparaît (SRC-043). Conséquence non discutée au moment du choix : le paiement en trois fois disparaît avec les chèques — ZO-108."
+    related: [RG-003, SRC-003, ZO-079, DD-04, ZO-108, TR-01]
   - id: ZO-081
     type: probleme_flou
     question: "Le règlement intérieur prévoit un paiement par chèques moyennant 2 € de frais. Un règlement SANS virement est-il possible ? Si oui, et si les chèques sont déposés avec le dossier, la perte du dossier emporte aussi la seule preuve : ni détection au bilan, ni recours pour le parent."
@@ -780,9 +1391,9 @@ shadow_zones:
     ask_to: SH-02
     action: decision
     blocking: false
-    status: ouverte
-    resolution: ""
-    related: [RG-002, RG-001]
+    status: levée
+    resolution: "Oui, par DD-05 : l'article 7 sera réécrit avec l'exception. RG-002 cesse d'être une pratique non écrite pour devenir une clause du règlement signé — donc opposable par la famille, ce qu'elle n'était pas. Porté par TR-01."
+    related: [RG-002, RG-001, DD-05, TR-01]
   - id: ZO-077
     type: arbitre_inconnu
     question: "SH-02 cumule la présidence et la direction : il porte la demande, décide du périmètre, répond des données au nom de l'association et serait l'arbitre d'un désaccord qui l'implique. Qui tranche quand le désaccord porte sur lui — le bureau, l'assemblée générale ? Et est-il bénévole ou salarié ?"
@@ -832,7 +1443,7 @@ shadow_zones:
     blocking: false
     status: ouverte
     resolution: ""
-    related: [DD-02, ZO-033]
+    related: [DD-02, ZO-033, ZO-086]
   - id: ZO-075
     type: hypothese_non_verifiee
     question: "Que devient le dossier d'un enfant qui quitte l'association, et une famille a-t-elle déjà demandé l'accès ou la suppression de son dossier ? Les personnes à contacter en cas d'urgence et le médecin traitant savent-ils que leurs coordonnées sont déposées ?"
@@ -845,14 +1456,14 @@ shadow_zones:
     related: [DD-02]
   - id: ZO-070
     type: partie_prenante_non_entendue
-    question: "Le comptable (SH-07) est le seul à voir l'anomalie, et personne ne l'avait cité. Que voit-il exactement, quand, et que remonte-t-il ? Est-il bénévole, salarié, prestataire extérieur ?"
+    question: "Le comptable (SH-07) est le seul à voir l'anomalie, et personne ne l'avait cité. Que voit-il exactement, quand, et que remonte-t-il ?"
     origin: SRC-015
     ask_to: SH-02
     action: entretien
     blocking: false
     status: ouverte
-    resolution: ""
-    related: [SH-07, R-03]
+    resolution: "PARTIELLE : son statut est tranché — il est extérieur à l'association (SRC-025), donc ni bénévole ni salarié. Reste entier ce qu'il voit, quand et comment il le remonte, qui ne peut venir que de lui ou d'une trace écrite."
+    related: [SH-07, R-03, ZO-086]
   - id: ZO-069
     type: probleme_flou
     question: "Le bilan de début juillet fait apparaître un virement sans dossier. Que se passe-t-il ensuite ? Qui regarde cet écart, qu'en fait-il, et pourquoi la place de cette famille n'a-t-elle pas été tenue alors qu'il restait deux mois ?"
@@ -935,8 +1546,8 @@ shadow_zones:
     action: entretien
     blocking: false
     status: ouverte
-    resolution: ""
-    related: [R-03, SH-06]
+    resolution: "PARTIELLE. QUI : les membres du bureau, les mêmes qui traitent les dossiers, pendant la même période (SRC-042) — la relance s'ajoute donc à la charge de campagne, elle ne s'y substitue pas. POURQUOI PAS LES NOUVELLES : parce qu'elles ne sont pas contactables, « si on a le pouvoir de contacter les parents on fait des relances » (SRC-041). RESTENT SANS RÉPONSE : à quel moment, par quel canal, et sur quelle liste."
+    related: [R-03, SH-06, BR-009, ZO-107, SRC-041, SRC-042]
   - id: ZO-061
     type: probleme_flou
     question: "Combien de NOUVELLES inscriptions par campagne, sur les 150 ? Et comment l'association saurait-elle qu'une famille a essayé puis disparu, puisque la seule trace de sa tentative était le dossier perdu (H-015) ?"
@@ -944,8 +1555,8 @@ shadow_zones:
     ask_to: SH-03
     action: entretien
     blocking: false
-    status: ouverte
-    resolution: ""
+    status: levée
+    resolution: "Entre 10 et 15 nouvelles inscriptions par année (SRC-023), soit 7 à 10 % des 150. C'est le dénominateur du risque grave (H-018). La seconde partie de la question — comment saurait-on qu'une famille a disparu — reste sans réponse et tient dans H-015."
     related: [R-03, SH-06]
   - id: ZO-062
     type: partie_prenante_non_entendue
@@ -1172,9 +1783,9 @@ shadow_zones:
     ask_to: SH-02
     action: entretien
     blocking: false
-    status: ouverte
-    resolution: ""
-    related: [BC-001, R-01]
+    status: levée
+    resolution: "Personne ne compte sur la relecture annuelle. Pour SH-03 et SH-02, « ces informations engagent la responsabilité du parent, pas de l'association » (SRC-034) : la fraîcheur est posée comme le devoir du parent, pas comme un effet du processus qu'il faudrait préserver. SH-01, lui, sépare les deux actes que le papier confond : « d'accord pour la relecture, pas pour la ressaisie » (SRC-033) → BC-009, qui qualifie BC-001 et désamorce R-01. Reste ZO-097 : l'association remet pourtant ce dossier aux urgences (RG-005)."
+    related: [BC-001, BC-009, R-01, ZO-097, RG-005]
   - id: ZO-028
     type: perimetre_flou
     question: "Données de santé de mineurs et consentements : qui est responsable de traitement dans l'association, où sont conservés les dossiers papier aujourd'hui, pendant combien de temps, et qui y a accès ? Et le traitement de ces obligations est-il dans le périmètre de l'initiative ou hors de lui ?"
@@ -1222,9 +1833,9 @@ shadow_zones:
     ask_to: SH-01
     action: entretien
     blocking: false
-    status: ouverte
-    resolution: ""
-    related: []
+    status: levée
+    resolution: "Un troisième signal existe désormais, du côté des familles : « en réunion, les familles n'expriment plus d'agacement sur la lourdeur de l'inscription », confirmé par SH-01 (SRC-036). Il est le symétrique du déclencheur (SRC-006). Il n'est pas chiffré — ni définition de l'agacement, ni valeur actuelle : ZO-024 reste ouverte. À noter que SH-01 interrogé directement n'a pas produit de signal observable (SRC-035) : il a donné une solution et une promesse. Le signal retenu est une proposition de l'agent qu'il a validée, pas une parole spontanée."
+    related: [SRC-035, SRC-036, ZO-024, H-021]
   - id: ZO-027
     type: hypothese_non_verifiee
     question: "Que contient le règlement interne au sujet des inscriptions : pièces obligatoires, délais, validations, conditions de refus ? Document annoncé, à récupérer."
@@ -1263,6 +1874,142 @@ shadow_zones:
 #    related: []           # H-xxx, BC-xxx, SRC-xxx liés
 
 council_runs:
+  - date: "2026-10-28"
+    mode: couverture
+    lenses: [utilisateur-final, operations-support, securite-conformite, sponsor-finance, sceptique]
+    initiatives: []        # ce passage ne porte que sur ecolasso-inscriptions
+    proposed: 28
+    questions:
+      - text: "D'où vient l'échéance d'avril, et que coûte une campagne 2027 identique aux précédentes ?"
+        lenses: [sponsor-finance, sceptique]
+        outcome: retenue
+        reason: ""
+        zone: ZO-099
+      - text: "Si tout ne tient pas avant avril, quelle population servir d'abord : les 135 réinscriptions ou les 10-15 primo-inscriptions ?"
+        lenses: [sponsor-finance, sceptique]
+        outcome: retenue
+        reason: ""
+        zone: ZO-100
+      - text: "Le signal « plus d'agacement en réunion » peut s'améliorer parce que les familles ne viennent plus, ou ne se réinscrivent plus."
+        lenses: [sceptique]
+        outcome: retenue
+        reason: "met en cause un signal validé par SH-01 le jour même : montré malgré la lentille unique"
+        zone: ZO-101
+      - text: "Une famille primo-inscrite n'a pas d'enfant présent : RG-006 ne dit rien de ses heures de dépôt."
+        lenses: [utilisateur-final]
+        outcome: retenue
+        reason: ""
+        zone: ZO-102
+      - text: "Quelles familles ne peuvent pas remplir ou relire le dossier seules — langue, écrit, vue, matériel ?"
+        lenses: [utilisateur-final]
+        outcome: retenue
+        reason: ""
+        zone: ZO-103
+      - text: "Les coordonnées des familles sont-elles sur des téléphones personnels de membres du bureau, et qu'en advient-il à leur départ ?"
+        lenses: [securite-conformite]
+        outcome: ecartee
+        reason: "porte sur le canal WhatsApp : périmètre d'ecolasso-communication, et ZO-049 l'ouvre déjà côté émetteur"
+        zone: ""
+      - text: "DD-02 élargit le périmètre à échéance inchangée sans contrepartie ni estimation : qu'est-ce qui a été examiné ?"
+        lenses: [sceptique]
+        outcome: ecartee
+        reason: "DD-02 consigne déjà cette conséquence comme acceptée par SH-02 ; rouvrir une décision validée sans fait nouveau n'est pas le rôle de cet examen"
+        zone: ""
+      - text: "Que devient le dossier remis aux médecins des urgences — revient-il, en existe-t-il un autre exemplaire, qui garde trace de sa sortie ?"
+        lenses: [securite-conformite]
+        outcome: reserve
+        reason: "RG-005 et BC-008 viennent d'être établis le jour même ; question forte, à poser au prochain tour"
+        zone: ""
+      - text: "Le dossier porte-t-il une mention disant aux familles à quoi servent les informations, qui les détient et à qui s'adresser ?"
+        lenses: [securite-conformite]
+        outcome: reserve
+        reason: "voisine de ZO-028 et ZO-071, déjà ouvertes sur la responsabilité de traitement et l'accès"
+        zone: ""
+      - text: "Un dossier perdu a-t-il déjà été traité comme un incident sur des données de santé de mineurs, et non seulement comme une inscription perdue ?"
+        lenses: [securite-conformite]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "L'autorisation de diffusion média couvre-t-elle les cours en distanciel — image et voix d'un mineur en visioconférence ?"
+        lenses: [securite-conformite]
+        outcome: reserve
+        reason: "dépend de ZO-040, ouverte sur le périmètre du distanciel"
+        zone: ""
+      - text: "À quel rythme les dossiers arrivent-ils entre avril et juin, et combien un membre du bureau en traite-t-il un jour de pointe ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Qui prend le relais quand la personne qui traite les dossiers est absente plusieurs jours, et comment sait-il où en sont les dossiers reçus ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Les membres du bureau qui traitent les inscriptions changent-ils chaque année, et comment la procédure et le fichier se transmettent-ils ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Que se passe-t-il après la validation — affectation à un groupe, places disponibles, liste d'attente — et sur quel support ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Qui met à jour la liste des familles en cours d'année, et à quelle fréquence l'initiative sœur s'en sert-elle ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: "touche DD-01 ; à instruire avec ecolasso-communication"
+        zone: ""
+      - text: "Combien de sollicitations les familles adressent-elles au bureau hors dépôt, qui y répond et dans quel délai ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Avec quoi le bureau travaille-t-il concrètement — poste partagé, téléphones personnels, connexion sur place ?"
+        lenses: [operations-support]
+        outcome: reserve
+        reason: "aucune contrainte de type environnement n'est renseignée"
+        zone: ""
+      - text: "Qu'est-ce que le passage au bureau apporte aujourd'hui à une famille au-delà du dépôt, et que perdrait-elle ?"
+        lenses: [utilisateur-final]
+        outcome: reserve
+        reason: "proche de ZO-008, levée le jour même côté association ; reste valable côté famille"
+        zone: ""
+      - text: "Que représente la campagne dans le quotidien d'un membre du bureau, et qui formerait les bénévoles qui arrivent ?"
+        lenses: [utilisateur-final]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Toutes les inscriptions concernent-elles des mineurs inscrits par un parent, ou existe-t-il des élèves majeurs qui s'inscrivent seuls ?"
+        lenses: [utilisateur-final]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Combien de temps la campagne coûte-t-elle au bureau, du dépôt au bilan de juillet, et qui porte ce temps ?"
+        lenses: [sponsor-finance]
+        outcome: reserve
+        reason: ""
+        zone: ""
+      - text: "Que représente une inscription en recettes, et que coûte une famille qui renonce après un dossier perdu ?"
+        lenses: [sponsor-finance]
+        outcome: reserve
+        reason: "recoupe ZO-084, déjà ouverte sur l'historique des remboursements"
+        zone: ""
+      - text: "Le bureau a-t-il la capacité de porter Inscriptions et Communication sur la même période ?"
+        lenses: [sponsor-finance]
+        outcome: reserve
+        reason: "à instruire avec ecolasso-communication"
+        zone: ""
+      - text: "Sur quel registre les volumes 10-15 et 135 peuvent-ils être recoupés, et qui d'autre que l'auteur du verbatim déclencheur a confirmé l'énoncé du problème ?"
+        lenses: [sceptique]
+        outcome: reserve
+        reason: "recoupe ZO-084 pour la pièce comptable ; la seconde moitié tient au fait que SH-02 est à la fois déclencheur et sponsor"
+        zone: ""
+      - text: "Qu'est-ce qui établit que les deux initiatives portent sur les mêmes familles, DD-01 reposant sur H-002, H-004 et H-011 non vérifiées ?"
+        lenses: [sceptique]
+        outcome: reserve
+        reason: "met en cause DD-01, validée : à instruire avec ecolasso-communication, pas en la rouvrant seule"
+        zone: ""
   - date: "2026-10-27"
     mode: preparation
     lenses: [utilisateur-final, operations-support, securite-conformite, sponsor-finance, sceptique]
@@ -1409,7 +2156,44 @@ council_runs:
 
 # ─────────────── Phase Define ───────────────
 
-objectives: []
+objectives:
+  - id: OBJ-01
+    statement: "Une famille déjà connue de l'association ne redonne, pour se réinscrire, que ce qui a changé"
+    indicator: "part des informations qu'une famille déjà inscrite doit redonner à la réinscription"
+    baseline: "les douze rubriques du dossier sont redonnées intégralement, et autant de fois que la famille a d'enfants (SRC-002, SRC-008) — alors qu'une seule, l'assurance scolaire, change à coup sûr chaque année (ZO-029)"
+    target: "seulement ce qui a changé ou doit être reconfirmé"
+    deadline: "campagne d'inscription d'avril 2027"   # échéance invoquée mais non documentée : ZO-099
+    owner: SH-02
+    status: validé
+    validated_by: SH-02   # « On valide les 3 », 2026-10-28, sans prénom ; les objectifs relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    from_needs: [BC-001, BC-003, BC-004, BC-009]
+    lint_waivers: []
+  - id: OBJ-02
+    statement: "Aucun enfant ne perd sa place parce que son dossier a disparu sans que personne ne le dise"
+    indicator: "nombre de familles dont l'inscription échoue faute d'avoir pu être jointes"
+    baseline: "au moins un cas connu, remboursé en septembre (SRC-011) ; le volume des campagnes précédentes n'est pas établi (ZO-084)"
+    target: "zéro"
+    deadline: "campagne d'inscription d'avril 2027"
+    owner: SH-02
+    status: validé
+    validated_by: SH-02   # « On valide les 3 », 2026-10-28, sans prénom ; les objectifs relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    from_needs: [BC-002, BC-005]
+    lint_waivers: []
+  - id: OBJ-03
+    statement: "Ce que le dossier papier protège aujourd'hui continue de protéger demain"
+    indicator: ""        # non établi : ZO-105
+    baseline: ""         # non établi : la chaîne d'urgence n'a jamais été exercée (SRC-029), les autorisations jamais invoquées (ZO-088)
+    target: ""
+    deadline: "campagne d'inscription d'avril 2027"
+    owner: SH-02
+    status: validé
+    validated_by: SH-02   # « On valide les 3 », 2026-10-28, sans prénom ; les objectifs relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    from_needs: [BC-006, BC-007, BC-008]
+    lint_waivers:
+      - { rule: S01, reason: "Indicateur et cible volontairement vides : les trois protections visées n'ont jamais été exercées, donc aucune valeur actuelle n'existe. Inventer un indicateur ici reviendrait à fabriquer la mesure avec l'objectif. ZO-105 porte la question et sera tranchée avant la rédaction des exigences." }
 #  - id: OBJ-01
 #    statement: ""         # résultat métier attendu
 #    indicator: ""
@@ -1420,13 +2204,226 @@ objectives: []
 #    status: proposé       # proposé | validé | abandonné
 #    lint_waivers: []
 
-impact_map: []            # Pourquoi (objectif) → Qui (acteur) → Comment (changement de comportement) → Quoi (exigences)
+impact_map:
+  - objective: OBJ-01
+    actors:
+      - { who: SH-01, label: "les familles qui se réinscrivent", change: "ne remplissent plus que ce qui a changé, au lieu de recopier douze rubriques par enfant" }
+      - { who: SH-03, label: "le bureau", change: "ne vérifie plus que des informations nouvelles ou modifiées, au lieu de relire des dossiers identiques à ceux de l'an dernier" }
+    requirements: [BR-001, BR-002, BR-003, BR-004, BR-005]
+  - objective: OBJ-02
+    actors:
+      - { who: SH-06, label: "la famille qui s'inscrit pour la première fois", change: "apprend que son dossier est arrivé, ou qu'il manque quelque chose, sans avoir à aller le demander au bureau" }
+      - { who: SH-03, label: "le bureau", change: "voit qu'un dossier attendu n'est pas là avant le bilan de juillet, et dispose d'un moyen de joindre la famille qui ne dépende pas du dossier perdu" }
+      - { who: SH-07, label: "le comptable", change: "cesse d'être le seul mécanisme de détection d'un dossier manquant" }
+    requirements: [BR-006, BR-007, BR-008, BR-009]
+    coverage_note: "Trou comblé le 2026-10-28 par BR-009 : la détection côté association existait déjà sous le nom de relance (SRC-041), elle n'avait simplement jamais été écrite. Reste ZO-060 sur ses modalités."
+  - objective: OBJ-03
+    actors:
+      - { who: SH-04, label: "l'enseignant", change: "atteint les informations médicales de l'enfant là où l'urgence se produit, sans quitter l'enfant" }
+      - { who: SH-02, label: "l'association", change: "conserve des autorisations parentales opposables et peut confier les informations de santé à une équipe médicale extérieure" }
+    requirements: [BR-010, BR-011, BR-012]
 #  - objective: OBJ-01
 #    actor: SH-02          # ou rôle
 #    impact: ""            # changement de comportement attendu
 #    requirements: [BR-001]
 
-business_requirements: []
+business_requirements:
+  - id: BR-013
+    statement: "L'association doit pouvoir empêcher qu'un dossier soit déposé incomplet."
+    objectives: [OBJ-01, OBJ-02]
+    from_needs: [BC-010]
+    business_rules: []
+    acceptance:
+      - "La liste des informations et des pièces obligatoires est établie et connue de la famille au moment où elle remplit"
+      - "Une information obligatoire manquante est signalée à la famille avant que le dossier soit considéré comme déposé"
+      - "Le nombre de dossiers déposés incomplets est connu, campagne après campagne"
+    priority: should        # validé par SH-02 le 2026-10-28
+    rationale: "Supprime l'aller-retour à la source plutôt qu'en aval, mais suppose d'abord d'établir ce qui est obligatoire parmi les treize pièces (ZO-033), travail qui n'est pas fait. BR-007 couvre le cas en aval en attendant."
+    status: validé
+    validated_by: SH-02
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S84, reason: "Les deux sources de BC-010 n'ont pas encore été relues par leurs auteurs : le retour à la source est prévu avant la génération du BRD, pour les 47 sources du dossier." }
+  - id: BR-010
+    statement: "L'association doit disposer, pour chaque enfant, d'autorisations parentales opposables."
+    objectives: [OBJ-03]
+    from_needs: [BC-006]
+    business_rules: []
+    acceptance:
+      - "Pour chaque autorisation, l'association peut établir qui l'a donnée, quand, et sur quel texte"
+      - "Une famille peut retirer une autorisation, le retrait est daté, et l'association sait qu'il a eu lieu"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Protection existante : la perdre serait une régression, pas une fonctionnalité manquante."
+    status: validé
+    validated_by: SH-02   # « Ok je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-011
+    statement: "L'association doit rendre les informations médicales d'un enfant accessibles à la personne qui en a la charge au moment où survient une urgence."
+    objectives: [OBJ-03]
+    from_needs: [BC-007]
+    business_rules: [RG-004]
+    acceptance:
+      - "La personne présente auprès de l'enfant atteint les allergies et les contacts d'urgence sans quitter l'enfant"
+      - "Cet accès existe à toutes les heures et dans tous les lieux où des cours ont lieu"
+    priority: should          # validé par SH-02 le 2026-10-28
+    rationale: "Seule exigence d'OBJ-03 qui AMÉLIORE l'existant au lieu de le préserver : aujourd'hui l'enseignant doit quitter l'enfant. Souhaitable, pas une régression si elle attend."
+    status: validé
+    validated_by: SH-02   # « Ok je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-012
+    statement: "L'association doit pouvoir confier à une équipe médicale extérieure les informations de santé d'un enfant qui lui est remis."
+    objectives: [OBJ-03]
+    from_needs: [BC-008]
+    business_rules: [RG-005]
+    acceptance:
+      - "Les informations remises sont lisibles par quelqu'un qui n'appartient pas à l'association"
+      - "La remise ne prive pas l'association de ces informations : aucune donnée ne tient à un exemplaire unique qui sort"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Protection existante, et la seule qui fasse sortir des données de santé de l'association : la perdre serait une régression doublée d'un risque."
+    status: validé
+    validated_by: SH-02   # « Ok je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-009
+    statement: "L'association doit relancer une famille attendue dont le dossier n'est pas arrivé."
+    objectives: [OBJ-02]
+    from_needs: [BC-005, BC-002]
+    business_rules: [RG-003]
+    acceptance:
+      - "L'association constate l'écart entre les familles attendues et les dossiers reçus avant la fin de la campagne, et non au bilan de juillet"
+      - "La relance d'une famille ne dépend d'aucune information contenue dans le dossier manquant"
+      - "Une famille qui a payé sans qu'aucun dossier ne soit enregistré est relancée"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Sans relance, personne ne constate l'absence avant juillet. BR-008 ne vaut rien sans elle."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-006
+    statement: "L'association doit faire savoir à la famille que son dossier lui est bien parvenu, sans qu'elle ait à le demander."
+    objectives: [OBJ-02]
+    from_needs: [BC-002]
+    business_rules: []
+    acceptance:
+      - "Toute famille ayant déposé un dossier reçoit un accusé de réception"
+      - "Le délai au-delà duquel l'absence d'accusé doit alerter la famille est connu d'elle et borné"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Sans accusé de réception, la famille ne sait rien et le silence reste le mode de défaillance : c'est le problème tel qu'il a été formulé et confirmé."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-007
+    statement: "L'association doit faire savoir à la famille qu'il manque une pièce à son dossier, en nommant ce qui manque."
+    objectives: [OBJ-02]
+    from_needs: [BC-002]
+    business_rules: []
+    acceptance:
+      - "Le message adressé à la famille nomme chaque pièce ou information manquante"
+      - "Une famille dont le dossier est incomplet l'apprend sans avoir à se déplacer"
+    priority: should          # validé par SH-02 le 2026-10-28
+    rationale: "Le dossier incomplet est un mode de défaillance distinct, moins grave que la perte : la place n'est pas perdue, le parent se déplace une fois de plus."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-008
+    statement: "L'association doit pouvoir joindre une famille dont le dossier est introuvable."
+    objectives: [OBJ-02]
+    from_needs: [BC-005]
+    business_rules: [RG-003]
+    acceptance:
+      - "Chaque famille dispose d'au moins un moyen de contact qui ne dépend pas du dossier déposé"
+      - "Une famille dont le dossier a disparu peut être prévenue avant la rentrée"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Sans moyen de contact indépendant du dossier, la famille de septembre reste injoignable et R-03 est entier. BR-009 ne vaut rien sans elle."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-001
+    statement: "L'association doit pouvoir réinscrire un enfant sans que la famille redonne les informations inchangées qu'elle a déjà fournies."
+    objectives: [OBJ-01]
+    from_needs: [BC-001]
+    business_rules: []
+    acceptance:
+      - "Une famille déjà inscrite peut achever une réinscription sans avoir saisi une information identique à celle de la campagne précédente"
+      - "Les informations reprises d'une campagne à l'autre sont présentées à la famille, qui peut les corriger"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Le cœur d'OBJ-01 : sans elle, la famille réécrit tout et rien n'a changé pour les 135."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-002
+    statement: "L'association doit soumettre chaque année à la famille les informations qu'elle détient sur son enfant."
+    objectives: [OBJ-01, OBJ-03]
+    from_needs: [BC-009]
+    business_rules: []
+    acceptance:
+      - "Une réinscription ne peut s'achever sans que la famille ait eu sous les yeux les rubriques de santé conservées"
+      - "La date du dernier examen par la famille est connue pour chaque enfant"
+    priority: must          # validé par SH-02 le 2026-10-28
+    rationale: "Garde-fou de BR-001 : reprendre des données de santé sans les faire revoir crée R-01. Les deux ne se livrent pas l'une sans l'autre."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-005
+    statement: "L'association doit permettre à la famille de corriger une information qu'elle détient sur son enfant."
+    objectives: [OBJ-01, OBJ-03]
+    from_needs: [BC-009]
+    business_rules: []
+    acceptance:
+      - "Une correction apportée par la famille remplace l'information conservée"
+      - "Une correction reste possible après la validation de l'inscription, en cours d'année"
+    priority: should          # validé par SH-02 le 2026-10-28
+    rationale: "La correction en cours d'année est un droit réel, mais la relecture annuelle de BR-002 couvre déjà le cas le plus fréquent."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-003
+    statement: "L'association doit pouvoir inscrire plusieurs enfants d'une même famille sans que les informations communes à la fratrie soient redonnées pour chacun."
+    objectives: [OBJ-01]
+    from_needs: [BC-003]
+    business_rules: []
+    acceptance:
+      - "Une famille de deux enfants ou plus ne saisit qu'une fois les informations communes aux enfants dans une même campagne"
+    priority: should          # validé par SH-02 le 2026-10-28
+    rationale: "Ne concerne que les familles de plusieurs enfants. Douloureux, mais la famille à enfant unique gagne déjà avec BR-001."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
+  - id: BR-004
+    statement: "L'association doit pouvoir réinscrire un enfant sans exiger à nouveau une pièce justificative dont l'information n'a pas changé."
+    objectives: [OBJ-01]
+    from_needs: [BC-004]
+    business_rules: []
+    acceptance:
+      - "Une famille n'a à fournir que les pièces dont l'information a changé ou dont la validité a expiré"
+      - "Pour chaque pièce du dossier, il est établi si elle expire chaque année ou non"
+    priority: should          # validé par SH-02 le 2026-10-28
+    rationale: "Suppose d'établir, pour chacune des treize pièces, si elle expire : un travail préalable qui ne tient pas forcément avant avril."
+    status: validé
+    validated_by: SH-02   # « Oui je valide », 2026-10-28, sans prénom ; les exigences relèvent du domaine de décision de SH-02 (decision_rights)
+    validated_on: "2026-10-28"
+    lint_waivers:
+      - { rule: S63, reason: "Source unique assumée par SH-02 à la porte de synthèse du 2026-10-28 (robustesse faible, assumed) et reportée en R-07. La dérogation ne vaut que pour la source unique ; elle ne couvre ni S05 ni S84." }
 #  - id: BR-001
 #    statement: "Le service doit pouvoir …"
 #    objectives: [OBJ-01]
@@ -1440,15 +2437,55 @@ business_requirements: []
 #    lint_waivers: []      # avertissements acceptés : - { rule: L03, reason: "" }
 
 business_rules:
+  - id: RG-006
+    statement: "Le bureau doit rester ouvert tant que des élèves sont présents dans les locaux."
+    rationale_proposed: "PROPOSÉ par l'agent le 2026-10-28, NON CONFIRMÉ : tant qu'un enfant est là, l'association en répond (SRC-031) ; quelqu'un doit donc pouvoir ouvrir, joindre et atteindre les dossiers."
+    kind: comportement
+    enforcement: stricte
+    sources: [{ ref: SRC-032, location: "« Tant que il y des élèves, le bureau reste ouvert »" }]
+    owner: SH-02
+    rationale: ""
+    exceptions: []
+    status: validé
+    validated_by: SH-02   # validées en bloc le 2026-10-28 ; RG-001 validée dans son texte actuel, sa raison d'être restant inconnue, et elle sera réécrite par DD-05
+    notes: "C'est elle qui rend RG-005 exécutable : le dossier est atteignable à toute heure où un enfant est là. Reste ce que « ouvert » veut dire — porte déverrouillée, ou quelqu'un présent (ZO-096). La règle vaut aussi pour les cours en distanciel (Zoom, ZO-040) : là, l'enfant n'est pas dans les locaux et la règle ne dit rien."
+  - id: RG-004
+    statement: "En cas d'urgence médicale pendant un cours, l'enseignant doit alerter trois destinataires : les parents, les services d'urgence, le directeur."
+    rationale_proposed: "PROPOSÉ par l'agent le 2026-10-28, NON CONFIRMÉ : l'enseignant est seul auprès de l'enfant et ne peut décider seul ; les trois appels couvrent les trois autorités qui doivent l'être — celle qui a l'autorité parentale, celle qui soigne, celle qui engage l'association."
+    kind: comportement
+    enforcement: stricte      # énoncée comme une obligation ; jamais appliquée à ce jour (SRC-029), donc jamais éprouvée
+    sources: [{ ref: SRC-030, location: "« Les enseignants doivent appeler les parents, les urgences, le directeur »" }]
+    owner: SH-02
+    rationale: ""
+    exceptions: []
+    status: validé
+    validated_by: SH-02   # validées en bloc le 2026-10-28 ; RG-001 validée dans son texte actuel, sa raison d'être restant inconnue, et elle sera réécrite par DD-05
+    notes: "Deux trous ouverts en zones : la consigne n'est peut-être écrite nulle part (ZO-091) ; l'enseignant doit appeler les parents alors que R-02 dit qu'il n'a pas leurs coordonnées (ZO-092). L'ordre des trois appels n'est pas établi."
+    lint_waivers:
+      - { rule: L03, reason: "Les trois appels sont une seule obligation à trois destinataires, telle qu'elle a été énoncée (SRC-030). Les scinder inventerait trois règles que personne n'a formulées." }
+  - id: RG-005
+    statement: "Le dossier de l'enfant doit être remis aux médecins des urgences."
+    rationale_proposed: "PROPOSÉ par l'agent le 2026-10-28, NON CONFIRMÉ : l'équipe médicale a besoin des allergies, des vaccinations et du médecin traitant pour soigner, et ces informations ne se trouvent nulle part ailleurs tant que les parents ne sont pas arrivés."
+    kind: comportement
+    enforcement: stricte      # jamais appliquée à ce jour (SRC-029)
+    sources: [{ ref: SRC-030, location: "« on doit prendre le dossier de l'enfant pour les médecins des urgences »" }]
+    owner: SH-02
+    rationale: ""
+    exceptions: []
+    status: validé
+    validated_by: SH-02   # validées en bloc le 2026-10-28 ; RG-001 validée dans son texte actuel, sa raison d'être restant inconnue, et elle sera réécrite par DD-05
+    notes: "Séparée de RG-004 : autre acteur. « On » n'a pas de sujet, et le dossier est au bureau pendant que l'enfant part en ambulance (ZO-093). C'est la règle qui contraint le plus la suite : elle suppose que les informations de santé puissent QUITTER l'association et être lues par un tiers (BC-008)."
   - id: RG-001
     statement: "Tout paiement encaissé pour frais d'inscription ou frais de scolarité ne peut faire l'objet d'un remboursement."
     kind: comportement
     enforcement: derogation_justifiee   # le règlement l'énonce sans exception, la pratique en admet au moins une
     sources: [{ ref: SRC-003, location: "règlement intérieur, article 7" }, { ref: SRC-011, location: "remboursement effectué en septembre" }]
     owner: SH-02
-    rationale: ""          # non établi : pourquoi la règle existe, et sur quel fondement la dérogation est accordée
+    rationale: "JAMAIS ÉTABLIE : demandée deux fois à SH-02 le 2026-10-28, sans réponse. C'est ce vide qui a conduit à demander si la règle était encore valable plutôt qu'à la reconduire — d'où DD-05."
+    revision_note: "Sera réécrite lors de la révision du règlement (DD-04, DD-05, TR-01) pour porter l'exception RG-002 dans son texte. Tant que la révision n'est pas faite, le texte signé par les familles reste celui-ci, sans exception."
     exceptions: [RG-002]
-    status: proposé
+    status: validé
+    validated_by: SH-02   # validées en bloc le 2026-10-28 ; RG-001 validée dans son texte actuel, sa raison d'être restant inconnue, et elle sera réécrite par DD-05
     lint_waivers:
       - { rule: L03, reason: "L'énoncé est la citation exacte de l'article 7 du règlement intérieur signé par les parents (SRC-003). On ne le reformule pas : c'est le texte qui engage." }
       - { rule: L08, reason: "Même motif : le règlement ne dit pas « doit ». C'est précisément ce flou qui a rendu RG-002 nécessaire." }
@@ -1458,18 +2495,20 @@ business_rules:
     enforcement: stricte
     sources: [{ ref: SRC-022, location: "« toutes les inscriptions se font par virement »" }]
     owner: SH-02
-    rationale: "Pratique constante selon SH-03. Elle n'est pas celle qu'annonce le règlement intérieur signé, qui prévoit encore un paiement en trois fois avec deux chèques différés et une option chèques à 2 € de frais (SRC-003, page 2) — ZO-082"
+    rationale: "Le paiement est échelonné entre avril et juin (SRC-044) : la première somme arrive donc tôt dans la campagne, ce qui donne au filet de détection de BR-009 une trace précoce et non un signal de juillet. Pratique constante selon SH-03. Elle n'est pas celle qu'annonce le règlement intérieur signé, qui prévoit encore un paiement en trois fois avec deux chèques différés et une option chèques à 2 € de frais (SRC-003, page 2) — ZO-082"
     exceptions: []
-    status: proposé
+    status: validé
+    validated_by: SH-02   # validées en bloc le 2026-10-28 ; RG-001 validée dans son texte actuel, sa raison d'être restant inconnue, et elle sera réécrite par DD-05
   - id: RG-002
     statement: "Un paiement encaissé doit être remboursé lorsque l'association n'a pas pu donner suite à l'inscription parce qu'elle a perdu le dossier déposé."
     kind: comportement
     enforcement: stricte
     sources: [{ ref: SRC-018, location: "« dans les cas où l'erreur n'incombe pas au parent »" }, { ref: SRC-011, location: "remboursement effectué en septembre" }]
     owner: SH-02
-    rationale: "Pratiquée au moins une fois (SRC-011) et énoncée par le président. Resserrée après SRC-019 : SH-02 pense que la perte du dossier est le SEUL cas de remboursement — hors de là, l'article 7 s'applique sans exception. Absente du règlement signé, donc inopposable par une famille en l'état (ZO-078, ZO-079)"
+    rationale: "Pratiquée au moins une fois (SRC-011) et énoncée par le président. N'est PAS la seule dérogation : d'autres remboursements arrivent « de temps à autre », motifs non énoncés (SRC-023, ZO-084). Absente du règlement signé, donc inopposable par une famille en l'état (ZO-078, ZO-079)"
     exceptions: []
-    status: proposé
+    status: validé
+    validated_by: SH-02   # validées en bloc le 2026-10-28 ; RG-001 validée dans son texte actuel, sa raison d'être restant inconnue, et elle sera réécrite par DD-05
 # règles métier : ce ne sont pas des exigences, mais des directives que le métier contrôle
 #  - id: RG-001
 #    statement: "Un dossier ne doit pas être transmis sans justificatif de domicile."
@@ -1483,6 +2522,52 @@ business_rules:
 #    lint_waivers: []
 
 decisions:
+  - id: DD-06
+    question: "Qu'est-ce qui fait qu'une famille est « attendue » au sens de BR-009, et doit donc être relancée si son dossier n'arrive pas ?"
+    zone: ""
+    options:
+      - { text: "Celles de la liste de l'an dernier", impacts: "La relance couvre les réinscriptions, comme aujourd'hui ; les primo-inscriptions ne sont attendues par personne et OBJ-02 n'est tenu que pour une partie des familles" }
+      - { text: "La liste, plus celles qui ont payé", impacts: "Le virement devient officiellement la preuve qu'une famille existe, et le paiement étant échelonné dès avril la trace arrive tôt ; une famille qui dépose avant de payer reste invisible jusqu'à son premier virement" }
+      - { text: "Toute famille qui s'est manifestée", impacts: "Couvre tout le monde, mais suppose de garder une trace de chaque premier contact, ce qui n'existe nulle part aujourd'hui" }
+    decision: "Est attendue toute famille figurant sur la liste de la campagne précédente, ainsi que toute famille dont un paiement a été reçu."
+    rationale: "Rendue par SH-02 le 2026-10-28. Elle fait du virement, jusqu'ici filet accidentel découvert par le comptable au bilan de juillet (SRC-015), la définition officielle de l'existence d'une famille — et l'échelonnement du paiement dès avril (SRC-044) fait arriver cette trace tôt dans la campagne. Angle résiduel énoncé au moment du choix et non traité : ZO-109."
+    decided_by: SH-02
+    date: "2026-10-28"
+    status: validé
+  - id: DD-05
+    question: "L'article 7 du règlement interdit tout remboursement sans exception, alors que l'association en a accordé un à juste titre. Le règlement étant rouvert, que devient cette règle (ZO-079) ?"
+    zone: ZO-079
+    options:
+      - { text: "La réécrire avec l'exception", impacts: "L'association cesse d'agir hors de son propre règlement quand elle répare son erreur ; la famille gagne un droit écrit qu'elle n'avait pas, et pourra s'en prévaloir" }
+      - { text: "La garder telle quelle", impacts: "Chaque remboursement reste une faveur au cas par cas, jamais un dû ; l'association garde la main entière et reste en tort chaque fois qu'elle rembourse" }
+    decision: "Réécrire l'article 7 avec l'exception : aucun remboursement, sauf lorsque l'erreur n'incombe pas à la famille."
+    rationale: "Rendue en séance le 2026-10-28 (SRC-045), à l'occasion de la révision du règlement décidée en DD-04. La raison d'être de la règle d'origine n'a jamais pu être établie, demandée deux fois : c'est l'étape 2 bis qui prescrit alors de demander si la règle est encore valable plutôt que de la reconduire sans la comprendre."
+    decided_by: SH-02
+    date: "2026-10-28"
+    status: validé
+  - id: DD-04
+    question: "Le dossier signé annonce un règlement en trois fois avec chèques différés, alors que la pratique est le virement pour tous (ZO-082). Faut-il corriger le texte ou élargir la pratique ?"
+    zone: ZO-082
+    options:
+      - { text: "Corriger le texte", impacts: "Le règlement dit enfin ce qui se passe ; les familles qui comptaient sur le paiement en trois fois par chèque perdent une facilité qu'on leur avait annoncée par écrit" }
+      - { text: "Élargir la pratique aux chèques", impacts: "Le texte signé est honoré ; le filet de détection par les virements (RG-003, BR-009) ne couvre plus toutes les inscriptions" }
+    decision: "Corriger le texte : le règlement intérieur va être révisé, et le paiement par chèque en disparaît."
+    rationale: "Rendue en séance le 2026-10-28 (SRC-043). Conséquence non discutée : le paiement en trois fois disparaît du texte en même temps que les chèques, or c'était une facilité annoncée aux familles — ZO-108."
+    decided_by: SH-02
+    date: "2026-10-28"
+    status: validé
+  - id: DD-03
+    question: "Si tout n'est pas prêt pour la campagne d'avril, quelle population l'association sert-elle en premier : les quelque 135 familles qui se réinscrivent, ou les 10 à 15 qui s'inscrivent pour la première fois ?"
+    zone: ZO-100
+    options:
+      - { text: "Les réinscriptions d'abord", impacts: "135 familles cessent de tout réécrire ; les primo-inscrites restent exposées une campagne de plus à la perte de dossier (R-03), et aucun signal de succès ne les couvre" }
+      - { text: "Les primo-inscriptions d'abord", impacts: "Le cas grave est traité ; les 135 continuent de tout réécrire et l'agacement déclencheur reste intact en avril" }
+      - { text: "Les deux, sans priorité", impacts: "Rien n'est garanti pour avril ; si le temps manque, l'arbitrage se fera par les circonstances" }
+    decision: "Les deux, sans priorité : aucune des deux populations ne passe avant l'autre."
+    rationale: "Rendue par SH-02, décideur sur le périmètre et les priorités. Conséquence acceptée et énoncée au moment du choix : si le temps manque avant avril, la répartition se fera par les circonstances et non par une décision — d'où R-05."
+    decided_by: SH-02
+    date: "2026-10-28"
+    status: validé
   - id: DD-02
     question: "Traiter les obligations liées aux données de santé de mineurs, aux consentements et aux coordonnées de tiers fait-il partie de cette initiative ?"
     zone: ZO-028
@@ -1522,44 +2607,105 @@ decisions:
 #    status: proposé       # proposé | validé
 
 target_process:
-  events: []
-#    - { event: "", actor: "", change: nouveau }   # nouveau | modifié | inchangé | supprimé
-  org_impacts: []          # rôles, organisation, formation
+  status: validé           # validé par SH-02 le 2026-10-28, impact organisationnel 4 réécrit à sa demande
+  events:
+    - { event: "L'association a ouvert la campagne et prévenu les familles attendues", actor: "membres du bureau", change: modifié, requirements: [BR-009] }
+    - { event: "La famille déjà connue a revu les informations détenues sur son enfant et n'a redonné que ce qui avait changé", actor: "parent", change: modifié, requirements: [BR-001, BR-002, BR-005] }
+    - { event: "La famille de plusieurs enfants n'a donné qu'une fois les informations communes à la fratrie", actor: "parent", change: modifié, requirements: [BR-003] }
+    - { event: "La famille n'a fourni que les pièces dont l'information avait changé", actor: "parent", change: modifié, requirements: [BR-004] }
+    - { event: "La famille a donné ses autorisations, et l'association a gardé trace de qui les a données, quand et sur quel texte", actor: "parent", change: modifié, requirements: [BR-010] }
+    - { event: "La famille qui s'inscrivait pour la première fois a laissé un moyen de contact qui ne dépend pas du dossier déposé", actor: "parent", change: nouveau, requirements: [BR-008] }
+    - { event: "Le paiement a été échelonné entre avril et juin, par virement", actor: "parent", change: inchangé, requirements: [] }
+    - { event: "Un membre du bureau a vérifié les informations et le paiement", actor: "membre du bureau", change: inchangé, requirements: [] }
+    - { event: "L'association a fait savoir à la famille que son dossier lui était parvenu", actor: "membre du bureau", change: modifié, requirements: [BR-006] }
+    - { event: "Quand une pièce manquait, l'association a dit laquelle", actor: "membre du bureau", change: modifié, requirements: [BR-007] }
+    - { event: "Avant la fin de la campagne, l'association a comparé les familles attendues et les dossiers reçus, et relancé celles qui manquaient", actor: "membres du bureau", change: nouveau, requirements: [BR-009] }
+    - { event: "Le bilan de juillet a cessé d'être le moment où l'on découvre qu'un dossier manque", actor: "comptable", change: supprimé, requirements: [BR-009] }
+    - { event: "En cas d'urgence, la personne présente auprès de l'enfant a atteint les allergies et les contacts sans quitter l'enfant", actor: "enseignant", change: modifié, requirements: [BR-011] }
+    - { event: "Les informations de santé ont été confiées à l'équipe médicale sans que l'association en soit privée", actor: "enseignant", change: modifié, requirements: [BR-012] }
+    - { event: "L'enseignant a alerté les parents, les services d'urgence et le directeur", actor: "enseignant", change: inchangé, requirements: [] }
+  org_impacts:
+    - "Le bureau relance désormais TOUTES les familles attendues, et non les seules réinscriptions : la relance s'ajoute à la charge de campagne des mêmes personnes, sur la même période (SRC-042). C'est le changement d'organisation le plus lourd du dispositif, et il tombe sur des bénévoles."
+    - "Le comptable cesse d'être le mécanisme de détection d'un dossier manquant. Le bilan de juillet subsiste comme bilan ; il n'est plus l'alerte."
+    - "L'enseignant atteint des informations de santé d'un mineur là où il se trouve. Qui peut lire quoi n'est pas établi (ZO-095), et l'enseignant n'a jamais été entendu (R-06)."
+    - "La famille déjà connue change de geste : elle ne remplit plus, elle relit et corrige. L'association affirme que toutes les familles peuvent le faire seules (SRC-046). L'affirmation est enregistrée telle quelle ; elle vient du côté qui reçoit les dossiers, non des familles, dont une seule a été entendue (R-06)."
+    - "Le règlement intérieur doit être révisé avant la campagne (TR-01) : c'est un préalable, pas un accompagnement."
 
 risks:
+  - id: R-08
+    text: "À la première campagne, aucune famille déjà inscrite ne constate de gain si ses informations ne sont pas reprises de l'existant : il faut bien qu'elles entrent une première fois. Or c'est cette campagne-là que tout le monde regardera pour juger si l'effort valait la peine, et c'est là que les signaux de succès seront lus"
+    origin: H-021
+    related: [H-021, BC-001, BR-001, ZO-098, "success_signals"]
+    likelihood: forte
+    impact: moyen
+    response: "Côté métier : décider avant la campagne si les informations des familles déjà inscrites sont reprises depuis les dossiers papier ou le fichier du bureau (ZO-098), ou annoncer aux familles que le gain porte sur la campagne suivante"
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
+  - id: R-09
+    text: "DD-01, qui laisse la liste des familles rattachée à cette initiative et rend l'initiative sœur dépendante d'elle, repose sur trois hypothèses jamais vérifiées : que les deux initiatives concernent les mêmes familles, qu'elles partagent le même canal, et que le fichier du bureau soit la matière dont la sœur a besoin. Deux hypothèses voisines sur ce même fichier ont déjà été infirmées en cours de cadrage"
+    origin: "sceptique"
+    related: [DD-01, H-002, H-004, H-011]
+    likelihood: moyenne
+    impact: fort
+    response: "Côté métier : vérifier ces trois hypothèses au démarrage d'ecolasso-communication, avant que les deux initiatives ne s'engagent sur une liste commune"
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
+  - id: R-06
+    text: "Le dossier est construit sur trois voix de six. Les besoins qui touchent l'enseignement (BC-007) et la primo-inscription (BC-002, BC-005, BC-008) n'ont été confirmés par personne qui les vive, et la famille primo-inscrite — celle qui porte le risque grave — n'a jamais parlé. Un besoin mal posé se découvrira à l'usage, quand le coût de le reprendre aura changé d'ordre"
+    origin: synthesis_check.couverture
+    related: [SH-04, SH-06, SH-07, BC-002, BC-005, BC-007, BC-008, R-03, ZO-083]
+    likelihood: forte
+    impact: fort
+    response: "Côté métier : entendre un enseignant et une famille qui s'est inscrite pour la première fois avant le passage au PRD. Les deux voix sont atteignables, et ce sont celles dont dépendent quatre exigences sur treize."
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
+  - id: R-07
+    text: "Les neuf besoins candidats reposent chacun sur une source unique. Toute exigence bâtie dessus héritera de cette fragilité, sans que rien ne la signale au moment de la rédiger"
+    origin: synthesis_check.robustesse
+    related: [BC-001, BC-002, BC-003, BC-004, BC-005, BC-006, BC-007, BC-008, BC-009]
+    likelihood: moyenne
+    impact: moyen
+    response: "Côté métier : faire relire à chaque personne interrogée la synthèse de ce qu'elle a dit (retour à la source), puis recouper sur pièce les besoins qui portent un chiffre — volumes, dossiers incomplets, remboursements."
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
+  - id: R-05
+    text: "Aucune priorité n'étant fixée entre les deux populations (DD-03), un retard avant avril ne se répartira pas : il se subira. Les deux besoins sont de nature différente — un irritant fréquent pour 135 familles, un préjudice grave pour 10 à 15 — et sans ordre établi, c'est l'ordre d'arrivée des travaux qui tranchera, au moment où il sera trop tard pour en décider"
+    origin: DD-03
+    related: [DD-03, ZO-100, R-03, BC-001, BC-002, BC-005, ZO-099]
+    likelihood: moyenne
+    impact: moyen
+    response: "Conséquence assumée de DD-03. Côté métier : rouvrir l'arbitrage dès que le calendrier se tend, pendant qu'il est encore possible de choisir — et non quand l'ordre d'arrivée des travaux aura décidé."
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
   - id: R-04
     text: "La voie de recours d'une famille se termine chez la personne dont la faute est précisément en cause : le parent conteste auprès d'un membre du bureau, qui remonte au président, qui tranche — et c'est l'association qu'il représente qui est mise en cause. Aucune instance tierce n'intervient, et la règle qui fonde la décision n'est écrite nulle part (RG-002, ZO-079)"
     origin: SRC-020
     related: [RG-002, ZO-077, ZO-078, SH-06]
-    likelihood: ""
-    impact: ""
-    response: ""
-    status: proposé
+    likelihood: faible
+    impact: moyen
+    response: "Le cumul présidence-direction chez SH-02 fait que la voie de recours d'une famille remonte à celui dont la décision est contestée. Côté métier : nommer dans le règlement révisé qui tranche un litige où la direction est en cause (TR-01)."
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
   - id: R-03
     text: "Une famille dont le dossier est perdu ou incomplet n'est pas prévenue. Si elle ne prend pas d'elle-même l'initiative de contacter le bureau, l'enfant peut perdre sa place. La charge de détecter la défaillance repose entièrement sur celui qui la subit, et la sanction porte sur l'enfant"
     origin: SRC-009
     related: [BC-002, ZO-053, ZO-057, SH-06]
-    likelihood: ""        # survenu au moins une fois (SRC-010) ; fréquence non établie (ZO-061)
+    likelihood: forte        # « ça arrive de temps à autre » (SRC-023 relu avec SRC-024) : récurrent, non chiffré — et sur une population de 10 à 15 primo-inscriptions par an (SRC-023), pas sur 150
     impact: fort          # un enfant perd sa place pour l'année
     response: "La chaîne de rattrapage existe et fonctionne (SRC-015) ; elle casse au seul endroit où la famille n'est joignable que par le dossier perdu. Le besoin métier correspondant est BC-005. Aucun moyen n'est préconisé ici"   # la piste « avancer le rapprochement » a été retirée : SRC-014 établit qu'il a lieu début juillet, soit deux mois avant la rentrée. Le levier est ailleurs — dans ce qui suit la détection (ZO-069)
-    status: proposé
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
     note: "CONFIRMÉ par SH-03 (SRC-010) : c'est arrivé. SH-03 le dit concentré sur les nouveaux inscrits, mais le seul cas qu'il cite est une RÉINSCRIPTION (SRC-011) : contradiction ZO-063. Le parent avait déposé en juin et PAYÉ ; l'association a dû rembourser en septembre."
   - id: R-02
-    text: "En situation d'urgence, la personne présente auprès de l'enfant — le professeur — n'a pas accès aux allergies ni aux contacts d'urgence. Il doit joindre un membre du bureau qui, lui, y a accès. Les quatre rubriques de santé du dossier ne sont donc consultables qu'à travers un intermédiaire, au moment précis où elles servent"
+    text: "En situation d'urgence, la personne présente auprès de l'enfant — l'enseignant — n'a pas les allergies ni les contacts sous les yeux : ils sont sur un dossier papier rangé au bureau, et il doit quitter l'enfant pour aller le chercher. Les quatre rubriques de santé ne sont consultables qu'ailleurs, au moment précis où elles servent"
+    correction: "2026-10-28 — formulation corrigée. La version précédente affirmait que l'enseignant « doit joindre un membre du bureau qui, lui, y a accès » : c'est FAUX. SRC-031 établit que l'enseignant va lui-même prendre le dossier au bureau. Ce n'était pas une parole de source, c'était une déduction de l'agent. Le risque subsiste — l'information n'est pas là où est l'enfant — mais il tient à la distance, pas à un intermédiaire"
     origin: ZO-031
-    related: [SRC-002, SH-04]
-    likelihood: ""
-    impact: ""
-    response: ""
-    status: proposé
+    related: [SRC-002, SH-04, BC-007, ZO-090]
+    likelihood: faible      # jamais survenu à la connaissance du répondant de SRC-029 — mais la seule personne qui le saurait, un enseignant, n'a jamais été entendue (H-020)
+    impact: fort
+    response: "Jamais survenu à ce jour, mais la seule personne qui le saurait — un enseignant — n'a jamais été entendue (H-020). Traité par BR-011 ; à confronter à la parole d'un enseignant avant le PRD."
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
   - id: R-01
     text: "Reporter automatiquement les informations d'une année sur l'autre peut laisser une donnée de santé périmée dans le dossier : une allergie apparue, un vaccin fait, un médecin traitant changé. Aujourd'hui, la ressaisie intégrale force une relecture annuelle de ces informations — personne ne l'a voulu ainsi, mais c'est un effet du papier"
     origin: BC-001
-    related: [SRC-002, ZO-030]
-    likelihood: ""
-    impact: ""
-    response: ""
-    status: proposé
+    related: [SRC-002, ZO-030, BC-009, ZO-097]
+    likelihood: moyenne
+    impact: fort
+    response: "Traité par BR-002, qui rend la relecture annuelle obligatoire : une réinscription ne peut s'achever sans que la famille ait eu les rubriques de santé sous les yeux. Le parent lui-même a posé cette limite (BC-009)."
+    status: validé        # registre validé en bloc par SH-02 le 2026-10-28
 #  - id: R-01
 #    text: ""
 #    origin: ZO-003        # zone d'ombre assumée, hypothèse, source, partie prenante
@@ -1577,36 +2723,67 @@ dependencies:
 glossary:
   - { term: "Institut ESC", definition: "Nom sous lequel l'association exerce ; figure sur le dossier d'inscription et dans le règlement intérieur, qui parlent de « la Direction de l'Institut »", source: SRC-003 }
   - { term: "Association (loi 1901)", definition: "Forme juridique de la structure. C'est la personne morale responsable des données personnelles collectées, représentée selon ses statuts", source: SRC-016 }
+  # CONFIRMÉS par SH-02 le 2026-10-28, sauf « Famille attendue » qui reste à définir
+  - { term: "Campagne", definition: "La période pendant laquelle les inscriptions et les réinscriptions sont reçues : d'avril à juin", source: SRC-007 }
+  - { term: "Réinscription", definition: "Inscription d'un enfant dont la famille est déjà connue de l'association ; environ 135 par campagne", source: SRC-007 }
+  - { term: "Primo-inscription", definition: "Première inscription d'un enfant dont la famille n'est pas connue de l'association ; 10 à 15 par campagne, et la population du risque R-03", source: SRC-023 }
+  - { term: "Dossier d'inscription", definition: "L'ensemble des informations et des pièces qu'une famille remet pour inscrire un enfant : treize pièces, douze rubriques d'information", source: SRC-003 }
+  - { term: "Dossier incomplet", definition: "Dossier dans lequel une information ou une pièce obligatoire manque par omission — document non signé, numéro non renseigné. À DÉFINIR PRÉCISÉMENT : c'est un indicateur de réussite du dossier et sa valeur de départ n'est pas connue (ZO-025)", source: SRC-047 }
+  - { term: "Relance", definition: "Le fait, pour un membre du bureau, de reprendre contact avec une famille attendue dont le dossier n'est pas arrivé", source: SRC-042 }
+  - { term: "Famille attendue", definition: "Famille figurant sur la liste de la campagne précédente, ou dont un paiement a été reçu (DD-06). C'est ce terme qui fixe la portée de BR-009 : la relance couvre donc les réinscriptions ET les primo-inscriptions ayant payé", source: DD-06 }
 # - { term: "", definition: "", source: SRC-xxx }
 
 define_returns: []         # retours ponctuels en Discover
 #  - { date: "", zone: ZO-012, reason: "" }
 
 brd_sections:              # à rédiger | proposé | validé
-  context: à rédiger
-  objectives: à rédiger
-  stakeholders: à rédiger
-  processes: à rédiger
-  requirements: à rédiger
-  business_rules: à rédiger
-  constraints: à rédiger
-  assumptions_risks: à rédiger
-  decisions: à rédiger
-  scope: à rédiger
-  glossary: à rédiger
+  context: proposé
+  objectives: validé
+  stakeholders: proposé
+  processes: validé
+  requirements: validé
+  business_rules: validé
+  constraints: proposé
+  assumptions_risks: validé
+  decisions: validé
+  scope: validé
+  glossary: proposé
 
 principles_applicable: []   # principes de la constitution du produit (.tizi/constitution.yaml) qui s'appliquent à l'initiative ; [] si aucun
 
 synthesis_check:           # porte de synthèse avant Define (fin de Discover), déclarée avec l'utilisateur
-  date: ""
-  fidelite: { status: "", note: "" }        # la synthèse reflète les sources, pas des suppositions — ok | faible
-  couverture: { status: "", note: "" }      # toutes les parties prenantes concernées sont représentées
-  robustesse: { status: "", note: "" }      # chaque besoin retenu repose sur plusieurs sources
-  actionnabilite: { status: "", note: "" }  # le problème est assez clair pour guider la suite
-  alignement: { status: "", note: "" }      # l'équipe et les parties prenantes s'y reconnaissent
+  date: "2026-10-28"
+  declared_with: SH-02
+  fidelite:
+    status: ok
+    note: "Chaque élément porte sa source. Les 19 déductions de l'agent sont enregistrées comme hypothèses et distinguées des paroles de sources ; trois affirmations de l'agent ont été rétractées en séance (la détection « trop tardive », le dénominateur de R-03, et la formulation de R-02). Réserve : six sources restent sans voix attribuée (ZO-089), dont quatre portent des faits d'organisation."
+  couverture:
+    status: faible
+    assumed: true
+    note: "ASSUMÉE par SH-02 le 2026-10-28. 3 parties prenantes entendues sur 6 : ni enseignant (SH-04), ni famille primo-inscrite (SH-06), ni comptable (SH-07). La représentation retenue (SH-03 pour les enseignants, SH-01 pour les familles, SH-02 pour le comptable) couvre les faits, pas le vécu — et SH-06 est à la fois la population du risque grave R-03 et la seule voix jamais entendue. Aucune raison n'a été énoncée au moment d'assumer. Reporté en R-06."
+  robustesse:
+    status: faible
+    assumed: true
+    note: "ASSUMÉE par SH-02 le 2026-10-28. Les 9 besoins candidats reposent chacun sur une source unique. Aucune raison n'a été énoncée au moment d'assumer. Reporté en R-07."
+  actionnabilite:
+    status: ok
+    note: "Le problème est formulé et confirmé par le sponsor (2026-10-28). Il distingue deux populations, deux fréquences et deux enjeux, ce qui suffit à guider le découpage de l'étape suivante. Réserve : scope.in, scope.out et scope.deadline sont vides, et l'échéance d'avril n'est rattachée à aucun fait daté (ZO-099)."
+  alignement:
+    status: ok
+    note: "Les trois présents se reconnaîtraient dans la synthèse : chacun y retrouve ses propres mots, et le problème a été confirmé par le sponsor. Pour les trois absents, l'alignement est inconnu — c'est la même limite que la couverture."
   # une dimension « faible » se corrige, ou s'assume : { status: faible, assumed: true, note: "raison" }
 
-transition_requirements: []  # exigences de transition : ce qu'il faut pour passer de l'existant à la cible (BABOK)
+transition_requirements:
+  - id: TR-01
+    kind: communication
+    text: "Le règlement intérieur doit être révisé avant l'ouverture de la campagne d'avril, et la révision doit porter tout ce que le dossier a établi comme écart entre le texte signé et la réalité"
+    stakeholders: [SH-02, SH-01, SH-06]
+    done_when: "Le règlement remis aux familles à la campagne suivante décrit le mode de paiement réellement pratiqué, et chaque écart recensé y est traité ou écarté explicitement"
+    related: [RG-001, RG-002, RG-003, DD-04, ZO-039, ZO-079, ZO-082, ZO-106, ZO-108]
+    sources: [SRC-043, SRC-003]
+    status: proposé
+    note: "La révision est une fenêtre qui ne se rouvrira pas avant un an. Cinq points du dossier en dépendent : le mode de paiement (DD-04, acquis), la dérogation de remboursement RG-002 jamais écrite (ZO-079), le canal réel de correspondance qui est WhatsApp et que le règlement ignore (ZO-039), l'information des familles sur ce que deviennent leurs données (DD-02), et la conservation d'une campagne à l'autre qu'impliquent BR-001 et BR-002 (ZO-106). Sixième point ajouté le 2026-10-28 : l'échelonnement du paiement, qui disparaît du texte avec les chèques s'il n'y est pas réécrit (ZO-108)."
+
 #  - id: TR-01
 #    kind: formation       # formation | conduite_du_changement | reprise_de_donnees | coexistence | communication | support | autre
 #    text: ""
@@ -1659,4 +2836,4 @@ governance:
 #      target_version: ""
 
 session:                   # continuité entre sessions (references/sessions.md)
-  next_action: "Mener les entretiens préparés : guide-SH-02.md (Dédé — deux décisions de périmètre attendues : volet données de santé, frontière avec l'initiative sœur) puis guide-SH-04.md (un professeur — R-02, l'accès aux allergies en urgence). Ancienne note : Phase Discover : entendre les parents eux-mêmes (hors Samir), identifier et interroger qui traite les dossiers au bureau (ZO-007), récupérer les comptes rendus de réunion (ZO-021)."          # prochaine action notée avant une pause
+  next_action: "Registre des risques VALIDÉ par SH-02 le 2026-10-28 ; neuf risques qualifiés. Sections objectives, processes, requirements, business_rules, scope, decisions, assumptions_risks à validé. RETOUR À LA SOURCE fait : quatre documents écrits dans interviews/ (retour-SH-01, retour-SH-02, retour-SH-03, retour-attributions) et 33 sources passées de feedback: à envoyer à envoyé. ATTENTE : relecture de ces documents par SH-01, SH-02, SH-03 — confirmé ou corrigé — et attribution des douze paroles sans voix. Ensuite : sections context et stakeholders du BRD à faire valider, puis proposition de passage en govern (revue, approbation, baseline, handoff vers le PRD). Rien n'est commité depuis le début de la séance."
