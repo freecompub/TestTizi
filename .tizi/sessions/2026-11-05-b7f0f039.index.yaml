@@ -1,0 +1,18 @@
+# Index d'une session — écrit par session-capture.mjs. Un fichier par session : rien à fusionner.
+session: b7f0f039
+started: '2026-11-05T11:29:26.004Z'
+ended: '2026-11-05T11:33:13.315Z'
+initiatives:
+  - brd/aide-inscription-soutien-scolaire
+user_messages: 1
+transcript: .tizi/sessions/2026-11-05-b7f0f039.jsonl
+extract: .tizi/sessions/2026-11-05-b7f0f039.extrait.md
+last_event: SessionEnd
+tool: claude
+tasks: []
+tokens:
+  input: 74
+  output: 24192
+  cache_read: 2568161
+  cache_write: 119257
+  total: 2711684

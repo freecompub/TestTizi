@@ -20,9 +20,22 @@ initiative:
   #  initiative: ""      # slug de l'initiative d'origine
   #  reason: decoupage   # decoupage | sortie_perimetre | autre:<libellé>
   #  decision: ""        # la décision qui l'a produite, chez la mère : DD-xx, ou sa décision d'opportunité
-phase: assess            # assess | discover | define | govern | close (opportunité jetée)
+phase: discover          # assess | discover | define | govern | close (opportunité jetée)
 
-phase_log: []            # une porte franchie, une entrée — `phase` dit la phase EN COURS, `phase_log` dit
+phase_log:
+  - from: assess
+    to: discover
+    date: "2026-11-05"
+    decided_by: SH-02
+    source: SRC-017
+    gate: "5 condition(s) tenue(s) sur 7 mesurées"
+    kind: porte
+    waived:
+      - condition: "chaque zone d'ombre est levée ou assumée"
+        reason: "18 zones restent ouvertes et aucune n'est bloquante. Elles sont le programme de la découverte, qui a précisément pour objet de les lever : les assumer ici reviendrait à décider de ne jamais les poser. Dérogation portée par la décision d'opportunité de Dédé."
+      - condition: "aucun avertissement ni corrigé ni dérogé (lint.mjs)"
+        reason: "Deux avertissements restent, et les deux sont justes : aucun utilisateur direct n'a parlé en son nom, et le locuteur du tour de table d'ouverture n'est pas établi. Ils ne sont pas dérogés sur le fond mais repris comme les deux premières actions de la découverte — entendre une famille et un enseignant, et retrouver qui a répondu à l'ouverture."
+#                          # une porte franchie, une entrée — `phase` dit la phase EN COURS, `phase_log` dit
                          # comment on y est arrivé. « Un changement de phase se demande : ce n'est pas la
                          # suite du travail, c'est une porte, et il s'écrit dans l'état avec sa date »
                          # (references/questions.md). Le champ manquait : au deuxième dossier réel l'agent
@@ -58,40 +71,69 @@ opportunity:              # phase Assess (references/phase-assess.md)
       - "Ressaisie annuelle : chaque année, une famille remplit les mêmes données, et autant de fois qu'elle a d'enfants (SRC-003, Dédé)"
       - "Retrait du formulaire : récupéré au bureau par un parent, ou transmis via l'enfant (SRC-003, Dédé)"
       - "Dépôt du dossier : seul un parent peut le déposer au bureau, le retour ne passe pas par l'enfant (SRC-003, Dédé)"
-      - "Les dossiers papier sont détruits à chaque fin d'année : rien ne survit pour l'année suivante (SRC-003, Dédé)"           # problèmes, ou idées de solution à ramener à un problème
+      - "Les dossiers papier sont détruits à chaque fin d'année : rien ne survit pour l'année suivante (SRC-003, Dédé)"
+      - "Double saisie : la famille écrit ses données sur le formulaire papier, puis le bureau les retape dans un fichier Excel (SRC-008, Dédé)"
+      - "Contrôle des paiements à la main : le bureau rapproche les références de virement des justificatifs avec le compte bancaire, par lots de 10 à 20 inscriptions (SRC-008, Dédé)"
+      - "Le formulaire demande à la famille d'écrire le « niveau de l'année précédente » (SRC-016), que l'association détenait déjà dans le fichier de l'année passée — et c'est l'un des deux critères sur lesquels les groupes sont construits (SRC-018, Tom)"
+      - "La même donnée est demandée deux fois dans un seul dossier : l'identité de l'enfant, le médical et les personnes à prévenir figurent à la fois dans le dossier et sur la fiche sanitaire, qui est à remplir une par enfant (SRC-016). La famille se recopie elle-même avant toute question d'une année sur l'autre"
+      - "Ce qui survit est partiel, ce qui est complet est détruit : le fichier Excel vit plus d'un an — créé en avril 2026, effacé en juin 2027 (SRC-014, Tom) —, donc il est encore là pendant la campagne suivante, mais il n'est « qu'une aide » et ne porte pas toutes les informations de l'inscription (SRC-015, Tom), tandis que le dossier papier, qui les porte toutes, est détruit en fin d'année (SRC-003, Dédé). C'est l'écart entre les deux qui oblige une famille déjà inscrite à recommencer un formulaire vierge, et non l'effacement du fichier. Ce que le dossier papier contient de plus reste à établir (ZO-024)"
+      - "Visite pour rien : si aucun membre du bureau n'est disponible, ou si une pièce manquante ne peut pas être complétée sur place, la famille repart avec son dossier et revient un autre jour (SRC-008, Dédé)"           # problèmes, ou idées de solution à ramener à un problème
     users:
       - "Les familles qui inscrivent un ou plusieurs enfants (SRC-003, Dédé)"
       - "Le bureau de l'association, qui distribue les formulaires et reçoit les dossiers (SRC-003, Dédé)"              # utilisateurs et clients visés
     solutions_today:
       - "Inscription au format papier : la famille dépose au bureau le formulaire rempli et une preuve de virement (SRC-002, Dédé)"
+      - "Le dossier fait cinq pages (SRC-016) : enfant, deux représentants légaux, personnes à prévenir, renseignements médicaux, assurance, droit à l'image, choix des cours et tarifs, une fiche sanitaire par enfant, et un règlement intérieur à signer"
       - "Campagne d'inscription saisonnière : d'avril à juin (SRC-002, Dédé)"
+      - "Vérification du dossier au bureau, en présence du parent, quand un membre du bureau est disponible (SRC-008, Dédé)"
+      - "Fichier Excel tenu par le bureau : nom, prénom, numéros de contact, contacts d'urgence, statut de l'inscription, niveau scolaire, matières où l'enfant est inscrit (SRC-008, Dédé), et les allergies de l'enfant (SRC-009, Dédé). La liste énumérée par Dédé s'est révélée incomplète : rien ne dit qu'elle l'est encore (ZO-016)"
+      - "Statut d'inscription en deux temps dans ce fichier : « pré-validé » à la saisie, « validé » une fois le virement rapproché (SRC-008, Dédé)"
+      - "Le même fichier Excel sert ensuite à construire les groupes (SRC-008, Dédé)"
+      - "Le fichier Excel n'est pas le registre de référence de l'inscription : il n'est « qu'une aide » et ne porte pas toutes les informations du dossier (SRC-015, Tom). Le dossier papier reste la pièce complète"
     user_value: "Ne plus remplir chaque année les mêmes données, ni les répéter pour chaque enfant — et ne plus dépendre de l'absence d'erreur au remplissage (SRC-005, Samir)"
     user_metrics:
       - "Une famille déjà connue n'a plus de formulaire à remplir à chaque campagne (SRC-006, Samir)"
-      - "Le nombre d'aller-retours d'une famille pour boucler une inscription baisse (SRC-006, Samir) — reste à établir entre qui et qui, et à partir de quelle valeur de départ"
+      - "Le nombre d'aller-retours d'une famille pour boucler une inscription baisse (SRC-006, Samir) — entre la famille et le lieu unique où siègent le bureau et les classes (SRC-007) ; la valeur de départ reste à relever"
     adoption: ""
-    business_problem: ""
-    business_metrics: []
-    budget: ""             # ordre de grandeur : jours, semaines, mois
-  decision: en_attente     # en_attente | aller_plus_loin | jeter | decoupee | a_apprendre | reportee
-  reason: ""
+    business_problem: "Le bureau retape dans un fichier Excel ce que la famille vient d'écrire sur le formulaire papier, dossier par dossier, et contrôle les paiements à la main en rapprochant les références de virement des justificatifs avec le compte bancaire, par lots de 10 à 20 inscriptions. Un dossier qu'on ne peut pas compléter sur place, ou une arrivée au moment où aucun membre du bureau n'est disponible, fait repartir la famille et recommencer la visite — donc le contrôle aussi. Cette charge tient sur les membres du bureau et se concentre sur la campagne d'avril à juin (SRC-008, Dédé)."
+    business_metrics:
+      - "Temps de saisie des dossiers dans le fichier Excel sur une campagne : valeur de départ 5 à 10 minutes par dossier pour 150 dossiers (SRC-011, Dédé), soit 12 h 30 à 25 h par campagne — arithmétique déduite des deux chiffres, à confirmer. Reste à établir si « 150 dossiers » compte des enfants ou des familles (ZO-019), et qui porte cette charge (ZO-018)"
+      - "Moins d'aller-retours des parents sur la campagne d'avril à juin (SRC-010, Dédé) — lu du côté du bureau, un aller-retour évité est une vérification de dossier au comptoir qui ne se refait pas. C'est l'indicateur de Samir vu de l'autre bord, pas une mesure propre au bureau : la valeur de départ reste à relever, et ni la saisie dans l'Excel ni le rapprochement bancaire ne bougent avec lui (ZO-017)"
+    budget: "Des mois (SRC-012, Dédé). Reste à établir si ce sont des mois de calendrier, sur lesquels l'association accepte que la démarche s'étale, ou du temps de travail cumulé qu'elle accepte d'y mettre — sur des bénévoles les deux ne se valent pas (ZO-020)."             # ordre de grandeur : jours, semaines, mois
+  decision: aller_plus_loin     # en_attente | aller_plus_loin | jeter | decoupee | a_apprendre | reportee
+  reason: "La cause de la ressaisie est établie et elle est structurelle, pas réglementaire : ce qui survit à la campagne est partiel — le fichier Excel, huit informations, qui vit d'avril 2026 à juin 2027 — et ce qui est complet est détruit — le dossier papier, cinq pages. Les deux côtés sont chiffrés : 12 h 30 à 25 h de saisie par campagne pour le bureau, et pour chaque famille cinq pages réécrites chaque année, avec une fiche sanitaire de plus par enfant. La donnée qui justifie de tout détruire — le médical — est portée par une pièce distincte du dossier, qui sert les soins et l'urgence en séance et non l'acte d'inscription : la séparation à vérifier est étroite et visible dans le formulaire de l'association. Face à un budget en mois, une découverte est peu coûteuse. Ce qui plaide contre et qui est assumé : aucun utilisateur direct n'a parlé en son nom, et il n'est pas établi qu'un texte impose la destruction — ce sont les deux premières choses que la découverte doit traiter."
   to_learn: []             # si a_apprendre : - { question: "", who: "" }
   split_into: []           # si decoupee : slugs des initiatives filles. Sans eux, « close » se relit
                            # comme un abandon — ce qui est arrivé, avec la vérité en commentaire YAML
-  decided_by: ""           # déclaré par l'utilisateur
-  date: ""
+  decided_by: SH-02        # déclaré par l'utilisateur
+  date: "2026-11-05"
 
 problem:
-  statement: ""          # 2-3 phrases, confirmées par l'utilisateur
-  confirmed: false
-  symptoms: []           # - { text: "", source: SRC-xxx }
-  impact: []             # - { type: temps|cout|risque|qualite, text: "", source: SRC-xxx }
+  statement: "Chaque année, d'avril à juin, une famille qui réinscrit ses enfants remplit intégralement un dossier papier de cinq pages, avec une fiche sanitaire de plus par enfant, alors que l'association détient encore à ce moment-là le fichier de l'année précédente. Mais ce fichier n'est qu'une aide — huit informations — tandis que la pièce complète, le dossier papier, est détruite en fin d'année : ce qui survit ne dispense donc de presque rien. Le bureau retape ensuite chaque dossier dans ce fichier, 5 à 10 minutes pièce pour 150 dossiers, puis rapproche les virements au compte bancaire à la main, par lots de 10 à 20 inscriptions."
+  confirmed: true
+  symptoms:
+    - { text: "Une famille réécrit chaque année les mêmes données, et autant de fois qu'elle a d'enfants", source: SRC-003 }
+    - { text: "La même donnée est demandée deux fois à l'intérieur d'un seul dossier : identité de l'enfant, renseignements médicaux et personnes à prévenir figurent dans le corps du dossier et sur la fiche sanitaire", source: SRC-016 }
+    - { text: "Le formulaire redemande à la famille le niveau de l'année précédente, que l'association détenait déjà dans son fichier", source: SRC-016 }
+    - { text: "Une famille repart avec son dossier et revient un autre jour quand une pièce manque et ne peut pas être complétée sur place, ou qu'aucun membre du bureau n'est disponible", source: SRC-008 }
+    - { text: "Une inscription reste « pré-validée » jusqu'au prochain lot de rapprochement bancaire, soit toutes les 10 à 20 inscriptions", source: SRC-008 }
+  impact:
+    - { type: temps, text: "12 h 30 à 25 h de saisie par campagne pour le bureau, sur des bénévoles : 5 à 10 minutes par dossier, 150 dossiers", source: SRC-011 }
+    - { type: temps, text: "Cinq pages réécrites par famille à chaque campagne, plus une fiche sanitaire par enfant", source: SRC-016 }
+    - { type: qualite, text: "Le groupe d'un enfant dépend du niveau scolaire recopié par un parent sur le formulaire, sans vérification par les professeurs", source: SRC-019 }
+    - { type: risque, text: "Des dossiers papier portant des données médicales, une situation familiale et un éventuel jugement de séparation sont conservés pendant la campagne dans un bureau partagé avec d'autres associations", source: SRC-016 }
 
-success_signals: []      # - { text: "", measurable: false }
+success_signals:         # repris du canevas d'opportunité : rien de neuf n'est affirmé ici
+  - { text: "Une famille déjà connue de l'association n'a plus de dossier complet à remplir à chaque campagne", measurable: true, source: SRC-006 }
+  - { text: "Le nombre d'aller-retours d'une famille pour boucler une inscription baisse, entre elle et le lieu unique où siègent le bureau et les classes", measurable: true, source: SRC-006 }
+  - { text: "Le temps que le bureau passe à saisir les dossiers sur une campagne baisse, depuis une valeur de départ de 12 h 30 à 25 h", measurable: true, source: SRC-011 }
+#  - { text: "", measurable: false }
 
 scope:
-  in: []                 # - { text: "", reason: "" } — ou une phrase, si elle se suffit
-  out: []                # - { text: "", reason: "" } — la raison compte : rien ne sort en silence
+  in:
+    - { text: "Le parcours d'inscription d'une famille, du retrait du formulaire jusqu'à l'inscription passée en « validé » après rapprochement du virement", reason: "C'est le périmètre que la décision de DD-01 laisse à l'initiative, en sortant ce qui vient après." }
+  out:
+    - { text: "La construction des groupes à partir du fichier d'inscriptions", reason: "Décision DD-01 du 2026-11-05, rendue par Dédé : hors périmètre pour l'instant. Du côté des données, l'étape est déjà servie — le tri se fait sur la matière et le niveau scolaire, deux colonnes que le fichier porte. Ce que le tri a de difficile n'est pas connu, et ça ne se découvre pas dans cette initiative. Ce qui en est su reste écrit (RG-001, ZO-027, ZO-028) et peut devenir une opportunité à part." }
   deadline: ""
 
 current_process:         # reconstitué en Discover (atelier, entretiens). MÊME FORME que target_process :
@@ -99,6 +141,14 @@ current_process:         # reconstitué en Discover (atelier, entretiens). MÊME
 #    - { event: "Dossier reçu", actor: "", source: SRC-xxx }
 
 constraints:
+  - type: legale
+    text: "Le dossier porte des données sensibles qui ne sont pas médicales : situation familiale des parents, jugement de séparation ou attestation de résidence alternée, profession"
+    source: SRC-016
+    implication: "La destruction annuelle est motivée par le médical, mais ces données-là posent la même question de conservation et d'accès, d'autant que les dossiers sont gardés dans un local partagé avec d'autres associations."
+  - type: organisationnelle
+    text: "Le dossier est signé à la main en plusieurs endroits : autorisation de diffusion d'image, autorisation de soins médicaux, tarifs et modes de paiement, règlement intérieur"
+    source: SRC-016
+    implication: "Fait à enregistrer, pas encore une contrainte sur une cible : ce que chaque signature engage et ce qui la rend nécessaire restent à établir."
   - type: legale
     text: "Le dossier d'inscription contient des données médicales"
     source: SRC-004
@@ -126,22 +176,21 @@ stakeholders:
     status: interrogée
   - id: SH-03
     name: "Tom"
-    role: "Représentant des professeurs, et membre du bureau"
+    role: "Représentant des professeurs avec Toto, et membre du bureau"
     impact: fort
     power: fort
     influence: inconnue
     quadrant: impliquer
     end_user: false
-    status: à interroger
+    status: interrogée
   - id: SH-04
     name: "Toto"
-    role: "Enseignant"
+    role: "Enseignant, et représentant des professeurs avec Tom"
     impact: fort
     power: faible
     influence: inconnue
     quadrant: consulter
     end_user: true
-    represented_by: SH-03
     joignable_par: courriel
     status: à interroger
 #  - id: SH-01
@@ -261,7 +310,23 @@ stakeholders:
 #                          # (S90), une source à son nom reste du second degré (S81). Ce qui change,
 #                          # c'est le reproche de son silence, pas le fait qu'elle se taise
 
-decision_rights: []      # qui tranche quoi, établi au cadrage et validé par le sponsor
+decision_rights:
+  - domain: perimetre
+    decider: SH-02
+    confirmed_by: ""
+    source: SRC-022
+    lint_waivers: [{ rule: S89, reason: "Personne n'existe au-dessus du directeur dans l'association (SRC-023) : il n'y a aucun sponsor distinct du décideur pour confirmer l'attribution. Elle est donc laissée sans confirmation plutôt que confirmée par son propre titulaire, ce que le dossier refuse à juste titre. La conséquence est portée par le risque R-02." }]
+  - domain: objectifs
+    decider: SH-02
+    confirmed_by: ""
+    source: SRC-022
+    lint_waivers: [{ rule: S89, reason: "Personne n'existe au-dessus du directeur dans l'association (SRC-023) : il n'y a aucun sponsor distinct du décideur pour confirmer l'attribution. Elle est donc laissée sans confirmation plutôt que confirmée par son propre titulaire, ce que le dossier refuse à juste titre. La conséquence est portée par le risque R-02." }]
+  - domain: priorites
+    decider: SH-02
+    confirmed_by: ""
+    source: SRC-022
+    lint_waivers: [{ rule: S89, reason: "Personne n'existe au-dessus du directeur dans l'association (SRC-023) : il n'y a aucun sponsor distinct du décideur pour confirmer l'attribution. Elle est donc laissée sans confirmation plutôt que confirmée par son propre titulaire, ce que le dossier refuse à juste titre. La conséquence est portée par le risque R-02." }]
+#                        # qui tranche quoi, établi au cadrage et validé par le sponsor
 #  - domain: perimetre     # perimetre | objectifs | priorites | donnees_securite | processus:<nom> | regles:<domaine> | autre:<libellé>
 #    decider: SH-01
 #    escalation: SH-00     # recours si le décideur ne tranche pas ; le sponsor en dernier ressort
@@ -317,6 +382,140 @@ sources:
     present: [SH-01, SH-02, SH-03]
     quote: "Plus de formulaire a remplir chaque année, réduire le nombre d'aller retour avec l'école"
     understood: "Deux signaux observables proposés par Samir côté familles : plus aucun formulaire à remplir d'une année sur l'autre, et moins d'aller-retours. Il nomme « l'école » comme l'autre bout de ces aller-retours, là où Dédé décrivait un dépôt « au bureau » : les deux mots désignent peut-être le même lieu, peut-être deux, et la question reste ouverte. Aucune valeur de départ n'est connue pour l'instant."
+    feedback: à envoyer
+  - id: SRC-007
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Le bureau de l'association qui est le même endroit où se trouve les classes, c'est un espace partage avec d'autres associations"
+    understood: "Dédé établit qu'il n'y a qu'un seul lieu : le bureau de l'association est au même endroit que les classes. « Le bureau » et « l'école », dont Dédé et Samir parlaient séparément, désignent donc le même endroit, et les aller-retours d'une famille se font entre elle et ce lieu unique. Fait nouveau, que personne n'avait dit : ce lieu est un espace partagé avec d'autres associations. Ce que ce partage implique pour des dossiers papier contenant des données médicales — où ils sont conservés pendant la campagne, qui y a accès — n'est pas encore dit."
+    feedback: à envoyer
+  - id: SRC-023
+    type: entretien
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    quote: "Non"
+    understood: "Il n'y a personne au-dessus du directeur dans l'association : ni président, ni instance qui le mandate. C'est donc lui qui décide, arbitre et approuvera, sans contre-signature possible. Aucun sponsor distinct du décideur n'existe, et l'attribution des droits de décision restera sans confirmation. Le seul contrôle disponible sur le contenu du dossier devient la relecture par ceux qui y sont cités."
+    feedback: à envoyer
+  - id: SRC-022
+    type: décision
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    quote: "Arbitrage : Dédé tranche le périmètre, les objectifs et les priorités, sans recours au-dessus."
+    understood: "Les droits de décision sont établis avant le premier désaccord, ce qui est le seul moment où ils peuvent l'être sans choisir un camp. Dédé, directeur de l'association, tranche le périmètre, les objectifs et les priorités, sans recours nommé au-dessus de lui. L'attribution reste à confirmer : elle ne peut pas l'être par son propre titulaire, et aucune personne au-dessus du directeur n'a été nommée à ce jour."
+    feedback: sans objet
+    feedback_motif: "C'est une décision de l'utilisateur, pas un recueil auprès de quelqu'un."
+  - id: SRC-021
+    type: décision
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    quote: "Périmètre : la construction des groupes est hors périmètre pour l'instant ; l'initiative s'arrête à l'inscription validée."
+    understood: "Dédé tranche le périmètre. L'initiative couvre le parcours d'inscription jusqu'au passage en « validé » après rapprochement du virement, et pas ce qui vient après. Deux zones d'ombre sortent avec cette décision et sont assumées."
+    feedback: sans objet
+    feedback_motif: "C'est une décision de l'utilisateur, pas un recueil auprès de quelqu'un."
+  - id: SRC-020
+    type: décision
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    quote: "Formulation du problème soumise en trois affirmations et confirmée telle quelle : « c'est juste »."
+    understood: "Le problème est confirmé dans sa formulation. Il devient la base à laquelle les objectifs métier et les exigences se rattacheront."
+    confirms: []
+    feedback: sans objet
+    feedback_motif: "C'est une décision de l'utilisateur, pas un recueil auprès de quelqu'un."
+  - id: SRC-019
+    type: entretien
+    date: "2026-11-05"
+    stakeholders: [SH-03]
+    quote: "Du formulaire c'est le niveau scolaire"
+    understood: "Le niveau sur lequel les groupes sont triés vient du formulaire rempli par la famille, et c'est le niveau scolaire de l'enfant — sa classe —, pas un niveau pédagogique évalué par les professeurs. Deux conséquences. Le groupe d'un enfant dépend donc de ce qu'un parent a recopié, ce qui donne une portée concrète à la remarque de Samir sur le coût d'une erreur de remplissage. Et les professeurs n'apportent aucune appréciation au fichier : ce qu'ils perdraient à son effacement en est d'autant plus réduit. Un point reste à éclaircir : le formulaire demande le « niveau de l'année précédente » et la fiche sanitaire une « classe », alors que les groupes se construisent pour l'année à venir."
+    feedback: à envoyer
+  - id: SRC-018
+    type: entretien
+    date: "2026-11-05"
+    stakeholders: [SH-03]
+    quote: "On tri les élèves par Matière et par niveau scolaire"
+    understood: "La construction des groupes est un tri des élèves sur deux critères : la matière et le niveau scolaire. Ce sont exactement deux des colonnes du fichier, donc le fichier suffit à cette étape telle qu'elle est décrite. La réponse est courte et ne dit pas qui fait ce tri, avec quoi, combien de temps il prend, ni ce qui le rend difficile — un effectif de groupe, une disponibilité d'enseignant, un emploi du temps. Elle ne dit pas non plus ce que l'effacement du fichier coûte aux professeurs, qui était la seconde moitié de la question. À rapprocher du formulaire : il demande à la famille d'écrire le « niveau de l'année précédente », une information que l'association détenait déjà dans le fichier de l'année passée."
+    feedback: à envoyer
+  - id: SRC-017
+    type: décision
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    quote: "Décision d'opportunité : aller plus loin. Rendue par Dédé, directeur de l'association."
+    understood: "Dédé rend la décision d'opportunité et choisit d'aller plus loin. La phase de cadrage se clôt sur cette décision et la découverte s'ouvre. Ce n'est pas un engagement à construire : c'est l'accord pour investir dans la compréhension du problème."
+    feedback: sans objet
+    feedback_motif: "C'est une décision de l'utilisateur, pas un recueil auprès de quelqu'un : il n'y a rien à lui faire relire."
+  - id: SRC-016
+    type: document
+    date: "2026-11-05"
+    path: "brd/aide-inscription-soutien-scolaire/sources/SRC-016-dossier-inscription-2026-2027.pdf"
+    understood: "Le dossier d'inscription 2026-2027 de l'Institut ESC (1 rue Pierre Bayle, 62300 Lens), 5 pages, fourni comme modèle. Page 1, enfant à inscrire : nom, prénom, date de naissance, sexe, lieu et département de naissance, adresse, code postal, ville, niveau de l'année précédente, et une photo. Puis les deux représentants légaux, en vis-à-vis : nom et prénom, nom d'usage, adresse, code postal, ville, téléphone domicile, portable, courriel, profession, situation familiale, et en cas de séparation la résidence de l'enfant avec copie du jugement ou attestation signée des deux parents. Page 2 : deux personnes à prévenir en cas d'urgence (nom, prénom, lien, deux téléphones) ; renseignements médicaux (médecin traitant et son téléphone, vaccins obligatoires et date du dernier rappel, projet d'accueil individualisé, allergies alimentaires, asthme, allergies médicamenteuses) ; assurance (responsabilité civile, individuelle accident, compagnie, numéro de police) ; autorisation de photographier et de diffuser l'image de l'enfant ; choix des cours — deux cours de quatre heures, ou un cours de deux heures en arabe ou en éducation islamique — avec les tarifs par nombre d'enfants, et le mode de paiement. Pages 3 et 4, une fiche sanitaire par enfant : identité de nouveau, maladies déjà contractées, allergies et projet d'accueil, asthme, allergies médicamenteuses, port de lunettes, médecin traitant de nouveau, autorisation de soins, puis trois personnes à prévenir avec leur lien de parenté et le droit de venir chercher l'enfant. Page 5, le règlement intérieur en sept articles, à signer. Trois constats. D'abord l'écart avec le fichier est quasiment tout le dossier : le fichier porte huit informations, le dossier en porte plusieurs dizaines sur cinq pages. Ensuite la même donnée est demandée DEUX FOIS à l'intérieur d'un seul dossier — l'identité de l'enfant en page 1 et sur la fiche sanitaire, le médical en page 2 et sur la fiche sanitaire, les personnes à prévenir en page 2 et sur la fiche sanitaire — donc une famille se recopie déjà elle-même avant toute question d'une année sur l'autre. Enfin le dossier porte des signatures manuscrites en plusieurs endroits, et des données sensibles qui ne sont pas médicales : situation familiale, jugement de séparation, profession des parents. À noter que le fond de page est le formulaire 2025/2026, sur lequel l'année 2026-2027 et le paiement par virement sont imprimés par-dessus."
+    feedback: sans objet
+  - id: SRC-015
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-03]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Le fichier n'ai qu'une aide il ne contient pas toutes les informations"
+    understood: "Tom donne la cause de la ressaisie annuelle. Le fichier Excel n'est pas le registre de référence de l'inscription : c'est un outil de travail partiel, qui ne porte pas toutes les informations du dossier. La pièce complète est le dossier papier, et c'est elle qui est détruite en fin d'année. Donc ce qui survit à la campagne est incomplet, et ce qui est complet ne survit pas : une famille qui revient doit tout réécrire parce que ce que l'association a gardé ne suffit pas à la dispenser de le faire. Ce n'est pas l'effacement du fichier qui cause la ressaisie, c'est l'écart entre le fichier et le dossier. La taille de cet écart — ce que le dossier papier porte que le fichier ne porte pas — n'est pas encore connue, et c'est elle qui mesure le travail réellement en jeu."
+    feedback: à envoyer
+  - id: SRC-014
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-03]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Je te donne un exemple le fichier est créé en avril 2026 et sera effacer au Moi de juin 2027"
+    understood: "Première parole de Tom dans le dossier. Le fichier d'inscriptions ne vit pas une campagne mais plus d'un an : créé en avril 2026 au début de la campagne, effacé en juin 2027. Il couvre donc l'année scolaire qu'il sert, et il est toujours en place pendant la campagne suivante d'avril à juin 2027. Conséquence, et c'est une lecture à faire corriger : au moment où une famille déjà inscrite revient s'inscrire, l'association détient encore ses données de l'année précédente — et la famille recommence pourtant un formulaire vierge. L'effacement n'est donc pas la cause de la ressaisie annuelle, contrairement à ce qui avait été conclu plus tôt ; sa cause réelle n'est pas connue. À noter que la question posée portait sur la construction des groupes : elle n'a pas été répondue et reste à reprendre."
+    corrects: [SRC-009]
+    feedback: à envoyer
+  - id: SRC-013
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "T'as posé aucun questions Samir est le représentant des parents, tom et toto sont les représentants des prof,"
+    understood: "Deux choses. Un reproche d'abord, et il est fondé : les questions de la phase sont allées à Dédé, et les représentants présents n'ont rien été demandés — Tom n'a été interrogé sur rien depuis l'ouverture du dossier. Une correction ensuite : Samir représente les parents, et les professeurs ont deux représentants, Tom et Toto, et non un seul. Toto n'est donc pas représenté par Tom : ils portent la même fonction, et le lien de représentation qui allait de l'un à l'autre est retiré. La qualité de représentant de Toto est déclarée par quelqu'un d'autre que lui, et il n'a toujours pas parlé : ce qu'un tiers dit de son mandat ne le mandate pas, donc rien n'est inscrit comme mandat tant qu'il ne l'a pas dit lui-même. Reste ouvert de savoir si Tom est lui-même professeur : s'il l'est, sa parole sera celle d'un utilisateur direct et non seulement d'un porte-parole."
+    feedback: à envoyer
+  - id: SRC-012
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "En mois"
+    understood: "Interrogé sur l'ordre de grandeur que l'association est prête à investir dans la démarche — jours, semaines ou mois —, Dédé répond : des mois. C'est la dernière case du canevas d'opportunité, et elle est donc remplie. Ce que « des mois » recouvre reste à préciser : une durée de calendrier sur laquelle la démarche peut s'étaler, ou du temps de travail cumulé que l'association accepte d'y consacrer. Sur une équipe de bénévoles les deux ne se valent pas, et c'est le second qui se compare aux heures de saisie mesurées juste avant."
+    feedback: à envoyer
+  - id: SRC-011
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Entre 5 a 10mn par dossier sur 150 dossier"
+    understood: "La saisie d'un dossier dans le fichier Excel prend 5 à 10 minutes, et la campagne compte 150 dossiers. L'arithmétique de ces deux chiffres donne 12 h 30 à 25 h de saisie par campagne, concentrées sur avril-juin — c'est une déduction, pas une parole de Dédé, et elle est à confirmer. C'est le premier chiffre du dossier, et il mesure une frappe de données que la famille vient d'écrire à la main. Deux choses restent à établir : si « 150 dossiers » compte des enfants ou des familles, puisqu'une famille remplit un formulaire par enfant ; et qui, au bureau, porte ces heures."
+    feedback: à envoyer
+  - id: SRC-010
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Mois d'aller retour des parents entre avril et juin"
+    understood: "Interrogé sur ce qui changerait dans les chiffres du bureau, Dédé nomme la baisse des aller-retours des parents pendant la campagne d'avril à juin — « mois » est lu comme « moins », à corriger si c'est autre chose. Côté bureau, un aller-retour évité est une vérification de dossier au comptoir qui ne se refait pas, donc la mesure vaut des deux côtés. Mais c'est la même que celle déjà donnée par le représentant des parents : le bureau n'a pas encore nommé de gain qui lui soit propre, et les deux charges qu'il a lui-même décrites — retaper chaque dossier dans le fichier Excel, rapprocher les virements par lots — ne bougent pas avec le nombre d'aller-retours."
+    feedback: à envoyer
+  - id: SRC-009
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Il est effacé il contient une données médicales. Les alergie de l'enfant"
+    understood: "Le fichier Excel est effacé en fin d'année, pour la même raison que les dossiers papier : il contient une donnée médicale, les allergies de l'enfant. Donc rien ne survit d'une campagne à l'autre, sur aucun support. Et la liste de colonnes donnée juste avant n'était pas complète : les allergies n'y figuraient pas, ce qui interdit de tenir cette liste pour exhaustive. La séparation entre l'administratif et le médical, que l'énumération précédente laissait croire déjà en place, n'existe pas : les deux cohabitent dans le même fichier, et c'est cette cohabitation qui fait effacer le tout. Ce qui reste à établir est si les allergies sont la seule donnée médicale du fichier, et si cet effacement est imposé par un texte ou s'il est la prudence de l'association."
+    corrects: [SRC-008]
+    feedback: à envoyer
+  - id: SRC-008
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Les familles viennent pour déposer le dossier, si les mombre du bureau sont disponibles ils vérifient le dossier en présence du parent, s'il manque quelques choses est le parent peut le compléter directement, le dossier est près validé, on le saisir dans un fichier excel avec le statut près validé, si le complément n'est pas possible le parent repart avec le dossier et reviens un autre jour. Lorsque on a cumulé plusieurs inscriptions 10-20, on fait le rapprochement entre les références de virement sur les justificatifs et le compte bancaire. Pour les virements validé passe a validé. Le fichier excel quantien que le non, prénom, les numéro de contact, les contacts d'urgence et le statut de l'inscription, le niveau scolaire, les matières dans les quel l'enfant est inscrit. Ce même fichier nous servira plus tard a la construction des groupes"
+    understood: "Dédé décrit ce que fait le bureau pendant la campagne. Dépôt au bureau ; vérification du dossier en présence du parent, à condition qu'un membre du bureau soit disponible ; si une pièce manque et peut être complétée sur place, le dossier devient « pré-validé » et est saisi dans un fichier Excel avec ce statut ; sinon la famille repart avec son dossier et revient un autre jour. Par lots de 10 à 20 inscriptions, le bureau rapproche les références de virement portées sur les justificatifs avec le compte bancaire, et les virements retrouvés font passer l'inscription à « validé ». Le fichier Excel porte nom, prénom, numéros de contact, contacts d'urgence, statut de l'inscription, niveau scolaire et matières, et il sert ensuite à construire les groupes. Fait nouveau : il existe déjà un support numérique, donc la ressaisie est double — la famille écrit sur papier, le bureau retape. Lecture corrigée depuis : la liste de colonnes énumérée ici n'était pas complète — le fichier porte aussi les allergies de l'enfant —, et on en avait tiré à tort que l'administratif et le médical étaient déjà séparés."
     feedback: à envoyer
 #  - id: SRC-001
 #    type: entretien       # cadrage | entretien | échange écrit | observation | mesure | test | document | atelier | ticket | revue | dt-handoff | décision | autre:<libellé>
@@ -388,15 +587,28 @@ candidate_needs:
     notes: "Asymétrie relevée par Dédé : le formulaire peut sortir via l'enfant, il ne peut pas revenir par lui. La raison de cette asymétrie n'est pas encore dite."
   - id: BC-003
     text: "Que l'association retrouve d'une année sur l'autre ce qu'elle a déjà recueilli auprès d'une famille"
-    sources: [{ ref: SRC-003, location: "point 4" }]
+    sources: [{ ref: SRC-003, location: "point 4" }, { ref: SRC-015 }]
     concerns: [SH-02]
     status: proposé
+    notes: "À reformuler : l'association retrouve DÉJÀ une partie — le fichier Excel survit à la campagne suivante. Ce qui manque est le reste du dossier, que le fichier ne porte pas et que le papier emporte en étant détruit. Le besoin porte sur cet écart, pas sur la conservation en général."
   - id: BC-004
     text: "Que l'inscription d'une famille ne repose pas sur l'absence d'erreur au remplissage du formulaire"
-    sources: [{ ref: SRC-005 }]
+    sources: [{ ref: SRC-005 }, { ref: SRC-019 }]
     concerns: [SH-01]
     status: proposé
-    notes: "Soulevé par Samir en passant. Ce qu'une erreur coûte aujourd'hui — ce qui est refait, par qui, quand c'est découvert — n'est pas encore dit (ZO-009)."
+    notes: "Soulevé par Samir en passant. Ce qu'une erreur coûte aujourd'hui — ce qui est refait, par qui, quand c'est découvert — n'est pas encore dit (ZO-009). Une conséquence est maintenant connue : le groupe d'un enfant est décidé sur le niveau scolaire que le parent a recopié sur le formulaire, sans contrôle des professeurs (SRC-019)."
+  - id: BC-005
+    text: "Que le bureau n'ait pas à retaper les données qu'une famille vient d'écrire sur le formulaire papier"
+    sources: [{ ref: SRC-008 }]
+    concerns: [SH-02]
+    status: proposé
+    notes: "Versant organisation de BC-001 : la même donnée est écrite deux fois, une fois par la famille et une fois par le bureau. Formulé pour les membres du bureau, dont seul Dédé a été entendu."
+  - id: BC-006
+    text: "Que le rapprochement entre un paiement et une inscription ne se fasse pas en relevant les références de virement à la main"
+    sources: [{ ref: SRC-008 }]
+    concerns: [SH-02]
+    status: proposé
+    notes: "Le lot de 10 à 20 inscriptions est la cadence du contrôle, pas celle des dépôts : une famille reste « pré-validée » jusqu'au prochain lot. Ce que ce délai lui coûte n'est pas encore dit."
 #  - id: BC-001
 #    text: "Pouvoir …"
 #    sources: [{ ref: SRC-001, location: "l.42" }]
@@ -415,13 +627,13 @@ candidate_needs:
 hypotheses:
   - id: H-001
     text: "Les données d'une inscription peuvent être conservées d'une année sur l'autre"
-    basis: "Les dossiers sont détruits en fin d'année parce qu'ils contiennent des données médicales (SRC-004). Il n'est pas établi qu'un texte impose cette destruction"
-    verification: "Récupérer le texte ou la consigne invoquée, s'il y en a un (ZO-008), et établir le régime de conservation applicable aux données de santé recueillies"
+    basis: "Les dossiers PAPIER sont détruits en fin d'année parce qu'ils contiennent des données médicales (SRC-004), et le fichier Excel est effacé pour la même raison (SRC-009). Mais ce fichier vit d'avril 2026 à juin 2027 (SRC-014), donc un SOUS-ENSEMBLE des données d'inscription est déjà conservé plus d'un an, et il est encore là pendant la campagne suivante. Pour ce sous-ensemble, l'hypothèse est tranchée par la pratique. Elle reste entière pour le reste du dossier — le fichier n'est qu'une aide et ne porte pas tout (SRC-015) —, et c'est ce reste qui est réécrit chaque année"
+    verification: "Établir d'abord ce que le dossier papier porte que le fichier ne porte pas (ZO-024) : c'est sur ce reste que l'hypothèse se joue, le sous-ensemble du fichier étant déjà conservé en pratique. Puis, pour ce reste, récupérer le texte ou la consigne invoquée s'il y en a un (ZO-008) et établir le régime de conservation applicable aux données de santé"
     status: à vérifier
   - id: H-002
     text: "Les données administratives du dossier (identité, coordonnées, famille) peuvent être conservées d'une année sur l'autre indépendamment des données médicales"
-    basis: "La destruction est motivée par les seules données médicales (SRC-004) : rien n'a été dit du reste du dossier"
-    verification: "Établir avec le bureau le contenu exact du dossier et ce qui relève du médical (ZO-007)"
+    basis: "La destruction est motivée par les seules données médicales (SRC-004) : rien n'a été dit du reste du dossier. Dans le fichier Excel, la seule donnée médicale nommée à ce jour est une colonne — les allergies de l'enfant (SRC-009) —, et c'est elle qui fait effacer tout le fichier, coordonnées et niveau scolaire compris. Une seule donnée nommée est plus étroite à isoler qu'une catégorie entière ; cela ne dit pas qu'elle est la seule (ZO-016). À noter : l'énumération précédente avait fait conclure à tort que la séparation existait déjà (SRC-008 corrigée par SRC-009) — en pratique les deux cohabitent"
+    verification: "ZO-007 est levée par le dossier lui-même : le médical y est porté par une pièce distincte, la fiche sanitaire, qui sert l'urgence et les soins en séance et non l'acte d'inscription. Reste à établir pourquoi le médical figure AUSSI dans le corps du dossier en page 2, et la liste réelle des colonnes du fichier Excel (ZO-016). L'hypothèse se joue désormais sur ce doublon, pas sur la séparation elle-même"
     status: à vérifier
 #  - id: H-001
 #    text: ""
@@ -503,8 +715,9 @@ shadow_zones:
     action: entretien
     blocking: false
     posee: []
-    status: ouverte
-    related: [H-002, BC-001, SRC-004]
+    status: levée
+    resolution: "Le dossier répond (SRC-016). Elles sont bien plus larges que les allergies : médecin traitant et son téléphone, vaccins obligatoires et date du dernier rappel, projet d'accueil individualisé, allergies alimentaires et médicamenteuses, asthme, maladies déjà contractées, port de lunettes. Et sur leur usage, le document est explicite : la fiche sanitaire porte une autorisation des parents pour les soins médicaux et le transport en cas d'urgence. Ces données servent donc la SÉANCE et l'urgence, pas l'acte d'inscription — ce qui est l'argument le plus fort en faveur de l'hypothèse de séparation."
+    related: [H-002, BC-001, SRC-004, SRC-009, SRC-016]
   - id: ZO-008
     type: hypothese_non_verifiee
     question: "La destruction des dossiers en fin d'année est-elle imposée par un texte ou une consigne écrite, ou est-ce la pratique de l'association ?"
@@ -534,9 +747,219 @@ shadow_zones:
     ask_to: SH-02
     action: entretien
     blocking: false
-    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    posee: [{ date: "2026-11-05", canal: "vive voix" }, { date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Un seul lieu : le bureau de l'association est au même endroit que les classes (SRC-007, Dédé). « Le bureau » et « l'école » désignent le même endroit ; les aller-retours de Samir se comptent entre la famille et ce lieu unique, et aucune partie prenante « école » distincte n'est à nommer. Le lieu est un espace partagé avec d'autres associations — ce que ce partage implique reste à établir (ZO-011)."
+    related: [SRC-002, SRC-003, SRC-006, SRC-007, BC-002]
+  - id: ZO-011
+    type: attendu_implicite
+    question: "Le bureau étant un espace partagé avec d'autres associations, où les dossiers papier sont-ils conservés pendant la campagne, et qui y a accès ?"
+    origin: SRC-007
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
     status: ouverte
-    related: [SRC-002, SRC-003, SRC-006, BC-002]
+    related: [H-001, SRC-007, SRC-004]
+  - id: ZO-012
+    type: hypothese_non_verifiee
+    question: "Que devient le fichier Excel en fin d'année : est-il conservé, archivé, ou vidé comme les dossiers papier sont détruits ?"
+    origin: SRC-008
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Il est effacé, pour la même raison que les dossiers papier : il contient une donnée médicale, les allergies de l'enfant (SRC-009, Dédé). Mais PAS en fin de campagne : créé en avril 2026, il est effacé en juin 2027 (SRC-014, Tom), donc il couvre l'année scolaire servie et reste en place pendant la campagne suivante. La conclusion tirée d'abord — « rien ne survit d'une campagne à l'autre, sur aucun support » — était fausse pour le fichier numérique, et c'est ce qui rend la cause de la ressaisie annuelle introuvable en l'état (ZO-023). Au passage, la liste de colonnes énumérée en SRC-008 était incomplète, et la séparation administratif/médical qu'on en avait tirée n'existe pas (ZO-016)."
+    related: [H-001, H-002, BC-001, BC-003, SRC-008, SRC-009]
+  - id: ZO-016
+    type: attendu_implicite
+    question: "Quelles sont toutes les colonnes du fichier Excel, et les allergies sont-elles la seule donnée médicale qu'il porte ?"
+    origin: SRC-009
+    ask_to: SH-02
+    action: document
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [H-002, SRC-008, SRC-009]
+  - id: ZO-013
+    type: probleme_flou
+    question: "Que se passe-t-il quand une famille se présente et qu'aucun membre du bureau n'est disponible pour vérifier son dossier ?"
+    origin: SRC-008
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-008]
+  - id: ZO-017
+    type: succes_non_mesurable
+    question: "Quel indicateur propre au bureau bougerait sur la saisie dans le fichier Excel et sur le rapprochement bancaire ? Aucune mesure ne les couvre, et le seul indicateur donné côté organisation est celui des familles vu de l'autre bord."
+    origin: SRC-010
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-008, SRC-010, BC-005, BC-006]
+  - id: ZO-014
+    type: succes_non_mesurable
+    question: "Combien de temps prend aujourd'hui la saisie d'un dossier dans le fichier Excel, et un lot de rapprochement bancaire ? Et qui s'en charge ?"
+    origin: SRC-008
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Sur la saisie : 5 à 10 minutes par dossier, 150 dossiers par campagne (SRC-011, Dédé), soit 12 h 30 à 25 h déduites. Les deux autres volets de la question n'ont pas été répondus et sont repris séparément : la durée d'un lot de rapprochement bancaire et la personne qui porte la charge (ZO-018)."
+    related: [SRC-008, SRC-011, BC-005, BC-006]
+  - id: ZO-018
+    type: succes_non_mesurable
+    question: "Combien de temps prend un lot de rapprochement bancaire de 10 à 20 inscriptions, et qui, au bureau, fait la saisie et le rapprochement ?"
+    origin: SRC-011
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-008, SRC-011, BC-006, ZO-017]
+  - id: ZO-025
+    type: probleme_flou
+    question: "Un dossier d'inscription vaut-il pour un enfant ou pour une famille ? La première page ne décrit qu'un enfant et la fiche sanitaire est à remplir une par enfant, mais les tarifs sont donnés pour un, deux ou trois enfants."
+    origin: SRC-016
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [BC-001, SRC-003, SRC-011, SRC-016, ZO-019]
+  - id: ZO-026
+    type: attendu_implicite
+    question: "Pourquoi l'identité de l'enfant, les renseignements médicaux et les personnes à prévenir sont-ils demandés deux fois dans le même dossier, une fois dans le corps et une fois sur la fiche sanitaire ?"
+    origin: SRC-016
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [H-002, SRC-016]
+  - id: ZO-023
+    type: probleme_flou
+    question: "Si le fichier de l'année précédente est encore en place pendant la campagne suivante, qu'est-ce qui fait qu'une famille déjà inscrite recommence un formulaire vierge ?"
+    origin: SRC-014
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Parce que ce qui survit est partiel : le fichier Excel n'est « qu'une aide » et ne porte pas toutes les informations de l'inscription (SRC-015, Tom), tandis que le dossier papier, complet, est détruit en fin d'année (SRC-003, Dédé). La cause de la ressaisie est l'écart entre les deux, pas l'effacement du fichier. Ce que cet écart contient reste à établir (ZO-024)."
+    related: [H-001, BC-001, BC-003, BC-005, SRC-003, SRC-009, SRC-014, SRC-015]
+  - id: ZO-024
+    type: probleme_flou
+    question: "Que contient le dossier papier d'inscription que le fichier Excel ne contient pas ? C'est cet écart que la famille réécrit chaque année."
+    origin: SRC-015
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Le dossier lui-même répond (SRC-016) : l'écart est presque tout le dossier. Le fichier porte huit informations, le dossier en porte plusieurs dizaines sur cinq pages — état civil complet de l'enfant, deux représentants légaux avec leurs coordonnées, profession et situation familiale, personnes à prévenir, renseignements médicaux détaillés, assurance, droit à l'image, choix des cours, et une fiche sanitaire par enfant. Donc ce que le fichier dispense de réécrire est marginal."
+    related: [BC-001, BC-003, H-001, H-002, ZO-007, ZO-016, SRC-015, SRC-016]
+  - id: ZO-021
+    type: profil_manquant
+    question: "Tom est-il lui-même professeur, ou représente-t-il les professeurs sans enseigner ? S'il enseigne, sa parole est celle d'un utilisateur direct et pas seulement d'un porte-parole."
+    origin: SRC-013
+    ask_to: SH-03
+    action: question-utilisateur
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-001, SRC-013]
+  - id: ZO-022
+    type: probleme_flou
+    question: "Que se passe-t-il quand les groupes se construisent à partir du fichier d'inscriptions, et que coûte aux professeurs le fait que ce fichier soit effacé chaque année ?"
+    origin: SRC-013
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }, { date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Sur la première moitié : construire les groupes, c'est trier les élèves par matière et par niveau scolaire (SRC-018, Tom), soit exactement deux colonnes du fichier — qui suffit donc à l'étape telle qu'elle est décrite. La seconde moitié — ce que l'effacement du fichier coûte aux professeurs — n'a pas été répondue et se reprend à part (ZO-027). Ce que le tri a de difficile, et qui le fait, ne sont pas dits non plus (ZO-028)."
+    related: [SRC-008, SRC-009, SRC-018, ZO-015]
+  - id: ZO-030
+    type: profil_manquant
+    question: "Y a-t-il quelqu'un au-dessus du directeur dans l'association — un président, un bureau qui le mandate — et qui pourrait confirmer qu'il tranche le périmètre, les objectifs et les priorités ?"
+    origin: SRC-022
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Non : personne au-dessus du directeur dans l'association (SRC-023, Dédé). Il n'existe pas de sponsor distinct du décideur, l'attribution des droits de décision reste donc sans confirmation, avec une dérogation nommée, et la conséquence sur l'approbation du document est portée par le risque R-02."
+    related: [SH-02, SRC-022, SRC-023]
+  - id: ZO-029
+    type: contradiction
+    subtype: factuelle
+    parties: [SH-02, SH-03]
+    question: "Le formulaire demande le « niveau de l'année précédente » et la fiche sanitaire une « classe », alors que les groupes se construisent pour l'année à venir : sur lequel des deux le tri se fait-il, et d'où vient le niveau de l'année qui commence ?"
+    origin: SRC-019
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [RG-001, BC-004, SRC-016, SRC-019]
+  - id: ZO-027
+    type: probleme_flou
+    question: "Que perdent les professeurs quand le fichier est effacé ? Si les groupes de l'année suivante se construisent à partir du fichier de la nouvelle campagne, l'effacement de l'ancien ne leur coûte peut-être rien."
+    origin: SRC-018
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    posee: []
+    status: assumée
+    resolution: "Emportée par la décision de périmètre DD-01 : la construction des groupes sort de l'initiative, donc ce que son effacement coûte aux professeurs ne s'y découvrira pas. La question reste écrite pour une opportunité à part. Elle est portée par l'hypothèse H-001, qui reste à vérifier sur le reste du dossier."
+  - id: ZO-028
+    type: probleme_flou
+    question: "Qui construit les groupes, avec quel outil, en combien de temps, et qu'est-ce qui rend ce tri difficile — effectif d'un groupe, disponibilité d'un enseignant, emploi du temps ?"
+    origin: SRC-018
+    ask_to: SH-03
+    action: entretien
+    blocking: false
+    posee: []
+    status: assumée
+    resolution: "Emportée par la décision de périmètre DD-01 : la construction des groupes sort de l'initiative. Ce que le tri a de difficile reste inconnu et assumé comme tel ; la règle RG-001 le dit dans sa justification, et la question reste écrite pour une opportunité à part."
+  - id: ZO-020
+    type: attendu_implicite
+    question: "« Des mois » désigne-t-il une durée de calendrier sur laquelle l'association accepte que la démarche s'étale, ou du temps de travail cumulé qu'elle accepte d'y consacrer ?"
+    origin: SRC-012
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-012]
+  - id: ZO-019
+    type: probleme_flou
+    question: "Les 150 dossiers d'une campagne comptent-ils des enfants ou des familles ? Une famille remplit un formulaire par enfant, donc les deux ne se valent pas."
+    origin: SRC-011
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-011, BC-001, BC-005]
+  - id: ZO-015
+    type: perimetre_flou
+    question: "La construction des groupes fait-elle partie de ce qu'on cherche à aider, ou l'initiative s'arrête-t-elle à l'inscription validée ?"
+    origin: SRC-008
+    ask_to: SH-02
+    action: decision
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Hors périmètre pour l'instant (DD-01, rendue par Dédé le 2026-11-05). L'initiative s'arrête à l'inscription passée en « validé »."
+    related: [SRC-008, SRC-018, DD-01]
 #  - id: ZO-001
 #    type: probleme_flou   # probleme_flou | partie_prenante_non_entendue | profil_manquant | succes_non_mesurable
 #                          # | contradiction | hypothese_non_verifiee | solution_deguisee | perimetre_flou
@@ -623,7 +1046,16 @@ business_requirements: []
 #    status: proposé       # proposé | validé | abandonné
 #    lint_waivers: []      # avertissements acceptés : - { rule: L03, reason: "" }
 
-business_rules: []         # règles métier : ce ne sont pas des exigences, mais des directives que le métier contrôle
+business_rules:
+  - id: RG-001
+    statement: "Un élève doit être affecté au groupe de sa matière correspondant à son niveau scolaire."
+    kind: comportement
+    enforcement: indicative
+    sources: [{ ref: SRC-018 }, { ref: SRC-019 }]
+    owner: SH-03
+    rationale: "Non établi : Tom énonce le tri sans dire ce qui le contraint — effectif d'un groupe, disponibilité d'un enseignant, emploi du temps. À challenger. Le niveau employé est le niveau scolaire de l'enfant, pris sur le formulaire rempli par la famille, et non une appréciation des professeurs (SRC-019)."
+    status: proposé
+#  - id: RG-001            # règles métier : ce ne sont pas des exigences, mais des directives que le métier contrôle
 #  - id: RG-001
 #    statement: "Un dossier ne doit pas être transmis sans justificatif de domicile."
 #    kind: comportement    # definition (fait, calcul, inférence : ne peut pas être violée) | comportement (obligation ou interdiction : peut l'être)
@@ -635,7 +1067,20 @@ business_rules: []         # règles métier : ce ne sont pas des exigences, mai
 #    status: proposé       # proposé | validé | abandonné
 #    lint_waivers: []
 
-decisions: []              # arbitrages rendus pendant la construction du BRD
+decisions:
+  - id: DD-01
+    question: "La construction des groupes entre-t-elle dans le périmètre de cette initiative, ou s'arrête-t-on à l'inscription validée ?"
+    zone: ZO-015
+    options:
+      - { text: "Hors périmètre pour l'instant", impacts: "Les professeurs ne sont pas entendus sur ce que le tri a de difficile, et un besoin de leur côté pourrait rester invisible. En contrepartie la phase reste courte et le fichier sert déjà le tri tel qu'il est décrit." }
+      - { text: "Dedans", impacts: "Il faut comprendre qui construit les groupes, avec quoi, en combien de temps et sous quelles contraintes, et entendre les professeurs. La découverte s'allonge d'autant, pour un gain non établi." }
+      - { text: "Décider plus tard", impacts: "Le périmètre se figerait à la fin de la phase sans que la question ait été posée." }
+    decision: "Hors périmètre pour l'instant"
+    rationale: "Du côté des données, l'étape est déjà servie : le tri porte sur la matière et le niveau scolaire, deux colonnes du fichier. Ce que le tri a de difficile reste inconnu, mais ne justifie pas d'élargir maintenant."
+    decided_by: SH-02
+    date: "2026-11-05"
+    status: validé
+#  - id: DD-01              # arbitrages rendus pendant la construction du BRD
 #  - id: DD-01
 #    question: ""
 #    zone: ZO-012          # zone d'ombre à l'origine
@@ -652,7 +1097,23 @@ target_process:
 #    - { event: "", actor: "", change: nouveau }   # nouveau | modifié | inchangé | supprimé
   org_impacts: []          # rôles, organisation, formation — { text: "", source: SRC-xxx } ou une phrase
 
-risks: []
+risks:
+  - id: R-02
+    text: "La même personne décide, arbitre et approuvera le document : il n'existe personne au-dessus du directeur dans l'association. Rien ne contredira donc une erreur de cadrage avant qu'elle ne coûte quelque chose, et une approbation ne vaudra pas plus qu'une relecture par son propre auteur."
+    origin: ZO-030
+    related: [SH-02, SH-01, SH-03, SRC-022, SRC-023]
+    likelihood: moyenne
+    impact: fort
+    response: "Faire porter le contrôle par le retour à la source plutôt que par la hiérarchie, qui n'existe pas : faire relire à Samir ce qui est écrit au nom des parents, à Tom et Toto ce qui est écrit au nom des professeurs, et n'enregistrer une approbation qu'après ces retours. C'est le seul contre-pouvoir disponible dans cette structure."
+    status: proposé
+  - id: R-01
+    text: "La construction des groupes étant sortie du périmètre, un besoin des professeurs sur ce que le fichier doit leur apporter risque de ne jamais être entendu. Ce que le tri a de difficile n'est pas connu, et aucun enseignant n'a parlé en son nom : une inscription refondue pourrait servir les familles et le bureau sans servir l'usage auquel le fichier est finalement destiné."
+    origin: ZO-027
+    related: [ZO-027, ZO-028, SH-03, SH-04, RG-001, DD-01]
+    likelihood: moyenne
+    impact: moyen
+    response: "Faire relire la formulation du problème et le périmètre par les deux représentants des professeurs avant la fin de la phase, et rouvrir le périmètre si l'un d'eux signale un manque. Le retour de source prévu sur les entretiens de Tom est le moment le moins coûteux pour le faire."
+    status: proposé
 #  - id: R-01
 #    text: ""
 #    origin: ZO-003        # zone d'ombre assumée, hypothèse, source, partie prenante
@@ -790,11 +1251,13 @@ governance:
 #      decision: en_attente   # en_attente | acceptée | refusée
 #      target_version: ""
 
-lint_waivers: []           # dérogations nommées qui ne portent sur AUCUN élément : un constat sur une
+lint_waivers:
+  - { rule: S121, id: shadow_zones, reason: "ZO-007 — quelles données médicales le dossier contient-il, et à quoi servent-elles — n'a jamais été posée à personne : elle a été levée par le dossier d'inscription lui-même, fourni spontanément. Il n'y a donc aucun passage à inscrire, et en inventer un daterait une question qui n'est jamais partie." }
+#  - { rule: S83, id: stakeholders, reason: "" }   # dérogations nommées qui ne portent sur AUCUN élément : un constat sur une
 #  - { rule: S83, id: stakeholders, reason: "" }   # collection entière, sur un fichier de guide ou de
                            # liste de contrôle. Partout ailleurs, la dérogation se met SUR l'élément
                            # concerné. Les règles de forme (Lxx) comme de structure (Sxx) se dérogent,
                            # et une dérogation sans `reason` ne compte pas : l'avertissement reste
 
 session:                   # continuité entre sessions (references/sessions.md)
-  next_action: "Reposer à Dédé la question restée sans réponse — le bureau de l'association et l'école sont-ils le même lieu, et où une famille se déplace-t-elle réellement —, puis fermer le canevas d'opportunité (problème de l'organisation, indicateurs côté organisation, budget) et faire rendre la décision d'opportunité par la personne habilitée."          # prochaine action notée avant une pause
+  next_action: "Reposer à Tom la question restée sans réponse : comment on passe du niveau écrit sur le formulaire au groupe de l'année qui commence, alors que le formulaire demande le niveau de l'année précédente. Puis demander à Dédé et à Tom ce qu'ils pensent de ce changement — leur influence et leur attitude manquent, et c'est la seule appréciation qui ne se déduit pas. Reste aussi ouverte depuis l'ouverture : qui a répondu au tour de table. Avant la porte de Discover, il manquera la vérification de couverture, la porte de synthèse à juger avec l'utilisateur, et le sort des 17 zones encore ouvertes."          # prochaine action notée avant une pause

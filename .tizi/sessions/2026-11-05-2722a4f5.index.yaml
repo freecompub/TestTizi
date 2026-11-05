@@ -1,18 +1,18 @@
 # Index d'une session — écrit par session-capture.mjs. Un fichier par session : rien à fusionner.
 session: 2722a4f5
 started: '2026-11-05T00:05:30.346Z'
-ended: '2026-11-05T00:50:24.011Z'
+ended: '2026-11-05T01:35:29.704Z'
 initiatives:
   - brd/aide-inscription-soutien-scolaire
-user_messages: 7
+user_messages: 8
 transcript: .tizi/sessions/2026-11-05-2722a4f5.jsonl
 extract: .tizi/sessions/2026-11-05-2722a4f5.extrait.md
-last_event: Stop
+last_event: SessionEnd
 tool: claude
 tasks: []
 tokens:
-  input: 136
-  output: 83258
-  cache_read: 6528805
-  cache_write: 205153
-  total: 6817352
+  input: 162
+  output: 92959
+  cache_read: 8430117
+  cache_write: 223181
+  total: 8746419
