@@ -1,0 +1,800 @@
+# État de session d'une initiative BRD — mis à jour par l'agent après chaque échange validé.
+document: brd
+initiative:
+  name: "Aide d'une association de soutien scolaire dans le processus d'inscription"
+  slug: "aide-inscription-soutien-scolaire"
+  trigger: ""            # pourquoi maintenant
+  requested_by: ""       # SH-xx : QUI a demandé cette initiative. Obligatoire dès qu'on écrit à
+                         # quelqu'un par un canal (`reach-out.mjs` refuse sans lui) : « je vous écris
+                         # à la demande de … » est la ligne qui rattache le message à ce dont on a
+                         # parlé à la personne, et c'est elle qui rend le contact légitime maintenant
+                         # que le consentement est du côté de l'utilisateur. Elle se lisait avant à
+                         # `request.requested_by` — un chemin qui n'existait dans aucun gabarit —, avec
+                         # un rattrapage par mot-clé sur les rôles : sur le dossier réel les deux
+                         # étaient muets, et la clause disparaissait sans trace. Ne la devine pas :
+                         # nommer la mauvaise personne lui fait dire qu'elle a demandé une démarche
+                         # dont elle n'a pas entendu parler
+  derived_from: {}       # d'où elle vient, quand elle ne naît pas d'une demande mais d'une autre
+                         # initiative. Renseigne `derived_from` à la création : `split_into` ne dit la
+                         # filiation que vers le bas, et seulement depuis une mère close
+  #  initiative: ""      # slug de l'initiative d'origine
+  #  reason: decoupage   # decoupage | sortie_perimetre | autre:<libellé>
+  #  decision: ""        # la décision qui l'a produite, chez la mère : DD-xx, ou sa décision d'opportunité
+phase: assess            # assess | discover | define | govern | close (opportunité jetée)
+
+phase_log: []            # une porte franchie, une entrée — `phase` dit la phase EN COURS, `phase_log` dit
+                         # comment on y est arrivé. « Un changement de phase se demande : ce n'est pas la
+                         # suite du travail, c'est une porte, et il s'écrit dans l'état avec sa date »
+                         # (references/questions.md). Le champ manquait : au deuxième dossier réel l'agent
+                         # a écrit le passage en COMMENTAIRE, que rien ne lit et que le document rendu ne
+                         # peut pas reprendre. S100 réclame la trace, S101 son décideur et sa date.
+#  - from: discover      # la phase qui se clôt
+#    to: define          # celle qui s'ouvre
+#    date: ""            # AAAA-MM-JJ
+#    decided_by: SH-02   # qui a tranché — déclaré par l'utilisateur, jamais déduit
+#    source: SRC-080     # la source qui porte la décision
+#    gate: ""            # l'état de la porte au passage, RECOPIÉ tel que status.mjs l'a dit :
+#                          # « X condition(s) tenue(s) sur Y mesurée(s) ». Le compte se relit : Y moins X
+#                          # donne les conditions non tenues, et `waived` doit en nommer exactement
+#                          # autant (S124). C'était le seul champ de l'état que rien ne relisait — une
+#                          # phrase libre, qu'aucun script ne pouvait contredire
+#    waived: []          # conditions franchies par dérogation : - { condition: "", reason: "" }
+#    kind: porte         # porte (par défaut) | retour — un retour en arrière est un passage comme un
+#                        # autre, et il s'écrit dans le MÊME journal : `define_returns` ne valait que
+#                        # pour le BRD, les trois autres documents reculaient sans rien écrire, et les
+#                        # phases cycliques du plan ne se lisaient nulle part. Un retour porte en plus
+#                        # `zone` (la zone d'ombre qui l'a provoqué) et `reason`. Sur un retour ponctuel,
+#                        # `phase` ne change pas : le journal dit l'aller-retour, `phase` dit où on est.
+created: "2026-11-05"    # AAAA-MM-JJ
+updated: "2026-11-05"
+
+opportunity:              # phase Assess (references/phase-assess.md)
+  request:
+    verbatim: "Aide d'une association de soutien scolaires dans le processeur d'inscription"   # la demande initiale, mot pour mot
+    classification: "fluide"  # à faire corriger par l'utilisateur au premier échange # figee (une solution précise, qui masque souvent le problème) | fluide (une aspiration vague)
+    presumed_solution: ""  # pour une demande figée : la solution présumée, à remonter au problème
+  canvas:
+    problems:
+      - "Ressaisie annuelle : chaque année, une famille remplit les mêmes données, et autant de fois qu'elle a d'enfants (SRC-003, Dédé)"
+      - "Retrait du formulaire : récupéré au bureau par un parent, ou transmis via l'enfant (SRC-003, Dédé)"
+      - "Dépôt du dossier : seul un parent peut le déposer au bureau, le retour ne passe pas par l'enfant (SRC-003, Dédé)"
+      - "Les dossiers papier sont détruits à chaque fin d'année : rien ne survit pour l'année suivante (SRC-003, Dédé)"           # problèmes, ou idées de solution à ramener à un problème
+    users:
+      - "Les familles qui inscrivent un ou plusieurs enfants (SRC-003, Dédé)"
+      - "Le bureau de l'association, qui distribue les formulaires et reçoit les dossiers (SRC-003, Dédé)"              # utilisateurs et clients visés
+    solutions_today:
+      - "Inscription au format papier : la famille dépose au bureau le formulaire rempli et une preuve de virement (SRC-002, Dédé)"
+      - "Campagne d'inscription saisonnière : d'avril à juin (SRC-002, Dédé)"
+    user_value: "Ne plus remplir chaque année les mêmes données, ni les répéter pour chaque enfant — et ne plus dépendre de l'absence d'erreur au remplissage (SRC-005, Samir)"
+    user_metrics:
+      - "Une famille déjà connue n'a plus de formulaire à remplir à chaque campagne (SRC-006, Samir)"
+      - "Le nombre d'aller-retours d'une famille pour boucler une inscription baisse (SRC-006, Samir) — reste à établir entre qui et qui, et à partir de quelle valeur de départ"
+    adoption: ""
+    business_problem: ""
+    business_metrics: []
+    budget: ""             # ordre de grandeur : jours, semaines, mois
+  decision: en_attente     # en_attente | aller_plus_loin | jeter | decoupee | a_apprendre | reportee
+  reason: ""
+  to_learn: []             # si a_apprendre : - { question: "", who: "" }
+  split_into: []           # si decoupee : slugs des initiatives filles. Sans eux, « close » se relit
+                           # comme un abandon — ce qui est arrivé, avec la vérité en commentaire YAML
+  decided_by: ""           # déclaré par l'utilisateur
+  date: ""
+
+problem:
+  statement: ""          # 2-3 phrases, confirmées par l'utilisateur
+  confirmed: false
+  symptoms: []           # - { text: "", source: SRC-xxx }
+  impact: []             # - { type: temps|cout|risque|qualite, text: "", source: SRC-xxx }
+
+success_signals: []      # - { text: "", measurable: false }
+
+scope:
+  in: []                 # - { text: "", reason: "" } — ou une phrase, si elle se suffit
+  out: []                # - { text: "", reason: "" } — la raison compte : rien ne sort en silence
+  deadline: ""
+
+current_process:         # reconstitué en Discover (atelier, entretiens). MÊME FORME que target_process :
+  events: []             # le processus actuel et le processus cible se lisent côte à côte
+#    - { event: "Dossier reçu", actor: "", source: SRC-xxx }
+
+constraints:
+  - type: legale
+    text: "Le dossier d'inscription contient des données médicales"
+    source: SRC-004
+    implication: "Données de santé : leur conservation d'une année sur l'autre, sa base et sa durée, sont à établir avant toute cible. Il n'est pas encore établi que la destruction annuelle soit imposée par un texte (ZO-008) ni quelles données sont concernées (ZO-007)."          # - { type: legale|contractuelle|organisationnelle|budgetaire|environnement|autre:<libellé>, text: "", source: SRC-xxx, implication: "" }
+                          #   environnement : conditions réelles d'usage (bruit, lumière, mains occupées ou gantées, déplacement, connexion, interruptions, temps disponible)
+
+stakeholders:
+  - id: SH-01
+    name: "Samir"
+    role: "Représentant des parents d'élèves"
+    impact: fort
+    power: faible
+    influence: inconnue
+    quadrant: consulter
+    end_user: false
+    status: interrogée
+  - id: SH-02
+    name: "Dédé"
+    role: "Directeur de l'association, et représentant des membres du bureau"
+    impact: fort
+    power: fort
+    influence: inconnue
+    quadrant: impliquer
+    end_user: false
+    status: interrogée
+  - id: SH-03
+    name: "Tom"
+    role: "Représentant des professeurs, et membre du bureau"
+    impact: fort
+    power: fort
+    influence: inconnue
+    quadrant: impliquer
+    end_user: false
+    status: à interroger
+  - id: SH-04
+    name: "Toto"
+    role: "Enseignant"
+    impact: fort
+    power: faible
+    influence: inconnue
+    quadrant: consulter
+    end_user: true
+    represented_by: SH-03
+    joignable_par: courriel
+    status: à interroger
+#  - id: SH-01
+#    name: ""
+#    role: ""
+#    impact: fort          # fort | faible | inconnu — à quel point le changement touche son travail
+#    power: fort           # fort | faible | inconnu — capacité à peser sur la décision ou l'adoption
+#    influence: positive   # positive | négative | neutre | inconnue — sens dans lequel elle pèsera.
+#                          # La seule des quatre qui ne se déduit pas : elle se demande, et sur un fort
+#                          # pouvoir son absence est une zone d'ombre (S93)
+#    quadrant: impliquer   # DÉDUIT de power × impact, jamais affirmé (S92) : fort×fort impliquer,
+#                          # fort×faible satisfaire, faible×fort consulter, faible×faible informer.
+#                          # Si l'un des deux est `inconnu`, laisse-le VIDE : la gouvernance en tire un
+#                          # rôle de revue, et un quadrant supposé fait un approbateur supposé
+#    attitude: ""          # ce qu'elle pense du changement, du sponsor, de la démarche (verbatim si possible)
+#    decision_domains: []  # domaines de decision_rights sur lesquels elle a autorité
+#    personnes: 1          # combien de PERSONNES RÉELLES cette entrée vaut. Vide sur une entrée nommée :
+#                          # un nom désigne quelqu'un, donc une. À renseigner dès que l'entrée tient la
+#                          # place d'un groupe sans nom — « le ou les membres du bureau qui saisissent ».
+#                          # Au troisième dossier réel, SH-04 était exactement ça, et le point d'étape
+#                          # annonçait « 3 parties prenantes entendues sur 4 » : un compte d'ENTRÉES
+#                          # donné pour un compte de personnes, lu tel quel par la dimension
+#                          # `couverture` de la porte de synthèse. Sans nom et sans effectif, le total
+#                          # n'est plus une mesure mais un plancher, et il s'affiche « sur au moins N »
+#                          # (S122). Un nom reste mieux qu'un nombre : demande-le
+#    entendues: 0          # combien d'entre elles ont effectivement parlé. Inutile quand l'entrée vaut
+#                          # une personne : son `status` le dit déjà. Dès qu'elle en vaut plusieurs, le
+#                          # statut ne se divise pas — « interrogée » sur un groupe de cinq dont un seul
+#                          # a parlé fait compter cinq voix pour une (S123)
+#    end_user: false       # utilisatrice directe du futur processus ou système
+#    represents: ""        # si elle parle au nom d'un groupe : lequel (les représentants ne remplacent pas les vrais utilisateurs)
+#    represents_source: ""  # LA source où elle le dit elle-même : SRC-xxx, et elle doit y être locutrice
+#                          # (S110). Au troisième dossier réel, un représentant des parents s'est trouvé
+#                          # enregistré représentant « des membres du bureau », déduit de la dernière
+#                          # proposition d'un tour de table où le « je » final revenait à lui. La valeur
+#                          # était renseignée, donc conforme : rien ne pouvait la relire. Ce qu'un tiers
+#                          # dit d'elle ne la mandate pas
+#    represented_by: ""    # l'inverse, sur la personne REPRÉSENTÉE : le SH-xx de qui répond pour elle.
+#                          # « Chaque fonction a un représentant » s'enregistre ici — pas dans la prose
+#                          # du `represents` d'un autre, qui nomme un groupe qu'aucun script ne peut
+#                          # rapprocher d'un identifiant. Et ça ne ferme rien : la zone sur sa voix
+#                          # non entendue reste ouverte (S94)
+#    langue: ""            # la langue dans laquelle elle se lit et s'écrit, si ce n'est pas celle du
+#                          # dossier (`settings.langue`, « français » par défaut). Vide = celle du
+#                          # dossier, et c'est le cas courant. Tizi est en français par choix — ses
+#                          # skills, ses règles, ses documents, que l'ÉQUIPE lit. La personne au bout
+#                          # d'un canal n'est pas de l'équipe, et rien ne dit qu'elle lit le français.
+#                          # Renseigné et différent, `reach-out.mjs` ne traduit PAS : il énumère ce que
+#                          # le message doit dire et pourquoi, et l'agent écrit. Une déclaration de
+#                          # consentement mal traduite peut se tromper sur CE À QUOI elle consent, et
+#                          # c'est le seul endroit où l'échec n'est pas un dossier moins bon mais
+#                          # quelqu'un qui répond sans savoir à quoi. Ta version se fait relire par
+#                          # l'utilisateur avant l'envoi : c'est le seul contrôle disponible
+#    joignable_par: ""     # PAR QUOI on peut la joindre, et c'est l'OUTIL qu'on nomme, pas la forme :
+#                          # courriel | gmail | outlook | messagerie | slack | teams | whatsapp |
+#                          # messenger | signal | telegram | sms | téléphone | vive voix |
+#                          # autre:<outil nommé>. Une coordonnée ne dit pas l'outil : une adresse se
+#                          # lit dans Gmail ou dans Teams, un numéro dans WhatsApp, Messenger ou par
+#                          # SMS — alors demande-le, ne le devine pas. La FORME suit la famille de
+#                          # l'outil (objet ou pas, place, délais) et ne s'écrit jamais ici.
+#                          # Vide si on n'a pas de quoi la joindre —
+#                          # ne pas savoir est un fait, pas une faute, et rien ne le réclame.
+#                          # L'adresse, le numéro, l'identifiant N'ENTRENT PAS ICI : ce fichier se
+#                          # commite, part dans le handoff, et `freeze-version.mjs` en fige une copie
+#                          # en lecture seule sous `versions/` d'où rien ne se reprend. Ils vont dans
+#                          # `contacts.yaml`, à côté de l'état, que `.gitignore` exclut. S114 refuse
+#                          # une coordonnée ici, et signale un canal annoncé qui n'en a aucune là-bas
+#    contact_autorise: []  # L'AUTORISATION DE L'UTILISATEUR d'écrire à cette personne, par OUTIL :
+#                          # - { outil: slack, le: "2026-11-04", par: "Samir" }
+#                          # `reach-out.mjs` et `review-sources.mjs --message` REFUSENT de composer
+#                          # sans elle (S126). Un script ne calcule pas un droit, et ce n'est pas son
+#                          # rôle : le consentement des personnes interrogées est la responsabilité de
+#                          # l'utilisateur, et c'est lui qui dit s'il est légitime d'écrire maintenant.
+#                          # Ce qui se vérifie, c'est que sa décision est ÉCRITE — comme `waived` et
+#                          # `lint_waivers`. Par OUTIL, parce qu'autoriser un courriel n'autorise pas
+#                          # un message sur un numéro personnel, et deux outils d'une même famille ne
+#                          # se couvrent pas : Slack et WhatsApp sont tous deux de la messagerie.
+#                          # L'outil nommé ici est le MÊME mot que `joignable_par`. Sans date, elle ne
+#                          # se vérifie pas, et une décision invérifiable est une case cochée.
+#                          # `par` est libre : qui a dit oui, quand ça vaut la peine de le garder
+#    sollicitee_le: ""     # AAAA-MM-JJ — QUAND la question lui est partie, sur le canal ci-dessus.
+#                          # Elle ne se lit que sur le statut « sollicitée ». Sans elle, « sollicitée »
+#                          # compte comme si personne n'avait jamais écrit (S115) : c'est toi qui écris
+#                          # le champ, et une sollicitation invérifiable est une case cochée. Avec elle,
+#                          # le silence de la personne devient une question qui VIT — les constats sur
+#                          # sa voix non entendue changent de liste au lieu de compter contre le dossier,
+#                          # et `review-sources.mjs --etat` dit depuis combien de jours elle est en vol
+#    indisponible_motif: ""  # POURQUOI elle n'est pas joignable, sur le statut « non disponible » et
+#                          # nulle part ailleurs (S116) : silence | refus | absence | renoncement |
+#                          # autre:<libellé>. Le mot seul couvrait quatre situations — elle n'a jamais
+#                          # répondu ; elle a REFUSÉ, ce que le message de sollicitation l'invite à
+#                          # faire ; elle est absente, en congé, partie ; ou NOUS avons renoncé pour
+#                          # nos raisons. La dernière est la seule qui soit de notre faute, et c'est
+#                          # celle qu'un mot unique cachait le mieux. Renoncer N'ÉTEINT RIEN : le
+#                          # statut reste « non entendue », donc S94 et S83 continuent de dire que sa
+#                          # voix manque — un choix de notre part n'est pas une réussite du dossier.
+#                          # Et un refus est SA parole : consigne ses mots en source avant de l'écrire
+#    sollicitee_zone: ""   # LA ou LES zones d'ombre sur lesquelles les questions sont parties :
+#                          # `ZO-001`, ou `[ZO-001, ZO-034]` quand le message en portait plusieurs.
+#                          # Avec `sollicitee_le` — les deux ou aucun (S115). Sans elle, au tour
+#                          # suivant, rien ne dit si sa réponse portait sur la question posée : le
+#                          # message de suite la remerciait d'avoir répondu puis reposait la même
+#                          # question, et finissait par demander à la personne de trancher à notre
+#                          # place. Avec elle, l'agent sait reprendre la question sans faire porter
+#                          # l'erreur à qui a répondu, et une relance repart sur LES questions
+#                          # parties, pas sur celles que le classement remettrait en tête. La liste
+#                          # entière, pas seulement la première : une relance doit pouvoir reposer
+#                          # exactement ce qui a été posé. Et une zone nommée ici porte un passage de
+#                          # plus dans son `posee` : écrire sur la personne sans écrire sur la question
+#                          # laisse un état qui se contredit en silence (S125)
+#    status: à interroger  # à interroger | sollicitée | interrogée | non disponible. « interrogée »
+#                          # veut dire ENTENDUE AU MOINS UNE FOIS, pas « plus rien à lui demander » :
+#                          # la zone `partie_prenante_non_entendue` se ferme quand aucune zone ouverte
+#                          # ne la nomme en `ask_to`, jamais sur le seul changement de statut.
+#                          # « sollicitée » veut dire QU'ON A ÉCRIT, pas qu'on a reçu : elle reste non
+#                          # entendue — une décision rendue en son nom reste rapportée par un tiers
+#                          # (S90), une source à son nom reste du second degré (S81). Ce qui change,
+#                          # c'est le reproche de son silence, pas le fait qu'elle se taise
+
+decision_rights: []      # qui tranche quoi, établi au cadrage et validé par le sponsor
+#  - domain: perimetre     # perimetre | objectifs | priorites | donnees_securite | processus:<nom> | regles:<domaine> | autre:<libellé>
+#    decider: SH-01
+#    escalation: SH-00     # recours si le décideur ne tranche pas ; le sponsor en dernier ressort
+#    confirmed_by: SH-00   # qui a confirmé cette attribution
+#    source: SRC-xxx
+
+sources:
+  - id: SRC-001
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: []
+    present: [SH-01, SH-02, SH-03]
+    quote: "C'est Samir représentant des parents d'élèves, Dédé directeur de l'association et représentant des membres des bureaux, tom représente des professeurs et membres du bureau. Il a également toto qui est enseignants et qui n'est pas présent et qui est contactable par mail <coordonnée hors dépôt : contacts.yaml>"
+    understood: "Tour de table de l'échange d'ouverture : trois personnes présentes (Samir, Dédé, Tom) et un enseignant absent (Toto). La voix qui a répondu n'est pas établie — le tour de table parle des trois présents à la troisième personne —, donc aucune partie prenante n'est enregistrée comme locutrice."
+    feedback: à envoyer
+  - id: SRC-002
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Les inscriptions se font du mois d'avril au mois de juin, les inscriptions se font au format papier\nIl doivent déposer le formulaire plus une preuve de virement au bureau"
+    understood: "Processus actuel d'inscription, tel que le décrit Dédé : une campagne d'avril à juin, un dossier papier, et un dépôt physique au bureau de deux pièces — le formulaire rempli et une preuve de virement. Ce qui coince n'est pas encore dit : la question portait aussi là-dessus et n'a pas été reprise."
+    feedback: à envoyer
+  - id: SRC-003
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Il y a deux problèmes 1 + c'est le format papier, les familles sont obligés de remplir chaque année les mêmes données multiplié par le nombre d'enfants. 2 les formulaires sont soit récupérer par les parents au bureau soit transmis via les enfants. 3- les parents sont obligés de déposer les formulaires aux bureaux et pas via les enfants. 4- les dossiers papier sont détruits a chaque fin d'année"
+    understood: "Dédé nomme quatre points : la ressaisie annuelle des mêmes données, multipliée par le nombre d'enfants ; la distribution du formulaire, au bureau ou via l'enfant ; le dépôt, réservé au parent et au bureau ; la destruction des dossiers en fin d'année. Le premier est énoncé comme « le format papier » — c'est le support mis en cause, pas encore le problème : ce qui coûte est la ressaisie, que la destruction des dossiers rend inévitable. La raison de cette destruction n'est pas dite."
+    feedback: à envoyer
+  - id: SRC-004
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-02]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Il contient des données médicales"
+    understood: "La destruction des dossiers en fin d'année est motivée par la présence de données médicales dans le dossier d'inscription. Deux choses restent non dites : quelles données médicales, et pour quel usage dans l'inscription ; et si la destruction est imposée par un texte ou décidée par l'association."
+    feedback: à envoyer
+  - id: SRC-005
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Ne plus remplir les mêmes données chaque année en plus on le fait plusieurs fois si on a plusieurs enfants et ça si on se trompent pas pandent le remplissage du formulaire"
+    understood: "Samir confirme, côté familles, la ressaisie annuelle et sa répétition par enfant — deuxième voix sur ce besoin, après Dédé. Il ajoute un élément que personne n'avait dit : le remplissage suppose de ne pas se tromper, donc l'erreur a un coût qui n'est pas encore décrit. Il répond en « on », ce qui le place comme parent lui-même, et pas seulement comme représentant : à faire corriger."
+    confirms: [BC-001]
+    feedback: à envoyer
+  - id: SRC-006
+    type: cadrage
+    date: "2026-11-05"
+    stakeholders: [SH-01]
+    present: [SH-01, SH-02, SH-03]
+    quote: "Plus de formulaire a remplir chaque année, réduire le nombre d'aller retour avec l'école"
+    understood: "Deux signaux observables proposés par Samir côté familles : plus aucun formulaire à remplir d'une année sur l'autre, et moins d'aller-retours. Il nomme « l'école » comme l'autre bout de ces aller-retours, là où Dédé décrivait un dépôt « au bureau » : les deux mots désignent peut-être le même lieu, peut-être deux, et la question reste ouverte. Aucune valeur de départ n'est connue pour l'instant."
+    feedback: à envoyer
+#  - id: SRC-001
+#    type: entretien       # cadrage | entretien | échange écrit | observation | mesure | test | document | atelier | ticket | revue | dt-handoff | décision | autre:<libellé>
+#                          # échange écrit : la personne a répondu PAR ÉCRIT — messagerie, courriel, fil
+#                          # d'équipe. C'est un recueil auprès d'elle comme un entretien : sa voix compte
+#                          # pour S83 et S95. Mais il n'a pas de salle, donc pas de `present` (S91), et
+#                          # il ne se déclare pas `entretien` : celui qui relit six mois plus tard ne
+#                          # peut plus distinguer une conversation de quarante minutes d'un fil de six
+#                          # messages, et le mot « entretien » perd son sens dans tous les dossiers
+#                          # décision : un choix de l'utilisateur, pas un recueil — il ne vaut pas une voix entendue (S83)
+#                          # cadrage : l'échange qui ouvre l'initiative, avec qui porte la demande. Déclaratif,
+#                          # et souvent rapporté au nom d'un tiers : la partie prenante nommée doit être
+#                          # celle qui a parlé, pas celle dont on rapporte les besoins (S81)
+#                          # observation, mesure et test donnent une preuve « observée » ; les autres une preuve « rapportée »
+#    date: ""
+#    stakeholders: [SH-01] # les voix ENTENDUES dans cet échange
+#    present: []           # LA SALLE ENTIÈRE : les silencieux ET les locuteurs ci-dessus (S91).
+#                          # Renseigne `present` quand le tour de table en a nommé plus d'un : présent
+#                          # et locuteur d'aucune source, c'est quelqu'un qui n'a pas été entendu — et
+#                          # son silence n'est pas un accord
+#    quote: ""             # CE QUI A ÉTÉ DIT, mot pour mot, sans reformulation. Dû pour une source de
+#                          # parole — cadrage, entretien, atelier, revue, décision (S102) —, sauf si un
+#                          # fichier le porte. Le modèle n'avait aucun champ pour ça : au deuxième dossier
+#                          # réel, 92 sources sur 93 dont 65 entretiens ne portaient que leurs métadonnées,
+#                          # et ce qui avait été dit ne survivait qu'à la conversation. On ne fait pas
+#                          # relire ce qui n'est écrit nulle part : `feedback` et S84 portaient sur du vide
+#    understood: ""        # ce que l'agent en a TIRÉ, séparé du verbatim — c'est ce qui se corrige en
+#                          # relecture quand la citation est juste et la conclusion fausse. Ne remplace
+#                          # jamais `quote` : ce qui se relit, c'est ce qui a été dit
+#    confirms: []          # ce que cette source confirme ou corrige, quand elle EST une relecture :
+#                          # [BC-003, BR-001]. Et elle rejoint les `sources` de chacun (S103) — sinon la
+#                          # confirmation existe sans rattacher, l'élément reste à source unique et jamais
+#                          # relu, et le relevé de relecture ne la montre pas
+#    path: ""              # fichier dans brd/<slug>/sources/ si fourni
+#    corrects: []          # les SOURCES dont cette source corrige la lecture : [SRC-001]. `confirms`
+#                          # ci-dessus pointe vers des ÉLÉMENTS — BC, BR, RG — jamais vers une source :
+#                          # rien ne menait du tour de table à l'échange qui en a corrigé la lecture, et
+#                          # qui lira le premier dans six mois n'avait aucun chemin vers le second
+#                          # (S112). Une source corrigée est la première à faire relire
+#    feedback: à envoyer   # retour à la source : à envoyer | envoyé | confirmé | corrigé | sans objet
+#    feedback_le: ""       # AAAA-MM-JJ — QUAND la demande est partie. `envoyé` et `à envoyer` tombaient
+#                          # dans le même sac : S84 ne lisait que « confirmé | corrigé | sans objet », donc
+#                          # « demandé le 21, pas encore de réponse » et « jamais rien demandé à personne »
+#                          # rendaient le même constat. L'état `envoyé` ne servait à rien. Avec la date, il
+#                          # vaut « non mesuré » — une question qui vit, que la porte ne compte pas contre
+#                          # vous — et le relevé dit depuis combien de jours. Sans la date, il reste un
+#                          # échec : c'est l'agent qui écrit le champ, et « envoyé » qu'on ne peut pas
+#                          # vérifier est une case cochée, pas un fait
+#    feedback_par: ""      # par quoi elle est partie : oral | courriel | messagerie | <canal nommé>.
+#                          # Informatif — rien ne le réclame. Il sert à qui relance, et à qui se demande
+#                          # si une trace existe ailleurs que dans ce fichier
+#    feedback_motif: ""    # POURQUOI « sans objet », sur une source de parole recueillie — cadrage,
+#                          # entretien, échange écrit, atelier, revue (S111). C'est la seule valeur qui
+#                          # éteint S84 sans que personne n'ait rien relu : sur une décision de
+#                          # l'utilisateur elle va de soi, sur un échange où quelqu'un a parlé elle s'explique
+
+candidate_needs:
+  - id: BC-001
+    text: "Qu'une famille déjà connue n'ait pas à réécrire chaque année les données que l'association détient déjà, ni à les répéter pour chacun de ses enfants"
+    sources: [{ ref: SRC-003, location: "point 1" }, { ref: SRC-005 }]
+    concerns: [SH-01]
+    status: confirmé
+    notes: "Formulé pour les familles, qu'on n'a pas encore entendues en direct (ZO-003). Dépend de H-001 : si les données ne peuvent pas être conservées d'une année sur l'autre, ce besoin tombe."
+  - id: BC-002
+    text: "Que le retour du dossier rempli ne dépende pas d'un déplacement d'un parent au bureau"
+    sources: [{ ref: SRC-003, location: "points 2 et 3" }]
+    concerns: [SH-01]
+    status: proposé
+    notes: "Asymétrie relevée par Dédé : le formulaire peut sortir via l'enfant, il ne peut pas revenir par lui. La raison de cette asymétrie n'est pas encore dite."
+  - id: BC-003
+    text: "Que l'association retrouve d'une année sur l'autre ce qu'elle a déjà recueilli auprès d'une famille"
+    sources: [{ ref: SRC-003, location: "point 4" }]
+    concerns: [SH-02]
+    status: proposé
+  - id: BC-004
+    text: "Que l'inscription d'une famille ne repose pas sur l'absence d'erreur au remplissage du formulaire"
+    sources: [{ ref: SRC-005 }]
+    concerns: [SH-01]
+    status: proposé
+    notes: "Soulevé par Samir en passant. Ce qu'une erreur coûte aujourd'hui — ce qui est refait, par qui, quand c'est découvert — n'est pas encore dit (ZO-009)."
+#  - id: BC-001
+#    text: "Pouvoir …"
+#    sources: [{ ref: SRC-001, location: "l.42" }]
+#    concerns: []          # DE QUI c'est le besoin : les SH-xx qui le portent. Dû dès qu'il est confirmé,
+#                          # et sur tous en Define. S83 ne voit que l'absence totale d'utilisateur
+#                          # direct entendu — un sur quatre, et elle est verte ; ici le grain est le
+#                          # besoin, et un besoin formulé pour quelqu'un qu'on n'a pas entendu se dit
+#                          # (S95). Sur le dossier réel, l'information vivait dans `notes`, en prose
+#    status: proposé       # proposé | confirmé | intégré | abandonné | hors_périmètre
+#    reason: ""            # obligatoire si abandonné ou hors_périmètre
+#    moved_to: ""          # si hors_périmètre parce qu'une AUTRE initiative le reprend : son slug. Le
+#                          # besoin y garde son identifiant. Sans ce champ, « rien ne disparaît en
+#                          # silence » tient dans une phrase de `reason` que personne ne relit
+#    notes: ""             # solutions évoquées, nuances
+
+hypotheses:
+  - id: H-001
+    text: "Les données d'une inscription peuvent être conservées d'une année sur l'autre"
+    basis: "Les dossiers sont détruits en fin d'année parce qu'ils contiennent des données médicales (SRC-004). Il n'est pas établi qu'un texte impose cette destruction"
+    verification: "Récupérer le texte ou la consigne invoquée, s'il y en a un (ZO-008), et établir le régime de conservation applicable aux données de santé recueillies"
+    status: à vérifier
+  - id: H-002
+    text: "Les données administratives du dossier (identité, coordonnées, famille) peuvent être conservées d'une année sur l'autre indépendamment des données médicales"
+    basis: "La destruction est motivée par les seules données médicales (SRC-004) : rien n'a été dit du reste du dossier"
+    verification: "Établir avec le bureau le contenu exact du dossier et ce qui relève du médical (ZO-007)"
+    status: à vérifier
+#  - id: H-001
+#    text: ""
+#    basis: ""             # sur quoi repose l'hypothèse
+#    verification: ""      # COMMENT la trancher, et auprès de qui ou de quoi : une personne à entendre,
+#                          # un document à récupérer, un chiffre à relever. Dû tant qu'elle est à
+#                          # vérifier (S97) — sans lui, elle attend la session où quelqu'un y repense,
+#                          # et le moyen le moins coûteux ne se voit pas
+#    status: à vérifier    # à vérifier | confirmée | infirmée
+
+shadow_zones:
+  - id: ZO-001
+    type: partie_prenante_non_entendue
+    question: "Dans l'échange d'ouverture, qui a répondu : Samir, Dédé, Tom, ou quelqu'un d'autre ?"
+    origin: cadrage
+    ask_to: SH-02
+    action: question-utilisateur
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-001]
+  - id: ZO-002
+    type: partie_prenante_non_entendue
+    question: "Que vit un enseignant pendant une inscription : ce qu'on lui demande, ce qu'il fait, ce qui lui manque au moment où il le fait ? Un fait ou une règle se relaient, un geste et un vécu non — Tom ne peut pas les donner à sa place."
+    origin: cadrage
+    ask_to: SH-04
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-001]
+  - id: ZO-003
+    type: partie_prenante_non_entendue
+    question: "Comment une famille vit-elle une inscription aujourd'hui, de son côté, du premier contact au dossier complet ?"
+    origin: cadrage
+    ask_to: "parent d'élève à identifier (Samir les représente, il ne les remplace pas)"
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [SRC-001]
+  - id: ZO-004
+    type: probleme_flou
+    question: "Dans la campagne d'avril à juin, qu'est-ce qui coince aujourd'hui : qu'est-ce qui prend du temps, se perd, se refait, ou revient en arrière ?"
+    origin: SRC-002
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Quatre points nommés par Dédé (SRC-003) : ressaisie annuelle des mêmes données multipliée par le nombre d'enfants ; retrait du formulaire au bureau ou via l'enfant ; dépôt réservé au parent, au bureau ; destruction des dossiers en fin d'année."
+    related: [SRC-002, SRC-003]
+  - id: ZO-005
+    type: attendu_implicite
+    question: "Pourquoi les dossiers papier sont-ils détruits à chaque fin d'année : une obligation, une consigne de l'association, un manque de place, ou l'usage ?"
+    origin: SRC-003
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: levée
+    resolution: "Le dossier contient des données médicales (SRC-004, Dédé) : c'est ce qui motive sa destruction en fin d'année."
+    related: [H-001, BC-001, BC-003, SRC-004]
+  - id: ZO-006
+    type: attendu_implicite
+    question: "Pourquoi le dossier rempli ne peut-il pas revenir par l'enfant, alors que le formulaire vierge peut partir par lui ?"
+    origin: SRC-003
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [BC-002]
+  - id: ZO-007
+    type: attendu_implicite
+    question: "Quelles données médicales le dossier contient-il, et à quoi servent-elles au moment de l'inscription ?"
+    origin: SRC-004
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [H-002, BC-001, SRC-004]
+  - id: ZO-008
+    type: hypothese_non_verifiee
+    question: "La destruction des dossiers en fin d'année est-elle imposée par un texte ou une consigne écrite, ou est-ce la pratique de l'association ?"
+    origin: SRC-004
+    ask_to: SH-02
+    action: document
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [H-001, SRC-004]
+  - id: ZO-009
+    type: probleme_flou
+    question: "Que se passe-t-il quand un formulaire est mal rempli : qu'est-ce qui est refait, par qui, et à quel moment l'erreur est-elle découverte ?"
+    origin: SRC-005
+    ask_to: SH-01
+    action: entretien
+    blocking: false
+    posee: []
+    status: ouverte
+    related: [BC-004, SRC-005]
+  - id: ZO-010
+    type: contradiction
+    subtype: vocabulaire
+    parties: [SH-01, SH-02]
+    question: "« Le bureau » de l'association et « l'école » sont-ils le même lieu, et où une famille se déplace-t-elle réellement pour retirer puis déposer un dossier ?"
+    origin: SRC-006
+    ask_to: SH-02
+    action: entretien
+    blocking: false
+    posee: [{ date: "2026-11-05", canal: "vive voix" }]
+    status: ouverte
+    related: [SRC-002, SRC-003, SRC-006, BC-002]
+#  - id: ZO-001
+#    type: probleme_flou   # probleme_flou | partie_prenante_non_entendue | profil_manquant | succes_non_mesurable
+#                          # | contradiction | hypothese_non_verifiee | solution_deguisee | perimetre_flou
+#                          # | attendu_implicite | arbitre_inconnu
+#    subtype: ""           # contradiction uniquement : factuelle | vocabulaire | reglementaire | interets
+#    parties: []           # contradiction : parties prenantes en désaccord
+#    arbiter: SH-00        # contradiction « interets » : décideur issu de decision_rights, jamais partie au conflit
+#    question: "…?"
+#    origin: cadrage       # cadrage | SRC-xxx | atelier | point-etape | council:<lentille>
+#    ask_to: SH-01         # SH-xx ou rôle à identifier
+#    action: entretien     # entretien | document | atelier | decision | question-utilisateur
+#    blocking: false      # true seulement si l'étape suivante ne peut pas COMMENCER : nomme-la,
+#                         # et dis ce qui s'y ferait de faux (references/phase-discover.md)
+#    posee: []            # CHAQUE fois que la question est partie, avec sa date et son canal :
+#                         # - { date: "2026-11-04", canal: courriel }
+#                         # La liste s'AJOUTE, elle ne se remplace pas. Sans elle, `status: ouverte`
+#                         # couvrait deux situations que rien ne séparait : jamais demandée, et
+#                         # demandée trois fois sans réponse. Sur le premier dossier réel, l'agent a
+#                         # reposé la même question cinq fois en deux jours — « les 150 dossiers, ça
+#                         # fait combien de familles ? » aux tours 175, 178 et 179 — et la zone est
+#                         # restée « ouverte », sa résolution vide : il reconstruisait sa question
+#                         # depuis l'état à chaque tour, et une zone ouverte avait l'air neuve.
+#                         # `sollicitee_zone` dit ce qui est parti par ÉCRIT et vit sur la personne ;
+#                         # ce champ-ci vit sur la QUESTION, et vaut pour tous les canaux — de vive
+#                         # voix, aucun script n'exécute rien, et c'est là que la répétition est née.
+#                         # Un passage sans date lisible ne compte pour rien (S119). Au-delà de trois
+#                         # passages sans réponse, ce n'est plus une question mais un constat : à
+#                         # assumer avec sa raison, ou à trancher — jamais à reposer (S120). Le seuil
+#                         # se règle par `settings.relance.repetitions`. De vive voix, aucun script
+#                         # n'est dans le chemin : `question-guard.mjs`, branché sur la fin de tour,
+#                         # lit ce que l'agent vient de dire et prévient quand la même question
+#                         # repart pour la troisième fois. Il ne bloque pas, et il n'écrit pas ce
+#                         # champ — c'est toujours l'agent qui l'écrit
+#    status: ouverte       # ouverte | levée | assumée
+#    resolution: ""        # levée : réponse + source (SRC-xxx, emplacement) ou décision (DD-xx) ; assumée : raison
+#    related: []           # H-xxx, BC-xxx, SRC-xxx liés
+
+council_runs: []
+#  - date: ""
+#    mode: preparation     # preparation | couverture | completude
+#    lenses: [utilisateur-final, operations-support, securite-conformite, sponsor-finance, sceptique]
+#    initiatives: []       # les initiatives couvertes par CE passage, si elles sont plusieurs ; vide = celle-ci
+#                          # seule. Un passage partagé s'écrit à l'identique dans chacune : sans ce champ,
+#                          # « 40 proposées » se lit comme 40 pour ce dossier-là, et une somme sur le
+#                          # portefeuille les compte autant de fois qu'il y a d'initiatives. C'est arrivé.
+#    proposed: 0           # questions renvoyées par les lentilles pour TOUT le passage, avant fusion des doublons
+#    questions:            # celles qui ont survécu à l'arbitrage, écartées comprises : un compteur ne se relit pas.
+#                          # Dans CE fichier, seulement celles dont le `target` porte sur cette initiative.
+#      - text: ""
+#        lenses: []        # lentilles qui l'ont trouvée ; plusieurs = signal de priorité
+#        outcome: retenue  # retenue | écartée | réservée (disponible pour un prochain council)
+#        reason: ""        # obligatoire si écartée ou réservée
+#        zone: ZO-xxx      # si retenue : la zone d'ombre créée
+
+# ─────────────── Phase Define ───────────────
+
+objectives: []
+#  - id: OBJ-01
+#    statement: ""         # résultat métier attendu
+#    indicator: ""
+#    baseline: ""          # valeur actuelle ; si inconnue → zone d'ombre succes_non_mesurable
+#    target: ""
+#    deadline: ""
+#    owner: SH-01
+#    status: proposé       # proposé | validé | abandonné
+#    lint_waivers: []
+
+impact_map: []            # Pourquoi (objectif) → Qui (acteur) → Comment (changement de comportement) → Quoi (exigences)
+#  - objective: OBJ-01
+#    actor: SH-02          # ou rôle
+#    impact: ""            # changement de comportement attendu
+#    requirements: [BR-001]
+
+business_requirements: []
+#  - id: BR-001
+#    statement: "Le service doit pouvoir …"
+#    objectives: [OBJ-01]
+#    from_needs: [BC-001, BC-004]
+#    business_rules: []    # RG-xxx que l'exigence fait respecter ou dont elle dépend
+#    acceptance:           # résultats observables côté métier
+#      - ""
+#    priority: ""          # must | should | could | wont
+#    rationale: ""         # pourquoi cette priorité
+#    status: proposé       # proposé | validé | abandonné
+#    lint_waivers: []      # avertissements acceptés : - { rule: L03, reason: "" }
+
+business_rules: []         # règles métier : ce ne sont pas des exigences, mais des directives que le métier contrôle
+#  - id: RG-001
+#    statement: "Un dossier ne doit pas être transmis sans justificatif de domicile."
+#    kind: comportement    # definition (fait, calcul, inférence : ne peut pas être violée) | comportement (obligation ou interdiction : peut l'être)
+#    enforcement: stricte  # comportement uniquement : stricte | derogation_autorisee | derogation_justifiee | indicative
+#    sources: [{ ref: SRC-001, location: "l.12" }]   # texte de loi, procédure, ou savoir tacite d'une personne
+#    owner: SH-01          # responsable métier qui peut la faire évoluer
+#    rationale: ""         # pourquoi elle existe ; à challenger si personne ne le sait
+#    exceptions: []        # chaque exception est elle-même une règle : RG-xxx
+#    status: proposé       # proposé | validé | abandonné
+#    lint_waivers: []
+
+decisions: []              # arbitrages rendus pendant la construction du BRD
+#  - id: DD-01
+#    question: ""
+#    zone: ZO-012          # zone d'ombre à l'origine
+#    options:
+#      - { text: "", impacts: "" }   # qui serait insatisfait, autre moyen possible, risque pris en écartant
+#    decision: ""
+#    rationale: ""
+#    decided_by: SH-01     # déclaré par l'utilisateur, jamais déduit
+#    date: ""
+#    status: proposé       # proposé | validé
+
+target_process:
+  events: []
+#    - { event: "", actor: "", change: nouveau }   # nouveau | modifié | inchangé | supprimé
+  org_impacts: []          # rôles, organisation, formation — { text: "", source: SRC-xxx } ou une phrase
+
+risks: []
+#  - id: R-01
+#    text: ""
+#    origin: ZO-003        # zone d'ombre assumée, hypothèse, source, partie prenante
+#    related: []           # parties prenantes ou éléments concernés
+#    likelihood: ""        # faible | moyenne | forte — dû dès que le risque est consigné (S109) :
+#                          # vide ne veut pas dire faible, ça veut dire non apprécié. Un risque sans
+#                          # vraisemblance ni ampleur ne se priorise pas, et c'est lui qui porte une
+#                          # zone d'ombre assumée : un porteur creux rend la zone au silence
+#    impact: ""            # faible | moyen | fort — ce que le risque coûterait s'il se produisait. Rien
+#                          # à voir avec l'`impact` d'une partie prenante, qui dit à quel point le
+#                          # changement la touche : deux échelles, deux questions
+#    response: ""          # piste de traitement côté métier — due dès que le risque est validé (S109),
+#                          # sinon ce qu'on accepte reste une inquiétude consignée
+#    status: proposé       # proposé | validé
+
+dependencies: []           # - { text: "", owner: "" }
+
+glossary: []               # - { term: "", definition: "", source: SRC-xxx }
+
+brd_sections:              # à rédiger | proposé | validé
+  context: à rédiger
+  objectives: à rédiger
+  stakeholders: à rédiger
+  processes: à rédiger
+  requirements: à rédiger
+  business_rules: à rédiger
+  constraints: à rédiger
+  assumptions_risks: à rédiger
+  decisions: à rédiger
+  scope: à rédiger
+  glossary: à rédiger
+
+principles_applicable: []   # principes de la constitution du produit (.tizi/constitution.yaml) qui s'appliquent à l'initiative ; [] si aucun
+
+synthesis_check:           # porte de synthèse avant Define (fin de Discover), déclarée avec l'utilisateur
+  date: ""
+  fidelite: { status: "", note: "" }        # la synthèse reflète les sources, pas des suppositions — ok | faible
+  couverture: { status: "", note: "" }      # toutes les parties prenantes concernées sont représentées
+  robustesse: { status: "", note: "" }      # chaque besoin retenu repose sur plusieurs sources
+  actionnabilite: { status: "", note: "" }  # le problème est assez clair pour guider la suite
+  alignement: { status: "", note: "" }      # l'équipe et les parties prenantes s'y reconnaissent
+  # une dimension « faible » se corrige, ou s'assume : { status: faible, assumed: true, note: "raison" }
+
+transition_requirements: []  # exigences de transition : ce qu'il faut pour passer de l'existant à la cible (BABOK)
+#  - id: TR-01
+#    kind: formation       # formation | conduite_du_changement | reprise_de_donnees | coexistence | communication | support | autre:<libellé>
+#    text: ""
+#    stakeholders: [SH-02] # qui est concerné
+#    done_when: ""         # critère d'achèvement observable
+#    related: [BR-001]
+#    sources: []
+#    status: proposé
+
+langue: français            # la langue de CE dossier : celle dans laquelle l'équipe le lit et l'écrit.
+                            # Tizi est en français par choix, mais le défaut se déclare ici au lieu
+                            # d'être en dur dans les scripts, pour que le couplage soit visible et
+                            # surchargeable. Une partie prenante qui ne la lit pas porte sa propre
+                            # `langue` ; `reach-out.mjs` énumère alors ce que le message doit dire au
+                            # lieu de le traduire lui-même
+
+connecteurs: ~              # LES OUTILS BRANCHÉS SUR LA SESSION, tels que TOI tu les vois : aucun
+                            # script ne les voit. `~` veut dire « rien de déclaré », `[]` veut dire
+                            # « j'ai regardé, il n'y en a pas » — ce n'est pas la même chose, et les
+                            # scripts les distinguent. `[slack, gmail]` dit ce qui est là. Ça ne change
+                            # JAMAIS ce qui s'écrit, ni le droit d'écrire : ça change qui appuie sur
+                            # « envoyer ». Sans connecteur, le texte part de la main d'un humain — et
+                            # c'est de toute façon ce que font les scripts, qui n'envoient rien. Les
+                            # valeurs sont celles de `joignable_par` (S88)
+
+relance: {}                 # deux horloges, en jours, pour une question partie à quelqu'un et restée
+                            # sans réponse : { signaler: 1, agir: 5 } par défaut. DIRE à l'utilisateur
+                            # qu'il n'y a pas de réponse ne coûte rien et ne sort pas du dossier — un
+                            # jour suffit. RELANCER ou RENONCER sort vers quelqu'un qui n'a rien demandé,
+                            # et c'est irréversible : relancer au bout d'un jour, c'est harceler, et une
+                            # source brûlée ne se rouvre pas là où un avertissement se corrige. Les
+                            # confondre fait l'un au rythme de l'autre. Au-delà de `agir`, l'attente
+                            # cesse de protéger le dossier : « non mesuré » n'est plus une réponse
+                            # acceptable, et S117 le dit. Une association de parents et un service
+                            # hospitalier n'ont pas le même tempo, d'où le réglage.
+                            # Et aucune horloge ne tourne : rien ne se déclenche, le seuil QUALIFIE ce
+                            # qu'on voit en arrivant sur le dossier. Trois semaines sans y revenir, et
+                            # l'alerte arrive à trois semaines
+
+thresholds: {}              # seuils en %, par métrique ; vide = valeurs par défaut (lib/rules.mjs, COVERAGE_DEFAULTS).
+                            # Un seuil à 0 ne compare rien : c'est une mise hors périmètre, et elle passe
+                            # par une dérogation nommée ci-dessous (S105), sinon la mesure se dit « non
+                            # mesurée » au lieu de s'afficher atteinte. Mesuré sur le plan de l'exemple :
+                            # « Stories prêtes | 2/5 | 40 % | 0 % | atteint ».
+                            # Un seuil venu d'ici est un NOMBRE. Une mesure sans cible — « stories
+                            # prêtes » : on n'a jamais besoin que toutes le soient, seulement assez pour
+                            # le prochain cycle — est déclarée `indicatif` dans le catalogue, pas ici :
+                            # le catalogue dit pourquoi, un projet qui écrit 0 assume, et ça se nomme.
+waivers: []                 # - { metric: fr_ac, reason: "", approved_by: "" }   # seuil assumé, et par qui
+                            # Une dérogation ne compte que si elle dit POURQUOI et QUI l'a approuvée :
+                            # sans l'un des deux, elle n'éteint rien (S106). Un seul nom pour les cinq
+                            # documents : `coverage_thresholds`, `coverage_waivers` et
+                            # `settings.thresholds` restent lus, et S107 dit de les renommer.
+
+# ─────────────── Phase Govern ───────────────
+
+governance:
+  version: "0.1"           # version courante : 0.x brouillons et candidates, 1.0 première baseline
+  status: brouillon        # brouillon | en_revue | approuvé | baseline
+  reviewers: []
+#    - { stakeholder: SH-01, role: approbateur }   # approbateur | relecteur | informé
+  review_rounds: []
+#    - { id: RV-1, version: "0.3", sent: "", channel: export, deadline: "" }   # channel : export | pr
+  comments: []
+#    - id: CM-001
+#      round: RV-1
+#      author: SH-02
+#      source: SRC-010     # le retour est enregistré comme source
+#      target: BR-004      # identifiant ou nom de section
+#      text: ""
+#      category: correction   # correction | modification | nouvelle_exigence | contestation | question
+#      decision: en_attente   # en_attente | accepté | rejeté | reporté
+#      reason: ""             # obligatoire si rejeté ou reporté
+#      changes: []            # identifiants modifiés suite au commentaire
+  approvals: []
+#    - stakeholder: SH-01
+#      version: "1.0"
+#      date: ""
+#      decision: approuvé     # approuvé | approuvé_avec_réserves | refusé
+#      reserves: []           # R-xx ou ZO-xxx créés pour suivre les réserves
+#      evidence: ""           # référence facultative : mail, signature, compte rendu
+#      declared_by: utilisateur
+  baselines: []
+#    - { version: "1.0", date: "" }
+  change_requests: []
+#    - id: CR-001
+#      date: ""
+#      requested_by: SH-01
+#      description: ""
+#      impact: []             # identifiants touchés
+#      decision: en_attente   # en_attente | acceptée | refusée
+#      target_version: ""
+
+lint_waivers: []           # dérogations nommées qui ne portent sur AUCUN élément : un constat sur une
+#  - { rule: S83, id: stakeholders, reason: "" }   # collection entière, sur un fichier de guide ou de
+                           # liste de contrôle. Partout ailleurs, la dérogation se met SUR l'élément
+                           # concerné. Les règles de forme (Lxx) comme de structure (Sxx) se dérogent,
+                           # et une dérogation sans `reason` ne compte pas : l'avertissement reste
+
+session:                   # continuité entre sessions (references/sessions.md)
+  next_action: "Reposer à Dédé la question restée sans réponse — le bureau de l'association et l'école sont-ils le même lieu, et où une famille se déplace-t-elle réellement —, puis fermer le canevas d'opportunité (problème de l'organisation, indicateurs côté organisation, budget) et faire rendre la décision d'opportunité par la personne habilitée."          # prochaine action notée avant une pause

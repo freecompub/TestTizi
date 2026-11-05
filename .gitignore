@@ -3,3 +3,6 @@
 # ils suffisent à reprendre sur une autre machine. Retirer cette ligne pour versionner aussi
 # les transcriptions et permettre session-search.mjs depuis n'importe quelle machine.
 .tizi/sessions/*.jsonl
+
+# Coordonnées des parties prenantes : restent sur la machine, jamais commitées (templates/contacts.yaml).
+brd/*/contacts.yaml
